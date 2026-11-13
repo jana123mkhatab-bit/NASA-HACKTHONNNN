@@ -137,9 +137,10 @@ namespace LastSignal
             var inputSystemModule = go.GetComponent<InputSystemUIInputModule>();
             if (inputSystemModule != null) inputSystemModule.enabled = false;
             var legacy = go.GetComponent<StandaloneInputModule>();
-            if (legacy != null) legacy.enabled = false;
-            if (go.GetComponent<RuntimePointerInput>() == null)
-                go.AddComponent<RuntimePointerInput>();
+            if (legacy == null) legacy = go.AddComponent<StandaloneInputModule>();
+            legacy.enabled = true;
+            var bridge = go.GetComponent<RuntimePointerInput>();
+            if (bridge != null) bridge.enabled = false;
         }
         public static RectTransform Rect(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax)
         {

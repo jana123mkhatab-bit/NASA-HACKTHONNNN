@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 namespace LastSignal
 {
@@ -19,22 +18,9 @@ namespace LastSignal
 
         void Update()
         {
-            bool pressed;
-            bool released;
-            Vector2 position;
-            Mouse mouse = Mouse.current;
-            if (mouse != null)
-            {
-                position = mouse.position.ReadValue();
-                pressed = mouse.leftButton.wasPressedThisFrame;
-                released = mouse.leftButton.wasReleasedThisFrame;
-            }
-            else
-            {
-                position = Input.mousePosition;
-                pressed = Input.GetMouseButtonDown(0);
-                released = Input.GetMouseButtonUp(0);
-            }
+            Vector2 position = Input.mousePosition;
+            bool pressed = Input.GetMouseButtonDown(0);
+            bool released = Input.GetMouseButtonUp(0);
             _data.position = position;
 
             if (pressed)
