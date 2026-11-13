@@ -135,8 +135,7 @@ namespace LastSignal.M3.EditorTools
 
         static void Fill(DebriefCard c)
         {
-            c.missionId = MissionIds.M3;
-            c.title = "Debrief: " + MissionIds.Title(MissionIds.M3);
+            c.title = "Debrief: " + MissionIds.TitleFor(MissionIds.M3);
             c.concept = "Single points of failure in deep-space communication. If every message must pass through one relay, losing that relay "
                 + "cuts you off completely. And because radio travels at the speed of light, the farther away you are, the older every message is.";
             c.nasaSource = "NASA Deep Space Network (DSN): https://www.nasa.gov/communicating-with-missions/dsn/\n"
