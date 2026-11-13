@@ -131,6 +131,7 @@ namespace LastSignal
             var es = Object.FindFirstObjectByType<EventSystem>();
             if (es == null) es = new GameObject("EventSystem", typeof(EventSystem)).GetComponent<EventSystem>();
             var go = es.gameObject;
+            if (go.GetComponent<EventSystemGuard>() == null) go.AddComponent<EventSystemGuard>();
 #if ENABLE_INPUT_SYSTEM
             // Remove the legacy module: it throws/does nothing when only the new Input System is active.
             var legacy = go.GetComponent<StandaloneInputModule>();
@@ -143,6 +144,29 @@ namespace LastSignal
 #else
             if (go.GetComponent<BaseInputModule>() == null) go.AddComponent<StandaloneInputModule>();
 #endif
+        }
+
+        /// <summary>Repairs the input module if it ever ends up missing, disabled or without actions (UI would silently stop responding).</summary>
+        sealed class EventSystemGuard : MonoBehaviour
+        {
+            float _next;
+            void Update()
+            {
+                if (Time.unscaledTime < _next) return;
+                _next = Time.unscaledTime + 0.5f;
+                var es = GetComponent<EventSystem>();
+                if (es == null) return;
+                if (!es.enabled) es.enabled = true;
+#if ENABLE_INPUT_SYSTEM
+                var legacy = GetComponent<StandaloneInputModule>();
+                if (legacy != null) Destroy(legacy);
+                var mod = GetComponent<InputSystemUIInputModule>();
+                if (mod == null) mod = gameObject.AddComponent<InputSystemUIInputModule>();
+                if (!mod.enabled) mod.enabled = true;
+                if (mod.actionsAsset == null || mod.point == null || mod.point.action == null) mod.AssignDefaultActions();
+                if (mod.point != null && mod.point.action != null && !mod.point.action.enabled) mod.point.action.Enable();
+#endif
+            }
         }
 
         public static RectTransform Rect(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax)
