@@ -12,20 +12,27 @@ namespace LastSignal
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Init()
         {
-            if (MissionManager.Instance != null) return;
+            var scene = SceneManager.GetActiveScene();
+            if (string.IsNullOrEmpty(scene.path))
+            {
+                SceneManager.LoadScene(MissionIds.SceneFor(MissionIds.M1));
+                return;
+            }
+
             var mm = MissionManager.Ensure();
             var root = mm.gameObject;
 
             UIFactory.EnsureEventSystem();
 
-            mm.hud = Add<HudShell>(root, "HudShell", h => h.Build());
-            mm.pipUI = Add<PipDialogueUI>(root, "PipDialogue", p => p.Build());
-            Add<FatherLogUI>(root, "FatherLog", l => l.Build());
-            mm.debriefUI = Add<DebriefCardUI>(root, "DebriefCard", d => d.Build());
-            mm.failUI = Add<FailPanelUI>(root, "FailPanel", f => f.Build());
-            mm.endUI = Add<EndCardUI>(root, "EndCard", e => e.Build());
+            if (mm.hud == null) mm.hud = Add<HudShell>(root, "HudShell", h => h.Build());
+            if (mm.pipUI == null) mm.pipUI = Add<PipDialogueUI>(root, "PipDialogue", p => p.Build());
+            if (root.GetComponentInChildren<FatherLogUI>() == null) Add<FatherLogUI>(root, "FatherLog", l => l.Build());
+            if (mm.debriefUI == null) mm.debriefUI = Add<DebriefCardUI>(root, "DebriefCard", d => d.Build());
+            if (mm.failUI == null) mm.failUI = Add<FailPanelUI>(root, "FailPanel", f => f.Build());
+            if (mm.endUI == null) mm.endUI = Add<EndCardUI>(root, "EndCard", e => e.Build());
 
-            if (SceneManager.GetActiveScene().name == MissionIds.SceneFor(MissionIds.M1))
+            if (scene.name == MissionIds.SceneFor(MissionIds.M1) &&
+                mm.Current == MissionIds.Boot && root.GetComponentInChildren<TitleScreenUI>() == null)
                 Add<TitleScreenUI>(root, "Title", t => t.Build());
         }
 

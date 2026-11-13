@@ -32,6 +32,28 @@ namespace LastSignal.EditorTools
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("LastSignal/Setup/Build M1 and M2 scenes")]
+        public static void RunMissions12()
+        {
+            Directory.CreateDirectory(SceneDir);
+            SetupVisuals.BuildMaterials();
+            LoadMaterial("concrete_light");
+            LoadMaterial("__grass");
+            LoadMaterial("__apron");
+            LoadMaterial("__sky_ground");
+            Build("M1_Ground", BuildGround);
+            Build("M2_Preflight", BuildPreflight);
+            AssetDatabase.SaveAssets();
+            Debug.Log("[LastSignal] Rebuilt M1_Ground and M2_Preflight with the imported 3D model library.");
+        }
+
+        static void LoadMaterial(string name)
+        {
+            if (SetupVisuals.Materials.ContainsKey(name)) return;
+            var material = AssetDatabase.LoadAssetAtPath<Material>("Assets/_Project/Art/Materials/" + name + ".mat");
+            if (material != null) SetupVisuals.Materials[name] = material;
+        }
+
         static void Build(string name, System.Action<Scene> fill)
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
