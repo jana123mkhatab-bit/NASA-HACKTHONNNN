@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.05046">
+  <test-suite type="TestSuite" id="1000" name="The Last Known Signal" fullname="The Last Known Signal" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.050460" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1013" name="LastSignal.Tests.dll" fullname="D:/NASAProj/NASA-HACKTHONNNN/Library/ScriptAssemblies/LastSignal.Tests.dll" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.040889" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="29028" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1014" name="LastSignal" fullname="LastSignal" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.040335" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1015" name="Tests" fullname="LastSignal.Tests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.039970" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="FlowTests" fullname="LastSignal.Tests.FlowTests" classname="LastSignal.Tests.FlowTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.028681" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1004" name="MissionEvents_DeliverComplete_AndFail" fullname="LastSignal.Tests.FlowTests.MissionEvents_DeliverComplete_AndFail" methodname="MissionEvents_DeliverComplete_AndFail" classname="LastSignal.Tests.FlowTests" runstate="Runnable" seed="443814563" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.010895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="MissionOrder_IsBootToDesignMode" fullname="LastSignal.Tests.FlowTests.MissionOrder_IsBootToDesignMode" methodname="MissionOrder_IsBootToDesignMode" classname="LastSignal.Tests.FlowTests" runstate="Runnable" seed="753856563" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.000663" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="PlayerState_CaptureRestore_RoundTrips" fullname="LastSignal.Tests.FlowTests.PlayerState_CaptureRestore_RoundTrips" methodname="PlayerState_CaptureRestore_RoundTrips" classname="LastSignal.Tests.FlowTests" runstate="Runnable" seed="911830857" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.002977" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="TotalMass_CountsRedundancy" fullname="LastSignal.Tests.FlowTests.TotalMass_CountsRedundancy" methodname="TotalMass_CountsRedundancy" classname="LastSignal.Tests.FlowTests" runstate="Runnable" seed="1983095760" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.001201" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1006" name="RiskModelTests" fullname="LastSignal.Tests.RiskModelTests" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.009334" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1010" name="EmptyOrNullPlan_Is_Zero_Or_One_Safely" fullname="LastSignal.Tests.RiskModelTests.EmptyOrNullPlan_Is_Zero_Or_One_Safely" methodname="EmptyOrNullPlan_Is_Zero_Or_One_Safely" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" seed="606134617" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.000623" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="FiveSubsystems_R063_N1_IsAboutTenPercent" fullname="LastSignal.Tests.RiskModelTests.FiveSubsystems_R063_N1_IsAboutTenPercent" methodname="FiveSubsystems_R063_N1_IsAboutTenPercent" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" seed="1656239389" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.000411" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="FiveSubsystems_R090_TwoWithN2_IsAbout0715" fullname="LastSignal.Tests.RiskModelTests.FiveSubsystems_R090_TwoWithN2_IsAbout0715" methodname="FiveSubsystems_R090_TwoWithN2_IsAbout0715" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" seed="1814963641" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.000119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="MoreRedundancy_NeverLowersSuccess" fullname="LastSignal.Tests.RiskModelTests.MoreRedundancy_NeverLowersSuccess" methodname="MoreRedundancy_NeverLowersSuccess" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" seed="1644293260" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.002329" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1012" name="ReliabilityIsClamped" fullname="LastSignal.Tests.RiskModelTests.ReliabilityIsClamped" methodname="ReliabilityIsClamped" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" seed="782946321" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.000220" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="SonsOriginalPlan_ScoresAboutTenPercent" fullname="LastSignal.Tests.RiskModelTests.SonsOriginalPlan_ScoresAboutTenPercent" methodname="SonsOriginalPlan_ScoresAboutTenPercent" classname="LastSignal.Tests.RiskModelTests" runstate="Runnable" seed="611961121" result="Passed" start-time="2026-11-13 14:32:36Z" end-time="2026-11-13 14:32:36Z" duration="0.000369" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/qlsah/AppData/LocalLow/DefaultCompany/The Last Known Signal\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
