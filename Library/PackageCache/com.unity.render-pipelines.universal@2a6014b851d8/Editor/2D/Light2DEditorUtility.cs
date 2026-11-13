@@ -1,0 +1,328 @@
+using System.Collections.Generic;
+using System.Reflection;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
+namespace UnityEditor.Rendering.Universal
+{
+    internal static class Light2DEditorUtility
+    {
+        internal static readonly string ResourcePath = "Packages/com.unity.render-pipelines.universal/Editor/2D/ResourceIcons/";
+
+        // The Undo entry for a pick in the Light Type dropdown, shared by every place that applies one.
+        internal const string k_ChangeLightTypeUndoName = "Change Light Type";
+
+        private static class Styles
+        {
+            static GUIContent s_LightTypeFreeform;
+            static GUIContent s_LightTypeSprite;
+            static GUIContent s_LightTypePoint;
+            static GUIContent s_LightTypeGlobal;
+
+            public static GUIContent lightTypeFreeform => s_LightTypeFreeform ??= new GUIContent("Freeform", LoadIcon("FreeformLight.png"));
+            public static GUIContent lightTypeSprite => s_LightTypeSprite ??= new GUIContent("Sprite", LoadIcon("SpriteLight.png"));
+            public static GUIContent lightTypePoint => s_LightTypePoint ??= new GUIContent("Spot", LoadIcon("PointLight.png"));
+            public static GUIContent lightTypeGlobal => s_LightTypeGlobal ??= new GUIContent("Global", LoadIcon("GlobalLight.png"));
+
+            static Texture LoadIcon(string fileName) => AssetDatabase.LoadAssetAtPath<Texture>(ResourcePath + "InspectorIcons/" + fileName);
+        }
+
+        static Material s_TexCapMaterial = CoreUtils.CreateEngineMaterial(Shader.Find("Hidden/Internal-GUITexture"));
+        static Mesh k_MeshQuad_Cache;
+        static Mesh k_MeshQuad => k_MeshQuad_Cache == null || k_MeshQuad_Cache.Equals(null) ? (k_MeshQuad_Cache = Resources.GetBuiltinResource<Mesh>("Quad.fbx")) : k_MeshQuad_Cache;
+
+        // Without the runtime's 2D Common tessellator, a Freeform light renders only its falloff edge.
+        internal static bool ShouldShowMissing2DCommonError(Light2D.LightType type)
+        {
+            return type == Light2D.LightType.Freeform && !LightUtility.canTessellateFreeformInterior;
+        }
+
+        /// <summary>
+        /// Draws the Light Type dropdown for a Light2D component using the provider system.
+        /// </summary>
+        /// <remarks>
+        /// This method provides a unified way to render the Light Type dropdown in both the Inspector and Light Explorer windows.
+        /// It automatically scans for custom Light2DProvider components on the GameObject and includes them in the dropdown
+        /// alongside built-in light types (Spot, Freeform, Sprite, Global).
+        ///
+        /// The method handles:
+        /// - Scanning for custom providers on the GameObject
+        /// - Synchronizing the dropdown selection with the actual light type value
+        /// - Detecting and applying user changes only when necessary
+        /// - Supporting both layout-based (Inspector) and rect-based (Light Explorer) rendering
+        /// </remarks>
+        /// <param name="position">The rect to draw the control in. This parameter is ignored when <paramref name="layoutMode"/> is true.</param>
+        /// <param name="label">The label to display next to the dropdown. Pass <see cref="GUIContent.none"/> for no label.</param>
+        /// <param name="serializedObject">The SerializedObject containing the Light2D component. Must not be null.</param>
+        /// <param name="layoutMode">If true, uses EditorGUILayout for automatic layout. If false, uses EditorGUI with the provided <paramref name="position"/> rect.</param>
+        public static void DrawLightTypePopup(Rect position, GUIContent label, SerializedObject serializedObject, bool layoutMode)
+        {
+            serializedObject.Update();
+
+            SerializedProperty selectionSources = serializedObject.FindProperty("m_SelectionSources");
+            SerializedProperty lightType = serializedObject.FindProperty("m_LightType");
+
+            if (selectionSources == null || lightType == null)
+                return;
+
+            // Get the Light2D component and its GameObject
+            Light2D light2D = serializedObject.targetObject as Light2D;
+            if (light2D == null)
+                return;
+
+            Light2DProviderSources sources = selectionSources.boxedValue as Light2DProviderSources;
+            if (sources == null)
+                return;
+
+            int selectedIndex = RefreshLightSources(light2D, sources);
+
+            // Sync m_SelectionSources with the actual m_LightType value
+            // This is needed because Light Explorer may have changed m_LightType directly
+            if (lightType.intValue != (int)Light2D.LightType.Provider && sources.selectedHashCode != lightType.intValue)
+            {
+                sources.selectedHashCode = lightType.intValue;
+                selectedIndex = Provider2DSources<Light2DProvider, Light2DProviderSource>.RefreshSources(sources, light2D.gameObject, 0);
+            }
+
+            // Get all source names for the dropdown
+            GUIContent[] sourceNames = sources.GetSourceNames();
+
+            // Track change
+            EditorGUI.BeginChangeCheck();
+
+            int newSelectedIndex;
+            // Draw the dropdown using the appropriate mode
+            if (layoutMode)
+            {
+                newSelectedIndex = EditorGUILayout.Popup(label, selectedIndex, sourceNames);
+            }
+            else
+            {
+                newSelectedIndex = EditorGUI.Popup(position, selectedIndex, sourceNames);
+            }
+
+            // Only apply changes if the user actually changed the value
+            if (EditorGUI.EndChangeCheck() && newSelectedIndex >= 0)
+            {
+                ApplyLightTypeSelection(serializedObject, sourceNames[newSelectedIndex]);
+            }
+        }
+
+        /// <summary>
+        /// Applies the entry the user picked to the light, and reports the clash when that pick is what
+        /// turned the light Global.
+        /// </summary>
+        /// <remarks>
+        /// The report belongs here, on the path both the Inspector and the Light Explorer take, because the
+        /// Light Explorer has no equivalent of the Inspector's CheckForExistingGlobalLight: picking Global
+        /// in its Light Type column used to go unreported.
+        /// </remarks>
+        static internal void ApplyLightTypeSelection(SerializedObject serializedObject, GUIContent chosen)
+        {
+            Light2D light = serializedObject.targetObject as Light2D;
+            if (light == null)
+                return;
+
+            SerializedProperty selectionSources = serializedObject.FindProperty("m_SelectionSources");
+            Light2DProviderSources sources = selectionSources?.boxedValue as Light2DProviderSources;
+            if (sources == null)
+                return;
+
+            RefreshLightSources(light, sources);
+
+            // Read before the selection is written, so this tells whether the pick is what made it Global.
+            bool wasGlobal = light.lightType == Light2D.LightType.Global;
+
+            GUIContent[] sourceNames = sources.GetSourceNames();
+            for (int i = 0; i < sourceNames.Length; i++)
+            {
+                if (sourceNames[i].text != chosen.text)
+                    continue;
+
+                Light2DProviderSources.ApplySelectionFromIndex(selectionSources, i, k_ChangeLightTypeUndoName);
+
+                // Only a light that just became Global reports; ErrorIfDuplicateGlobalLight skips other types.
+                // Lights that were already Global stay quiet, so the clash is not logged once per global light.
+                if (!wasGlobal && light.isActiveAndEnabled)
+                    Light2DManager.ErrorIfDuplicateGlobalLight(light);
+                break;
+            }
+        }
+
+        /// <summary>
+        /// Scans <paramref name="light2D"/> for custom providers, adds the built-in light types, and returns
+        /// the index of the currently selected source, or -1 when the stored selection matches none of them.
+        /// </summary>
+        static internal int RefreshLightSources(Light2D light2D, Light2DProviderSources sources)
+        {
+            // Set up the built-in light types
+            List<SelectionSource> additionalSources = new List<SelectionSource>
+            {
+                new Light2DSource_BuiltIn(Styles.lightTypePoint, Light2D.LightType.Point, 0),
+                new Light2DSource_BuiltIn(Styles.lightTypeFreeform, Light2D.LightType.Freeform, 0),
+                new Light2DSource_BuiltIn(Styles.lightTypeSprite, Light2D.LightType.Sprite, 0),
+                new Light2DSource_BuiltIn(Styles.lightTypeGlobal, Light2D.LightType.Global, 0),
+            };
+
+            // Refresh sources to scan for custom providers on the GameObject
+            Provider2DSources<Light2DProvider, Light2DProviderSource>.RefreshSources(sources, light2D.gameObject, 0);
+
+            // Add built-in types
+            var additionalSourcesList = sources.GetAdditionalSources();
+            if (additionalSourcesList != null)
+            {
+                additionalSourcesList.Clear();
+                foreach (var source in additionalSources)
+                    additionalSourcesList.Add(source);
+            }
+
+            // Refresh again to include the built-in types
+            return Provider2DSources<Light2DProvider, Light2DProviderSource>.RefreshSources(sources, light2D.gameObject, 0);
+        }
+
+        static internal bool ContainsVisibleInspectorProperites(Provider2D provider)
+        {
+            Debug.Assert(provider != null);
+            var type = provider.GetType();
+            return type.GetFields(BindingFlags.Instance | BindingFlags.Public).Length > 0;
+        }
+
+        static internal void DrawHeaderFoldoutWithToggle(GUIContent title, SavedBool foldoutState, SerializedProperty toggleState, string documentationURL = "")
+        {
+            const float height = 17f;
+            var backgroundRect = GUILayoutUtility.GetRect(0, 0);
+            float xMin = backgroundRect.xMin;
+
+            var labelRect = backgroundRect;
+            labelRect.yMax += height;
+            labelRect.xMin += 16f;
+            labelRect.xMax -= 20f;
+
+            bool newToggleState = GUI.Toggle(labelRect, toggleState.boolValue, " ");  // Needs a space because the checkbox won't have a proper outline if we don't make a space here
+            bool newFoldoutState = CoreEditorUtils.DrawHeaderFoldout("", foldoutState.value);
+
+            if (newToggleState != toggleState.boolValue)
+                toggleState.boolValue = newToggleState;
+
+            if (newFoldoutState != foldoutState.value)
+                foldoutState.value = newFoldoutState;
+
+
+            labelRect.xMin += 20;
+            EditorGUI.LabelField(labelRect, title, EditorStyles.boldLabel);
+        }
+
+
+        static internal void GUITextureCap(int controlID, Texture texture, Vector3 position, Quaternion rotation, float size, EventType eventType, bool isAngleHandle)
+        {
+            switch (eventType)
+            {
+                case (EventType.Layout):
+                {
+                    Vector2 size2 = Vector2.one * size * 0.5f;
+                    if (isAngleHandle)
+                        size2.x = 0.0f;
+
+                    HandleUtility.AddControl(controlID, DistanceToRectangle(position, rotation, size2));
+                    break;
+                }
+
+                case (EventType.Repaint):
+                {
+                    s_TexCapMaterial.mainTexture = texture;
+                    s_TexCapMaterial.SetPass(0);
+
+                    float w = texture.width;
+                    float h = texture.height;
+                    float max = Mathf.Max(w, h);
+                    Vector3 scale = new Vector2(w / max, h / max) * size * 0.5f;
+
+                    if (Camera.current == null)
+                        scale.y *= -1f;
+
+                    Matrix4x4 matrix = new Matrix4x4();
+                    matrix.SetTRS(position, rotation, scale);
+
+                    Graphics.DrawMeshNow(k_MeshQuad, matrix);
+                }
+                break;
+            }
+        }
+
+        static float DistanceToRectangle(Vector3 position, Quaternion rotation, Vector2 size)
+        {
+            Vector3[] points = { Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero, Vector3.zero };
+            Vector3 sideways = rotation * new Vector3(size.x, 0, 0);
+            Vector3 up = rotation * new Vector3(0, size.y, 0);
+
+            points[0] = HandleUtility.WorldToGUIPoint(position + sideways + up);
+            points[1] = HandleUtility.WorldToGUIPoint(position + sideways - up);
+            points[2] = HandleUtility.WorldToGUIPoint(position - sideways - up);
+            points[3] = HandleUtility.WorldToGUIPoint(position - sideways + up);
+            points[4] = points[0];
+
+            Vector2 pos = Event.current.mousePosition;
+            bool oddNodes = false;
+            int j = 4;
+
+            for (int i = 0; i < 5; ++i)
+            {
+                if ((points[i].y > pos.y) != (points[j].y > pos.y))
+                {
+                    if (pos.x < (points[j].x - points[i].x) * (pos.y - points[i].y) / (points[j].y - points[i].y) + points[i].x)
+                        oddNodes = !oddNodes;
+                }
+
+                j = i;
+            }
+
+            if (!oddNodes)
+            {
+                // Distance to closest edge (not so fast)
+                float dist, closestDist = -1f;
+                j = 1;
+
+                for (int i = 0; i < 4; ++i)
+                {
+                    dist = HandleUtility.DistancePointToLineSegment(pos, points[i], points[j++]);
+                    if (dist < closestDist || closestDist < 0)
+                        closestDist = dist;
+                }
+
+                return closestDist;
+            }
+            else
+                return 0;
+        }
+
+        internal static Renderer2DData GetRenderer2DData()
+        {
+            UniversalRenderPipelineAsset pipelineAsset = UniversalRenderPipeline.asset;
+            if (pipelineAsset == null)
+                return null;
+
+            // try get the default
+            Renderer2DData rendererData = pipelineAsset.scriptableRendererData as Renderer2DData;
+            if (rendererData == null)
+            {
+                foreach (Camera camera in Camera.allCameras)
+                {
+                    UniversalAdditionalCameraData additionalCameraData = camera.GetComponent<UniversalAdditionalCameraData>();
+                    ScriptableRenderer renderer = additionalCameraData?.scriptableRenderer;
+                    Renderer2D renderer2D = renderer as Renderer2D;
+                    if (renderer2D != null)
+                        return renderer2D.GetRenderer2DData();
+                }
+            }
+
+
+            return rendererData;
+        }
+
+        internal static bool IsUsing2DRenderer()
+        {
+            return GetRenderer2DData() != null;
+        }
+    }
+}

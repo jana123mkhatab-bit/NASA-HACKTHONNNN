@@ -1,0 +1,507 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 33248)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 35760)
+VBCSCompiler prewarm took 10.93 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah" at "2026-11-13T14:38:43.3361825Z"
+OS: 'Windows 11  (10.0.26300) Professional' Language: 'en' Physical Memory: 16108 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-13T14:38:43Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 20732, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.19.0'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-qlsah"
+[Licensing::IpcConnector] LicenseClient-qlsah channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-qlsah-1.19.0 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 34628)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0" at "2026-11-13T14:38:43.4131622Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 34628, path: "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              cd1da2fe75e841feb211c3551f72647a
+  Correlation Id:          7536cc7ec910e8832df08cd0ce1aa8ac
+  External correlation Id: 3011636569852111754
+  Machine Id:              zAjizhQoqrPGXmQ1fiso6ZI95cQ=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-qlsah-1.19.0" (connect: 0.04s, validation: 0.05s, handshake: 0.03s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0-notifications" at "2026-11-13T14:38:43.4852319Z"
+[Licensing::Module] Connected to LicensingClient (PId: 34628, launch time: 0.00, total connection time: 0.11s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 11270737928533-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.16s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+D:\NASAProj\NASA-HACKTHONNNN
+-executeMethod
+LastSignal.EditorTools.SetupScenes.RunMissions12
+-logFile
+D:\NASAProj\NASA-HACKTHONNNN\Logs\rebuild-m1-m2.log
+Successfully changed project path to: D:\NASAProj\NASA-HACKTHONNNN
+D:/NASAProj/NASA-HACKTHONNNN
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [28712]  Target information:
+
+Player connection [28712]  * "[IP] 192.168.1.17 [Port] 55504 [Flags] 2 [Guid] 2150811038 [EditorId] 2150811038 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [28712]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 2150811038 [EditorId] 2150811038 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [28712] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [28712] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-1312" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 050b68382223d11f73aba3a458c7858f
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = D:/NASAProj/NASA-HACKTHONNNNUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/NASAProj/NASA-HACKTHONNNN/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56312
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001535 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.670 seconds
+Domain Reload Profiling: 1161ms
+	BeginReloadAssembly (123ms)
+		CreateAndSetChildDomain (16ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (298ms)
+		LoadAssemblies (105ms)
+		TypeCache.Refresh (200ms)
+			TypeCache.ScanAssembly (188ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (670ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (99ms)
+			ProcessInitializeOnLoadAttributes (133ms)
+			ProcessInitializeOnLoadMethodAttributes (228ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 29 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.inputsystem@1.20.1 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.searcher@4.9.5 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.test-framework@1.8.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.ugui@2.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.ugui@ff4f88904a57)
+    com.unity.modules.audio@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.imgui@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physicscore2d@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.tetgen@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.timelinefoundation@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.unitywebrequest@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.physics2d@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.ext.nunit@2.1.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.modules.uielements@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.graph-authoring@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.modules.hierarchycore@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.modules.animation@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.animation)
+    com.unity.test-framework.performance@6.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.00 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/NASAProj/NASA-HACKTHONNNN
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s825ms
+[595/760    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[752/760    0s] Csc Library/Bee/artifacts/1900b0aE.dag/LastSignal.Editor.dll (+2 others)
+[754/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/LastSignal.Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/LastSignal.Editor.dll, with 147 defines and 307 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[755/760    0s] CopyFiles Library/ScriptAssemblies/LastSignal.Editor.pdb
+[756/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 149 defines and 310 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[758/760    0s] CopyFiles Library/ScriptAssemblies/LastSignal.Editor.dll
+*** Tundra build success (0.79 seconds), 6 items updated, 760 evaluated
+Total cache size 76008696
+Total cache size after purge 76008696, took 00:00:00.0596605
+AssetDatabase: script compilation time: 1.331767s
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.686 seconds
+Domain Reload Profiling: 1428ms
+	BeginReloadAssembly (250ms)
+		DisableScriptedObjects (27ms)
+		CreateAndSetChildDomain (49ms)
+	RebuildCommonClasses (12ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (53ms)
+	LoadAllAssembliesAndSetupDomain (411ms)
+		LoadAssemblies (279ms)
+		TypeCache.Refresh (86ms)
+			TypeCache.ScanAssembly (78ms)
+		AnalyzeDomain (38ms)
+			BuildScriptInfoCaches (31ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (687ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			BeforeProcessingInitializeOnLoad (95ms)
+			ProcessInitializeOnLoadAttributes (136ms)
+			ProcessInitializeOnLoadMethodAttributes (188ms)
+			AfterProcessingInitializeOnLoad (6ms)
+		AwakeInstancesAfterBackupRestoration (21ms)
+Starting new worker id: 0 with log in D:/NASAProj/NASA-HACKTHONNNN/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=4b98347e9e0acee47a95fd2997f490fb): Total: 3.336 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=1032 ms
+		Asset DB Callback time: managed=144 ms, native=8 ms
+		Scripting: domain reloads=1, domain reload time=784 ms, compile time=1334 ms, other=32 ms
+		Project Asset Count: scripts=877, non-scripts=1680
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 7.802ms
+	ApplyChangesToAssetFolders: 0.450ms
+	Scan: 71.877ms
+	Collect global state as custom dependencies: 17.661ms
+	OnSourceAssetsModified: 0.498ms
+	CategorizeScriptCompilationAssets: 14.379ms
+	ProcessAssetsWithTransientArtifactChanges: 47.194ms
+	CategorizeAssets: 40.954ms
+	CompileScripts: 1333.896ms
+	ImportOutOfDateAssets: 702.423ms (689.473ms without children)
+		UnloadImportedAssets: 1.546ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.428ms
+		ImportSchedulerStart: 10.943ms
+	PostProcessAllAssets: 144.946ms
+		VCAutoAddAssetPostprocess 0.733ms
+		XRBuildSystem.XRAssetImported 0.067ms
+		MonoPostProcessAllAssets: 143.726ms
+			AssetPostprocessor.OnPostprocessAllAssets 75.047ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 24.918ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 14.659ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 5.083ms
+			AssetChangedListener.OnPostprocessAllAssets 1.855ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.573ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.476ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.469ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.468ms
+			SyncVS.PostprocessSyncProject 1.000ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.803ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.718ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.682ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.463ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.442ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.393ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.377ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.339ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.319ms
+			PostProcessor.OnPostprocessAllAssets 0.282ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.282ms
+			AssetEvents.OnPostprocessAllAssets 0.229ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.221ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.206ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.200ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.193ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.185ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.154ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.136ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.111ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.065ms
+	PostAssetChangesProfiler: 0.966ms
+	UnloadStreamsBegin: 1.666ms
+	PersistCurrentRevisions: 0.079ms
+	GenerateScriptTypeHashes: 1.635ms
+	GenerateScriptTypeSerializationHashes: 3.312ms
+	Untracked: 914.515ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 1.919ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-The Last Known Signal
+Unloading 27 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3652 unused Assets / (1.5 MB). Loaded Objects now: 4653.
+Memory consumption went from 330.6 MB to 329.1 MB.
+Total: 6.180900 ms (FindLiveObjects: 0.479400 ms CreateObjectMapping: 0.198300 ms MarkObjects: 4.653500 ms  DeleteObjects: 0.692200 ms)
+
+Importing 'GUID: 604cd39cbc797724aa75e648d95ed758 - Path: Assets/_Project/Art/Materials/brick.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 604cd39cbc797724aa75e648d95ed758' -> (Import Result ID: 'ff1ce9c38aeef5cf867b51c839258409') in 0.006 seconds [static dependencies only]. Details - ImportResultOutputID=1d8d77a953b57b8ba24bf6f391ac962f DependenciesID=edb941f7636869afd51b49a78d191446 StaticDependenciesID=6aacc34c9e5a0d3a3a671b49762aeb42 
+Importing 'GUID: a1e93e01666a5dd4582b2cc1f34640e9 - Path: Assets/_Project/Art/Materials/sidewalk.mat' with importer (NativeFormatImporter)
+Imported 'GUID: a1e93e01666a5dd4582b2cc1f34640e9' -> (Import Result ID: '6a87d521b79396788d5ed6419c260439') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=843c448ee59b1486d5c6ebedc08c0765 DependenciesID=abc1c46fd4de2f4a7a8ee4a64927b416 StaticDependenciesID=a6b55a3d61e03d25cdca2ae97369b1f4 
+Importing 'GUID: e109d6934e4455849bfbee9ebe46038c - Path: Assets/_Project/Art/Materials/__sky_ground.mat' with importer (NativeFormatImporter)
+Main Object Name 'Skybox/Procedural' does not match filename '__sky_ground'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: e109d6934e4455849bfbee9ebe46038c' -> (Import Result ID: '298a129543a4a5f56499cc586b0653c0') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3f2f2a1506d294d6b5504a1837ad5aea DependenciesID=45b0836be81b39e1c84d5d85afcf129c StaticDependenciesID=c171df509ca7d2b421b3f2965cf12c26 
+Importing 'GUID: 53fa816df151d2041bce96af7097d066 - Path: Assets/_Project/Art/Materials/earth_surface.mat' with importer (NativeFormatImporter)
+Main Object Name 'LastSignal/Earth' does not match filename 'earth_surface'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: 53fa816df151d2041bce96af7097d066' -> (Import Result ID: '7e5c388c8cbff7c51f601b6fc00ac36e') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=017b0b1a8a87a9938b74857015d8533c DependenciesID=2f9f7557b55a186e36e0dfaf010c57bd StaticDependenciesID=895b3a33229a96ad06559a96b78eeaf0 
+Importing 'GUID: b3940c49cd17ac843aafaa06a31ff1e0 - Path: Assets/_Project/Art/Materials/__grass.mat' with importer (NativeFormatImporter)
+Imported 'GUID: b3940c49cd17ac843aafaa06a31ff1e0' -> (Import Result ID: '1341fbae16f038e3eb037e67932b7e57') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=5857b06066774e41d85bfbbd77c8672e DependenciesID=0f75292a1e1dff39968978cb9fc93361 StaticDependenciesID=a5216dfc0979c97604bd13b95a15a764 
+Importing 'GUID: e3be1b275b328a84ab596d33fc3b8235 - Path: Assets/_Project/Art/Materials/moon_surface.mat' with importer (NativeFormatImporter)
+Imported 'GUID: e3be1b275b328a84ab596d33fc3b8235' -> (Import Result ID: '35caf54f66522f87d3c413ecb49fc2c3') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=895a4241bb5093401b1f1a51f0843ba5 DependenciesID=5aad3368ed1bff363bd62d91f8fdf522 StaticDependenciesID=ac6a86772ff7c450cfd577a1638be0ae 
+Importing 'GUID: 04a56f61700c36e49817794c8aa9d95e - Path: Assets/_Project/Art/Materials/glass_clear.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 04a56f61700c36e49817794c8aa9d95e' -> (Import Result ID: 'ccd087947e0cd1b3b6603e23e6752f99') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=ab0168b5698bef7b858ddb07fb3bbdeb DependenciesID=2566ea853097669930bbf8e438570928 StaticDependenciesID=4c1a6f395cf8eff0fc3dec70c5baf22d 
+Importing 'GUID: 24734c4c2d7f4f14b9a08a52095bb525 - Path: Assets/_Project/Art/Materials/metal_corrugated.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 24734c4c2d7f4f14b9a08a52095bb525' -> (Import Result ID: '94eb476a1269177e0a4b228d527a8c3a') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=0a69e758c8c0186091cb82e8b4a5f7db DependenciesID=f0ed822085a19c134395380d635d713a StaticDependenciesID=454993190170e0f8ed7ea84ea4c269f7 
+Importing 'GUID: 64e09ac7124410244b523e5ee067e603 - Path: Assets/_Project/Art/Materials/grass.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 64e09ac7124410244b523e5ee067e603' -> (Import Result ID: 'acc3518cb518bc9fe852755236670e72') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=74d449bc960a5352e839be0200b82e03 DependenciesID=1168fb90ab7e7f289492ce29aef75450 StaticDependenciesID=5c93c310f362b78468e6c82cff9bfdf0 
+Importing 'GUID: e68e7dcac3813c64296189ffb1cbfb12 - Path: Assets/_Project/Art/Materials/wood_bench.mat' with importer (NativeFormatImporter)
+Imported 'GUID: e68e7dcac3813c64296189ffb1cbfb12' -> (Import Result ID: 'e811851f5e2aee1e0e1a2fc3dc9138f2') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=2bace0cc153778bee20dca23a0a75900 DependenciesID=93a2be30b9712f76b712f2285a19e03b StaticDependenciesID=8a1a3a5842c4308560f27ce4a35e1504 
+Importing 'GUID: 27e76dd87369b5a44ba12de148e18a9c - Path: Assets/_Project/Art/Materials/tree_bark.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 27e76dd87369b5a44ba12de148e18a9c' -> (Import Result ID: 'ec3e76d029b673d851ca96239d2442b0') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=3608926d7eda2e6c1b062ecdedaf868b DependenciesID=5c0858275109a2b13f6a630be005e696 StaticDependenciesID=0fa7f53d5105666119ca0e0d34c807a7 
+Importing 'GUID: 37c70179f432ba14f93b60603e38223a - Path: Assets/_Project/Art/Materials/tree_leaves.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 37c70179f432ba14f93b60603e38223a' -> (Import Result ID: '554664ab522140a003f786ba269b562d') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=aa6064977dcd44fefc4dd208283cba36 DependenciesID=cec5e77dc8d109bfb44510d3c60c3a05 StaticDependenciesID=5954d859fe1c7280bcd409532c4d35a2 
+Importing 'GUID: 4707a1dc5e69fa5428527ff72fe76d8f - Path: Assets/_Project/Art/Materials/earth_clouds.mat' with importer (NativeFormatImporter)
+Main Object Name 'LastSignal/Clouds' does not match filename 'earth_clouds'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: 4707a1dc5e69fa5428527ff72fe76d8f' -> (Import Result ID: '654f6124bd188fb0235f3c45c4ea357e') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=98b2510ffbccad403ab2697919c83e63 DependenciesID=014285b7c46f9c7690cec6282135f61e StaticDependenciesID=ce00ac3d1b08b55f95fa7af2b8721b9a 
+Importing 'GUID: e70147c68b0eb0344bda220456e2c0b8 - Path: Assets/_Project/Art/Materials/roof_dark.mat' with importer (NativeFormatImporter)
+Imported 'GUID: e70147c68b0eb0344bda220456e2c0b8' -> (Import Result ID: 'c6f197d370b54e321ebdad5350bb5691') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=51010ac6eaeea82c9ac941afb560e271 DependenciesID=4ae2279976267a2af1bdea0c2f99725d StaticDependenciesID=8f2b7f6e7a432d86cee1be46f40b9f35 
+Importing 'GUID: 08424fc357ce86a499f89049c4b5c8ad - Path: Assets/_Project/Art/Materials/roof_tile.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 08424fc357ce86a499f89049c4b5c8ad' -> (Import Result ID: 'b5a096f83ca6c5cafa6a03c1f0130576') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=f423a719399d7c6afccb44a73e6344d1 DependenciesID=9952183a70092f3f133f4bb13934db3c StaticDependenciesID=8e67e46041f45081c072e7a9a76d5429 
+Importing 'GUID: 887169aab1cac67418c1b742b62f7bad - Path: Assets/_Project/Art/Materials/__apron.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 887169aab1cac67418c1b742b62f7bad' -> (Import Result ID: '0ac7c29d5d2d231123364462e422c12b') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=796fbadd003eb1d8895c06b9a786bd10 DependenciesID=c56fcf714ca67d152dae4d3aba1ea7d5 StaticDependenciesID=2eaa70cb6af2d7a3b313469963925fcc 
+Importing 'GUID: 193a824b16838a3438b4697f9f9886b6 - Path: Assets/_Project/Art/Materials/sun_corona.mat' with importer (NativeFormatImporter)
+Main Object Name 'LastSignal/Atmosphere' does not match filename 'sun_corona'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: 193a824b16838a3438b4697f9f9886b6' -> (Import Result ID: '13dde68780dbe09f07617620c50d0016') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=d6ee5b73466cfec81d1c78bee3755dc3 DependenciesID=3eec8f46aef7a226fad52325920bdf94 StaticDependenciesID=f1f7f6ed0aa403fcd71e422118ea04e5 
+Importing 'GUID: 4948c526889e60b41bce645085b40640 - Path: Assets/_Project/Art/Materials/concrete_dark.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 4948c526889e60b41bce645085b40640' -> (Import Result ID: 'bf8d05f13c9012ab774535ae70c9ba0d') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=c198460a94efa54e27190f9d5f616a59 DependenciesID=8403863c5228bfe3ea699ae0588ce944 StaticDependenciesID=4af0cd4a0ae974bc30c55b093736f23c 
+Importing 'GUID: 3ab5be5b82aa6ab41a4bcd11ccdc7ebd - Path: Assets/_Project/Art/Materials/lamp_metal.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 3ab5be5b82aa6ab41a4bcd11ccdc7ebd' -> (Import Result ID: '60d6a1a9749c1be26b8cc4a2acaf635b') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=9aac56d736e30054680dd4b483029b48 DependenciesID=e68e8a37608a213c36612bd52a8852ef StaticDependenciesID=b2e91cc4b7c16f7f3abca744f08243b9 
+Importing 'GUID: 6a4562917e91e7449bc4ca5d51fc68e9 - Path: Assets/_Project/Art/Materials/earth_atmosphere.mat' with importer (NativeFormatImporter)
+Main Object Name 'LastSignal/Atmosphere' does not match filename 'earth_atmosphere'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: 6a4562917e91e7449bc4ca5d51fc68e9' -> (Import Result ID: '6b50f2d9bcc10583f8a7ed9f02ae1ed9') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=901fe5c861f42b8e6beb75e48afcb617 DependenciesID=217945fc0a5f0faf6c4cc779127b7bf0 StaticDependenciesID=0e17f06db3b29a7fcf44cb9ac855bab5 
+Importing 'GUID: fa2ddc34ed1bce24ba99f6ac334f62a6 - Path: Assets/_Project/Art/Materials/siding_white.mat' with importer (NativeFormatImporter)
+Imported 'GUID: fa2ddc34ed1bce24ba99f6ac334f62a6' -> (Import Result ID: '07e360d6052638b8c6c861e8637e5e22') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=482a8f45b3b993a9b21dff27c52cda11 DependenciesID=203fbbdd52b000dbd0aca0a6e2b64a97 StaticDependenciesID=65ee5b4485141edb531b6f00c3e21cec 
+Importing 'GUID: ac8cb8b1fb6b93149a3fbb2dd292527b - Path: Assets/_Project/Art/Materials/concrete_light.mat' with importer (NativeFormatImporter)
+Imported 'GUID: ac8cb8b1fb6b93149a3fbb2dd292527b' -> (Import Result ID: 'acd86597adbc83d2023510c09f28e8d0') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=02ed7282876eb1d443a85822c466b41d DependenciesID=e3cc2ae87a89c63614353ddeeea2467f StaticDependenciesID=108f8ed633a53c0ad926be0c4e66ca7a 
+Importing 'GUID: bc4aa8416631e14459a9f304fccee0e2 - Path: Assets/_Project/Art/Materials/glass_blue.mat' with importer (NativeFormatImporter)
+Imported 'GUID: bc4aa8416631e14459a9f304fccee0e2' -> (Import Result ID: '3e14c46875b929e035db1bbff2727f82') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=c78288923bea596fe2fc277c485d61cf DependenciesID=0107d98bf8fdfd3f9b78d1f452513c16 StaticDependenciesID=7b88441fe0072c69da6ccf28faa07c93 
+Importing 'GUID: 0d8a546d3790af4468720de79055edd8 - Path: Assets/_Project/Art/Materials/sun_surface.mat' with importer (NativeFormatImporter)
+Main Object Name 'Universal Render Pipeline/Unlit' does not match filename 'sun_surface'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: 0d8a546d3790af4468720de79055edd8' -> (Import Result ID: '7e2f9bd21180b10c5651d2a1dd656975') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=06fd17db5abb37c20afe663a5fafe4bb DependenciesID=5d6e5b6ba158a8ca9bc8ba2b3f24667c StaticDependenciesID=682d67ff6445eed1d88fa0d43bdffd57 
+Importing 'GUID: 1d27302afa754974d8f6d1f5e6795b3b - Path: Assets/_Project/Art/Materials/glass_tinted.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 1d27302afa754974d8f6d1f5e6795b3b' -> (Import Result ID: '98f4664c7ce56c4f742fa05810eaef29') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=f1decbec15240e90a9e24d7f2b3d8303 DependenciesID=5e721290bf507654b4de1b485f7342e6 StaticDependenciesID=339e7314230481fcb75e7aaa9c5a71db 
+Importing 'GUID: 7dbb2637288383c419ae747732b709ad - Path: Assets/_Project/Art/Materials/skybox_material.mat' with importer (NativeFormatImporter)
+Main Object Name 'Universal Render Pipeline/Unlit' does not match filename 'skybox_material'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+LastSignal.EditorTools.SetupVisuals:BuildMaterials () (at Assets/_Project/Core/Editor/SetupVisuals.cs:174)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:39)
+
+[Assets/_Project/Core/Editor/SetupVisuals.cs line 174]
+
+Imported 'GUID: 7dbb2637288383c419ae747732b709ad' -> (Import Result ID: '3b708ea39a5305a253da2bbc7103d5e5') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=2232744198c57fdbaa6f10a85fd76d35 DependenciesID=9c5ba39a18c75837a6306b8876183cd0 StaticDependenciesID=edb7ab77ceaa7cd9c26f7c0dcbc7e439 
+Importing 'GUID: dd2c72b6248d5b44b944f62f0c24ff28 - Path: Assets/_Project/Art/Materials/steel_frame.mat' with importer (NativeFormatImporter)
+Imported 'GUID: dd2c72b6248d5b44b944f62f0c24ff28' -> (Import Result ID: 'd027b5ddb28b14df1447fc6308f63439') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=a6fac4ad5c80bd65a4ea956fc57327c5 DependenciesID=1386cb05d57065be61a924a7d5c19ac8 StaticDependenciesID=e9bc7a41d5d94a25094786c1b88cf110 
+Importing 'GUID: 9ebb54b0bbd16414993defc985340684 - Path: Assets/_Project/Art/Materials/asphalt.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 9ebb54b0bbd16414993defc985340684' -> (Import Result ID: '716f8f4cab74acf96b769fdf4ac43a42') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=e41a4c9784659f538534e5363cf0264f DependenciesID=0224f5b5fafe2b28c62030adcc414a88 StaticDependenciesID=31072f6376b6cdef9258adebf678c077 
+Importing 'GUID: 6ffa300d6fa83df459c00840bcb13a3d - Path: Assets/_Project/Art/Materials/antenna_red.mat' with importer (NativeFormatImporter)
+Imported 'GUID: 6ffa300d6fa83df459c00840bcb13a3d' -> (Import Result ID: '76dc221524f583b99ee2cc18432b2393') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=006d6a07213c198c0063d28e8f482606 DependenciesID=62c177efff0f5ab56249c072e39f5f0a StaticDependenciesID=de48f04fc44150dfc6e1649609568d1f 
+Asset Pipeline Refresh (id=77cbbd7c5d924f84baa94b854085c67f): Total: 0.103 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 53 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 60 unused Assets / (24.0 KB). Loaded Objects now: 4690.
+Memory consumption went from 332.9 MB to 332.9 MB.
+Total: 7.214900 ms (FindLiveObjects: 0.264700 ms CreateObjectMapping: 0.123100 ms MarkObjects: 6.548300 ms  DeleteObjects: 0.070000 ms)
+
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Importing 'GUID: a8a0dfb5215ab994a8610f9e94a1b38f - Path: Assets/_Project/Scenes/M1_Ground.unity' with importer (DefaultImporter)
+Imported 'GUID: a8a0dfb5215ab994a8610f9e94a1b38f' -> (Import Result ID: 'd3b9c185c02922e750635f560df7ae1e') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=51f5ceabdaec14a42caec1a922030a47 DependenciesID=c54bc9c31daef288c33a60d28793cb99 StaticDependenciesID=d7b134a1bea14c2763cdab5a75866caf 
+Asset Pipeline Refresh (id=97c1bb9ed30eaa14fa5cbc2f37f9854b): Total: 0.028 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Unloading 24 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 247 unused Assets / (4.1 MB). Loaded Objects now: 4702.
+Memory consumption went from 354.5 MB to 350.4 MB.
+Total: 6.360900 ms (FindLiveObjects: 1.727600 ms CreateObjectMapping: 0.074600 ms MarkObjects: 4.108600 ms  DeleteObjects: 0.292200 ms)
+
+Importing 'GUID: c0d68e0719bbd814ba43a87e98443f33 - Path: Assets/_Project/Scenes/M2_Preflight.unity' with importer (DefaultImporter)
+Imported 'GUID: c0d68e0719bbd814ba43a87e98443f33' -> (Import Result ID: '755ca8e45283d39ffed34e39c6da64bd') in 0.001 seconds [static dependencies only]. Details - ImportResultOutputID=980a02ea22d275fccca5c115cd4f1a50 DependenciesID=e7020f6c12fe719c5911e1c8e10430fc StaticDependenciesID=60136893b8f9562c99f041008b759427 
+Asset Pipeline Refresh (id=961e097fbc7a4084abbbe2294e7a55c9): Total: 0.024 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[LastSignal] Rebuilt M1_Ground and M2_Preflight with the imported 3D model library.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+LastSignal.EditorTools.SetupScenes:RunMissions12 () (at Assets/_Project/Core/Editor/SetupScenes.cs:47)
+
+(Filename: Assets/_Project/Core/Editor/SetupScenes.cs Line: 47)
+
+Batchmode quit successfully invoked - shutting down!
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-qlsah-1.19.0-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-qlsah-1.19.0 channel disconnected successfully.
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0

@@ -1,0 +1,15 @@
+{
+  "name": "com.unity.test-framework.performance",
+  "displayName": "Performance testing API",
+  "version": "6.6.0",
+  "description": "Package that extends Unity Test Framework package. Adds performance testing capabilities and collects configuration metadata.",
+  "keywords": [
+    "performance",
+    "test"
+  ],
+  "dependencies": {
+    "com.unity.test-framework": "1.1.33",
+    "com.unity.modules.jsonserialize": "1.0.0"
+  },
+  "_fingerprint": "816c370aad5bf8dd4700e355114511008d41f388"
+}
