@@ -23,6 +23,9 @@ namespace LastSignal
         public static readonly Color Warn = Palette.Warn;
         public static readonly Color Bad = Palette.Bad;
         public static readonly Color TextCol = Palette.Text;
+        public static readonly Color PanelColor = Palette.PanelBg;
+        public static readonly Color TextColor = Palette.Text;
+        public static readonly Color Muted = Palette.TextDim;
 
         public static Font Font => UISkin.Body;
         public static Font FontBold => UISkin.Bold;
@@ -45,6 +48,42 @@ namespace LastSignal
             s.referenceResolution = new Vector2(1920, 1080);
             s.matchWidthOrHeight = 0.5f;
             return c;
+        }
+
+        public static Canvas CreateCanvas(string name, int sortOrder, Transform parent)
+        {
+            var canvas = CreateCanvas(name, sortOrder);
+            if (parent != null) canvas.transform.SetParent(parent, false);
+            return canvas;
+        }
+
+        public static Image CreatePanel(string name, Transform parent, Color color)
+        {
+            var panel = Box(name, parent, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, color);
+            return panel.GetComponent<Image>();
+        }
+
+        public static Text CreateText(string name, Transform parent, string text, int size, Color color, TextAnchor anchor)
+        {
+            return Label(name, parent, text, size, anchor, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, color);
+        }
+
+        public static void SetTopLeft(RectTransform rect, float left, float top, float width, float height)
+        {
+            rect.anchorMin = new Vector2(0f, 1f);
+            rect.anchorMax = new Vector2(0f, 1f);
+            rect.pivot = new Vector2(0f, 1f);
+            rect.anchoredPosition = new Vector2(left, -top);
+            rect.sizeDelta = new Vector2(width, height);
+        }
+
+        public static void SetCenter(RectTransform rect, float x, float y, float width, float height)
+        {
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = new Vector2(x, y);
+            rect.sizeDelta = new Vector2(width, height);
         }
 
         public static void EnsureEventSystem()

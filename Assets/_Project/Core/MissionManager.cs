@@ -66,6 +66,7 @@ namespace LastSignal
             if (fatherLog == null) fatherLog = Resources.Load<FatherLogBook>("LastSignal/FatherLog");
             // Work on a runtime copy so play mode never edits the asset on disk.
             state = Instantiate(state);
+            PlayerState.SetCurrent(state);
             if (state.plannedSuccess <= 0f) state.plannedSuccess = RiskModel.ComputeSuccess(PlanConfig.SonsOriginalPlan());
         }
 
