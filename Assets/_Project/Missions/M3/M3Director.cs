@@ -441,7 +441,7 @@ namespace LastSignal.M3
             if (_ended) return;
             _ended = true;
             SetPhase(Phase.Done);
-            MissionEvents.OnMissionComplete(MissionIds.M3);
+            MissionEvents.RaiseComplete(MissionIds.M3);
         }
 
         void Fail(string reason)
@@ -452,7 +452,7 @@ namespace LastSignal.M3
             _targeting.Cancel();
             _ship.InputOverride = null;
             _ship.ControlEnabled = false;
-            MissionEvents.OnMissionFail(MissionIds.M3, reason);
+            MissionEvents.RaiseFail(MissionIds.M3, reason);
         }
 
         IEnumerator After(float seconds, Action action)

@@ -9,6 +9,7 @@ namespace LastSignal
     public class PlayerState : ScriptableObject
     {
         public static PlayerState Current { get; private set; }
+        public event Action Changed;
 
         public float supplies = 100f, hull = 100f, power = 100f, fuel = 100f;
         public Vector3 heading;
@@ -37,6 +38,8 @@ namespace LastSignal
         public void SetSupplies(float value) => supplies = Mathf.Clamp(value, 0f, 100f);
         public void SetPower(float value) => power = Mathf.Clamp(value, 0f, 100f);
         public void SetSignalPath(bool value) => signalPathUp = value;
+        public void SetPlannedSuccess(float value) { plannedSuccess = Mathf.Clamp01(value); NotifyChanged(); }
+        public void NotifyChanged() { Changed?.Invoke(); }
 
         public static void SetCurrent(PlayerState state) { Current = state; }
 

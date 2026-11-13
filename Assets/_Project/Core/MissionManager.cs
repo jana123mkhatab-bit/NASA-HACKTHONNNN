@@ -18,6 +18,8 @@ namespace LastSignal
         public FatherLogBook fatherLog;
 
         public string Current { get; private set; } = MissionIds.Boot;
+        public string CurrentMissionId => Current;
+        public string LastCheckpointName { get; private set; }
         public int Retries { get; private set; }
         public float PlannedSuccess => state != null ? state.plannedSuccess : 0f;
 
@@ -123,6 +125,18 @@ namespace LastSignal
         {
             _checkpoint = state.Capture();
             _checkpointMission = Current;
+        }
+
+        public static void Checkpoint(string name)
+        {
+            if (Instance == null) return;
+            Instance.LastCheckpointName = name;
+            Instance.SaveCheckpoint();
+        }
+
+        public void RecordPlan(string missionId, PlanConfig plan)
+        {
+            if (plan != null) SetPlannedSuccess(RiskModel.ComputeSuccess(plan));
         }
 
         public void GoTo(string id)
