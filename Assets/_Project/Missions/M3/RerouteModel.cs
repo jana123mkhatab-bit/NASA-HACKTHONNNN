@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using LastSignal.Core;
 using UnityEngine;
 using Subsystem = LastSignal.Core.Subsystem;
 

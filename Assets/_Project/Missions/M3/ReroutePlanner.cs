@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using LastSignal.Core;
 using LastSignal.Ship;
 using UnityEngine;
 using UnityEngine.UI;

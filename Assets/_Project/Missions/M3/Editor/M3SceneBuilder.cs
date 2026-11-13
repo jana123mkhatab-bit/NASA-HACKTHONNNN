@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using LastSignal.Core;
 using LastSignal.M3;
 using LastSignal.Ship.EditorTools;
 using UnityEditor;

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using LastSignal.Core;
 using UnityEngine;
 
 namespace LastSignal.Ship

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using LastSignal.Core;
 using LastSignal.M3;
 using NUnit.Framework;
 
