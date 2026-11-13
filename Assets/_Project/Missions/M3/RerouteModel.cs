@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Subsystem = LastSignal.Core.Subsystem;
 
 namespace LastSignal.M3
 {
