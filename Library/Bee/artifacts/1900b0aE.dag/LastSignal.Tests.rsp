@@ -456,6 +456,7 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/_Project/Core/Tests/CaptureFlowTests.cs"
 "Assets/_Project/Core/Tests/FlowTests.cs"
 "Assets/_Project/Core/Tests/RiskModelTests.cs"
 -langversion:9.0

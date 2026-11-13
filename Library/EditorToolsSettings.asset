@@ -15,12 +15,6 @@ MonoBehaviour:
   m_DefaultState:
     m_StateToolOwnerTypeName: UnityEditor.SceneView, UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     m_GroupsSettingsList:
-    - groupType: UnityEngine.Rendering.Universal.DecalProjector, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      collapsed: 0
-    - groupType: UnityEngine.Light, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      collapsed: 0
-    - groupType: UnityEngine.LightAnchor, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      collapsed: 0
     - groupType: UnityEngine.CircleCollider2D, UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       collapsed: 0
     - groupType: UnityEngine.HingeJoint2D, UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -56,6 +50,12 @@ MonoBehaviour:
     - groupType: UnityEngine.LightProbeGroup, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       collapsed: 0
     - groupType: UnityEngine.TrailRenderer, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      collapsed: 0
+    - groupType: UnityEngine.Rendering.Universal.DecalProjector, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      collapsed: 0
+    - groupType: UnityEngine.Light, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      collapsed: 0
+    - groupType: UnityEngine.LightAnchor, Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       collapsed: 0
     m_LastPivotModeTypeString: UnityEditor.CenterPivotMode, UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     m_LastPivotRotationTypeString: UnityEditor.LocalPivotRotation, UnityEditor.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

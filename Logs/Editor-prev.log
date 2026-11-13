@@ -1,14 +1,14 @@
-VBCSCompilerPreWarmer: watching VBCSCompiler (PID 35000)
-VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 33848)
-VBCSCompiler prewarm took 10.56 ms
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 67392)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 69824)
+VBCSCompiler prewarm took 10.87 ms
 [Licensing::Module] Trying to connect to existing licensing client channel...
 Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
 OS: 'Windows 11  (10.0.26300) Professional' Language: 'en' Physical Memory: 16108 MB
 BatchMode: 0, IsHumanControllingUs: 1, StartBugReporterOnCrash: 1, Is64bit: 1
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah" at "2026-11-13T16:34:13.3336568Z"
 System  architecture: x64
 Process architecture: x64
-Date: 2026-11-13T14:33:31Z
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah" at "2026-11-13T14:33:31.9729637Z"
+Date: 2026-11-13T16:34:13Z
 [Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 20732, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
 [Licensing::Client] Error: HandshakeResponse reported an error:
@@ -17,30 +17,10 @@ Date: 2026-11-13T14:33:31Z
 [Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-qlsah"
 [Licensing::IpcConnector] LicenseClient-qlsah channel disconnected successfully.
 [Licensing::IpcConnector] Channel LicenseClient-qlsah-1.19.0 doesn't exist
-[Licensing::Module] Successfully launched the LicensingClient (PId: 28456)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0" at "2026-11-13T14:33:32.0493262Z"
-[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 28456, path: "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] Successfully launched the LicensingClient (PId: 57632)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0" at "2026-11-13T16:34:13.4192659Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 57632, path: "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
 [Licensing::Module] LicensingClient has failed validation; ignoring
-[Licensing::Client] Handshaking with LicensingClient:
-  Version:                 1.19.0+4cc3dda
-  Session Id:              dafb649c25d64757be5f19d7375c2253
-  Correlation Id:          6ac5a629dbf9027fb967266af3b88002
-  External correlation Id: 6768641632186527325
-  Machine Id:              zAjizhQoqrPGXmQ1fiso6ZI95cQ=
-[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-qlsah-1.19.0" (connect: 0.04s, validation: 0.03s, handshake: 0.02s)
-[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0-notifications" at "2026-11-13T14:33:32.1063157Z"
-[Licensing::Module] Connected to LicensingClient (PId: 28456, launch time: 0.00, total connection time: 0.10s)
-[Licensing::Client] Successfully updated the access token
-[Licensing::Module] Successfully updated the access token DZy0WGifsI...
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Module] License group:
-  Id: 11270737928533-UnityPersXXXX
-  Product: Unity Personal
-  Type: Assigned
-  Expiration: Unlimited
-[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
-[Licensing::Client] Successfully resolved entitlement details
-[Licensing::Module] Licensing Background thread has ended after 0.14s
 
 COMMAND LINE ARGUMENTS:
 C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
@@ -56,7 +36,7 @@ LicenseClient-qlsah
 -hubSessionId
 e94077a5-9cb6-46e6-bd9f-c7348f5c558d
 -accessToken
-DZy0WGifsIP000PuUzqa4z3_9neWUzZxY4q4a4roODE00af
+NpwD_d5NyGNkmymykBhV8hsjSXziQqK8FDuOUHAsId000af
 Successfully changed project path to: D:\NASAProj\NASA-HACKTHONNNN
 D:/NASAProj/NASA-HACKTHONNNN
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -96,18 +76,38 @@ D:/NASAProj/NASA-HACKTHONNNN
     "memorysetup-job-temp-allocator-block-size=2097152"
     "memorysetup-job-temp-allocator-block-size-background=1048576"
     "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
-Player connection [34628]  Target information:
+Player connection [94116]  Target information:
 
-Player connection [34628]  * "[IP] 192.168.1.17 [Port] 55504 [Flags] 2 [Guid] 1657144928 [EditorId] 1657144928 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [94116]  * "[IP] 192.168.1.17 [Port] 55504 [Flags] 2 [Guid] 4257974806 [EditorId] 4257974806 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [34628]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 1657144928 [EditorId] 1657144928 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+Player connection [94116]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 4257974806 [EditorId] 4257974806 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
 
-Player connection [34628] Host joined multi-casting on [225.0.0.222:54997]...
-Player connection [34628] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [94116] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [94116] Host joined alternative multi-casting on [225.0.0.222:34997]...
 Input System module state changed to: Initialized.
 [Physics::Module] Initialized fallback backend.
 [Physics::Module] Id: 0xdecafbad
-[Package Manager] Connected to IPC stream "Upm-4200" after 0.2 seconds.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              2570c8a95184488fa86a62d3fefe8ed6
+  Correlation Id:          c7204abb53e1f523b2040330a182c048
+  External correlation Id: 6354217068421522297
+  Machine Id:              zAjizhQoqrPGXmQ1fiso6ZI95cQ=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-qlsah-1.19.0" (connect: 0.04s, validation: 0.12s, handshake: 0.03s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0-notifications" at "2026-11-13T16:34:13.570011Z"
+[Licensing::Module] Connected to LicensingClient (PId: 57632, launch time: 0.00, total connection time: 0.19s)
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated the access token NpwD_d5NyG...
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 11270737928533-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.25s
+[Package Manager] Connected to IPC stream "Upm-10356" after 0.2 seconds.
 [Licensing::Client] Successfully resolved entitlement details
 Library Redirect Path: Library/
 Initialising UDS system complete:
@@ -151,7 +151,7 @@ Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
 Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56200
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56356
 CodeReloadManager initialized
 ImportWorker Server TCP listen port: 0
 AcceleratorClientConnectionCallback - disconnected - :0
@@ -159,29 +159,28 @@ Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001901 seconds.
+Registered in 0.002826 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
 Package Manager log level set to [2]
-ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.694 seconds
-Domain Reload Profiling: 1190ms
-	BeginReloadAssembly (129ms)
-		CreateAndSetChildDomain (17ms)
-	RebuildCommonClasses (4ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (59ms)
-	LoadAllAssembliesAndSetupDomain (289ms)
-		LoadAssemblies (110ms)
-		TypeCache.Refresh (199ms)
-			TypeCache.ScanAssembly (187ms)
+- Finished resetting the current domain, in  0.714 seconds
+Domain Reload Profiling: 1234ms
+	BeginReloadAssembly (134ms)
+		CreateAndSetChildDomain (14ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (63ms)
+	LoadAllAssembliesAndSetupDomain (300ms)
+		LoadAssemblies (118ms)
+		TypeCache.Refresh (208ms)
+			TypeCache.ScanAssembly (196ms)
 		AnalyzeDomain (1ms)
-	FinalizeReload (695ms)
+	FinalizeReload (715ms)
 		SetupLoadedEditorAssemblies (0ms)
-			InitializePlatformSupportModulesInManaged (3ms)
-			BeforeProcessingInitializeOnLoad (92ms)
-			ProcessInitializeOnLoadAttributes (135ms)
+			BeforeProcessingInitializeOnLoad (96ms)
+			ProcessInitializeOnLoadAttributes (136ms)
 			ProcessInitializeOnLoadMethodAttributes (266ms)
 [Licensing::Client] Successfully resolved entitlement details
 Application.AssetDatabase Initial Refresh Start
@@ -227,614 +226,659 @@ warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
       Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll"
 warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
       Assembly system.componentmodel.composition has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll"
+ExitCode: 4 Duration: 0s410ms
+Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aE-inputdata.json
+[645/830    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+*** Tundra requires additional run (0.37 seconds), 2 items updated, 644 evaluated
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\DotNetSdk\dotnet.exe "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\ScriptCompilationBuildProgram.exe" "Library/Bee/1900b0aE.dag.json" "Library/Bee/1900b0aE-inputdata.json" "Library\Bee\buildprogram0.traceevents"
 WorkingDir: D:/NASAProj/NASA-HACKTHONNNN
-ExitCode: 4 Duration: 0s207ms
-Rebuilding DAG because FileSignature timestamp changed: Library/Bee/1900b0aE-inputdata.json
-[597/760    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-*** Tundra requires additional run (0.17 seconds), 1 items updated, 596 evaluated
-ExitCode: 0 Duration: 0s730ms
+ExitCode: 0 Duration: 0s811ms
 Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --dagfilejson="Library\Bee\1900b0aE.dag.json" --profile="Library/Bee/backend2.traceevents" ScriptAssemblies
 WorkingDir: D:/NASAProj/NASA-HACKTHONNNN
-ExitCode: 0 Duration: 0s602ms
-Finished compiling graph: 763 nodes, 12901 flattened edges (10881 ToBuild, 110 ToUse), maximum node priority 851
-[597/760    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-*** Tundra build success (0.58 seconds), 1 items updated, 760 evaluated
-AssetDatabase: script compilation time: 1.937921s
-Total cache size 76008696
-Total cache size after purge 76008696, took 00:00:00.0710902
+ExitCode: 3 Duration: 0s628ms
+Finished compiling graph: 833 nodes, 15033 flattened edges (12449 ToBuild, 124 ToUse), maximum node priority 998
+[645/830    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[826/830    0s] Csc Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.dll (+2 others)
+##### CommandLine
+"C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\DotNetSdk\dotnet.exe" exec "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/DotNetSdk/sdk/8.0.318/Roslyn/bincore/csc.dll" /nostdlib /noconfig /shared "@Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.rsp" "@Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.rsp2"
+##### Contents of Library\Bee\artifacts\1900b0aE.dag\LastSignal.M3.Editor.rsp
+-target:library
+-out:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.dll"
+-refout:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.ref.dll"
+-define:UNITY_6000_6_9
+-define:UNITY_6000_6
+-define:UNITY_6000
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_3_OR_NEWER
+-define:UNITY_2017_4_OR_NEWER
+-define:UNITY_2018_1_OR_NEWER
+-define:UNITY_2018_2_OR_NEWER
+-define:UNITY_2018_3_OR_NEWER
+-define:UNITY_2018_4_OR_NEWER
+-define:UNITY_2019_1_OR_NEWER
+-define:UNITY_2019_2_OR_NEWER
+-define:UNITY_2019_3_OR_NEWER
+-define:UNITY_2019_4_OR_NEWER
+-define:UNITY_2020_1_OR_NEWER
+-define:UNITY_2020_2_OR_NEWER
+-define:UNITY_2020_3_OR_NEWER
+-define:UNITY_2021_1_OR_NEWER
+-define:UNITY_2021_2_OR_NEWER
+-define:UNITY_2021_3_OR_NEWER
+-define:UNITY_2022_1_OR_NEWER
+-define:UNITY_2022_2_OR_NEWER
+-define:UNITY_2022_3_OR_NEWER
+-define:UNITY_2023_1_OR_NEWER
+-define:UNITY_2023_2_OR_NEWER
+-define:UNITY_2023_3_OR_NEWER
+-define:UNITY_6000_0_OR_NEWER
+-define:UNITY_6000_1_OR_NEWER
+-define:UNITY_6000_2_OR_NEWER
+-define:UNITY_6000_3_OR_NEWER
+-define:UNITY_6000_4_OR_NEWER
+-define:UNITY_6000_5_OR_NEWER
+-define:UNITY_6000_6_OR_NEWER
+-define:PLATFORM_ARCH_64
+-define:UNITY_64
+-define:UNITY_INCLUDE_TESTS
+-define:ENABLE_AR
+-define:ENABLE_AUDIO
+-define:ENABLE_AUDIO_SCRIPTABLE_PIPELINE
+-define:ENABLE_BURST
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_TEXTURE_STREAMING
+-define:ENABLE_VIRTUALTEXTURING
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_UNITY_CONSENT
+-define:ENABLE_UNITY_CLOUD_IDENTIFIERS
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_EDITOR_GAME_SERVICES
+-define:ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_DIRECTOR_TEXTURE
+-define:ENABLE_MANAGED_JOBS
+-define:ENABLE_MANAGED_TRANSFORM_JOBS
+-define:ENABLE_MANAGED_ANIMATION_JOBS
+-define:ENABLE_MANAGED_AUDIO_JOBS
+-define:ENABLE_MANAGED_UNITYTLS
+-define:INCLUDE_DYNAMIC_GI
+-define:ENABLE_SCRIPTING_GC_WBARRIERS
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_MARSHALLING_TESTS
+-define:ENABLE_VIDEO
+-define:ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK
+-define:ENABLE_ACCELERATOR_CLIENT_DEBUGGING
+-define:ENABLE_ACCESSIBILITY_SCREEN_READER
+-define:TEXTCORE_1_0_OR_NEWER
+-define:EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED
+-define:INCLUDE_UNIFIED_RAYTRACING_COMPUTE_BACKEND
+-define:INCLUDE_UNIFIED_RAYTRACING_HARDWARE_BACKEND
+-define:PLATFORM_STANDALONE_WIN
+-define:PLATFORM_STANDALONE
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_NVIDIA
+-define:ENABLE_AMD
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_CLOUD_SERVICES_ENGINE_DIAGNOSTICS
+-define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+-define:ENABLE_CLUSTER_SYNC
+-define:ENABLE_CLUSTERINPUT
+-define:PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP
+-define:GFXDEVICE_WAITFOREVENT_MESSAGEPUMP
+-define:PLATFORM_USES_EXPLICIT_MEMORY_MANAGER_INITIALIZER
+-define:PLATFORM_SUPPORTS_WAIT_FOR_PRESENTATION
+-define:PLATFORM_SUPPORTS_SPLIT_GRAPHICS_JOBS
+-define:UNITY_SUPPORTS_GRAPHICS_API_VALIDATION
+-define:PLATFORM_USES_VULKAN_OLD_SWAPCHAIN
+-define:USE_READ_ASYNC_MANAGED_API
+-define:ENABLE_MONO
+-define:NET_4_6
+-define:NET_UNITY_4_8
+-define:ENABLE_PROFILER
+-define:UNITY_INCLUDE_INSTRUMENTATION
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_ENABLE_CHECKS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+-define:ENABLE_UNITY_COLLECTIONS_CHECKS
+-define:ENABLE_BURST_AOT
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_DIRECTOR
+-define:ENABLE_LOCALIZATION
+-define:ENABLE_SPRITES
+-define:ENABLE_TERRAIN
+-define:ENABLE_TILEMAP
+-define:ENABLE_TIMELINE
+-define:ENABLE_INPUT_SYSTEM
+-define:ENABLE_LEGACY_INPUT_MANAGER
+-define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
+-define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
+-define:TEXTCORE_FONT_ENGINE_1_6_OR_NEWER
+-define:CSHARP_7_OR_LATER
+-define:CSHARP_7_3_OR_NEWER
+-define:UNITY_EDITOR_ONLY_COMPILATION
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Bcl.AsyncInterfaces.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/Microsoft.Extensions.Logging.Abstractions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Collections.Immutable.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Diagnostics.DiagnosticSource.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.IO.Hashing.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Reflection.Metadata.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Runtime.CompilerServices.Unsafe.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Text.Encodings.Web.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/ref/System.Text.Json.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/Bootstrap/Unity.Scripting.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.AIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.AccessibilityModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.AdaptivePerformanceModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.AnimationWindowModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.AssetComplianceModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.BuildAnalysisModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.BuildProfileModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.BurstModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ClothModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ContentLoadModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreBusinessMetricsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.EditorToolbarModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.EmbreeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GenericRemoteModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphToolkitModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphViewModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphicsStateCollectionSerializerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GridAndSnapModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.GridModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.HierarchyModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.LightingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.MathematicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.MediaModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.MultiplayerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.Physics2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.PhysicsCore2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.PhysicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.PlayModeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.PresetsUIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ProjectAuditorModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.PropertiesModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickInstallModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.QuickSearchModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SafeModeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneViewModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderBuildSettingsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderCompilationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderFoundryModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.ShaderPreprocessorModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SketchUpModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SpriteMaskModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SpriteShapeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SubstanceModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.SyntaxTreeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TerrainModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextCoreFontEngineModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextCoreTextEngineModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TextRenderingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TilemapModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TimelineFoundationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.TreeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.U2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIAutomationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIBuilderModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIToolkitAuthoringModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UmbraModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.VFXModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.VectorGraphicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.VideoModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.XRModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AMDModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AdaptivePerformanceModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.BurstModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ContentLoadModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.GIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.GraphicsStateCollectionSerializerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.HierarchyCoreModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.HierarchyModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.IdentifiersModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputForUIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InsightsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ManagedKernelModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.MarshallingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.MathematicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.MultiplayerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.NVIDIAModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsBackendPhysXModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsCore2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.PropertiesModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.RenderAs2DModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScriptingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ShaderVariantAnalyticsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TetgenModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreFontEngineModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreTextEngineModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.TimelineFoundationModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.U2DRuntimeModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsCommonModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConsentModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.VectorGraphicsModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.VirtualTexturingModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.AppContext.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Buffers.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Concurrent.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.NonGeneric.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.Specialized.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Collections.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Annotations.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.EventBasedAsync.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.TypeConverter.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ComponentModel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Console.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Data.Common.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Contracts.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Debug.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.FileVersionInfo.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Process.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.StackTrace.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TextWriterTraceListener.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.Tools.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Diagnostics.TraceSource.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Drawing.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Dynamic.Runtime.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Calendars.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Globalization.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Compression.ZipFile.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.DriveInfo.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.Watcher.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.FileSystem.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.IsolatedStorage.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.MemoryMappedFiles.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.Pipes.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.UnmanagedMemoryStream.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.IO.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Expressions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Parallel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.Queryable.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Linq.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Memory.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Http.Rtc.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NameResolution.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.NetworkInformation.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Ping.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Requests.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Security.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.Sockets.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebHeaderCollection.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.Client.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Net.WebSockets.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ObjectModel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.DispatchProxy.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.ILGeneration.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.Lightweight.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Emit.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Reflection.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Reader.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.ResourceManager.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Resources.Writer.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.CompilerServices.VisualC.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Handles.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.RuntimeInformation.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.InteropServices.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Numerics.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Formatters.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Json.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.Serialization.Xml.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Runtime.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Claims.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Algorithms.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Csp.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Encoding.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Cryptography.X509Certificates.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.Principal.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Security.SecureString.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Duplex.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Http.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.NetTcp.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Primitives.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ServiceModel.Security.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.Encoding.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Text.RegularExpressions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Overlapped.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Extensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.Parallel.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Tasks.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Thread.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.ThreadPool.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.Timer.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Threading.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.ValueTuple.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.ReaderWriter.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XDocument.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.XDocument.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XPath.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlDocument.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.Xml.XmlSerializer.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/netstandard.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Microsoft.CSharp.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.ComponentModel.Composition.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Core.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Data.DataSetExtensions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Data.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Drawing.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.FileSystem.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.IO.Compression.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Net.Http.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.Vectors.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Numerics.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Runtime.Serialization.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Transactions.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.Linq.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.Xml.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/System.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/mscorlib.dll"
+-r:"Library/PackageCache/com.unity.collections@c70d71c1212e/Unity.Collections.LowLevel.ILSupport/Unity.Collections.LowLevel.ILSupport.dll"
+-r:"Library/PackageCache/com.unity.ext.nunit@0198eae3b53e/net472/unity-custom/nunit.framework.dll"
+-r:"Library/PackageCache/com.unity.ext.nunit@0198eae3b53e/net472/unity-custom/nunit.framework.dll"
+-r:"Library/PackageCache/com.unity.nuget.mono-cecil@ecb9724e46ff/Mono.Cecil.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.Core.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.Ship.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.Ship.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.TestRunner.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/analyzers/dotnet/roslyn4.0/cs/Microsoft.Extensions.Logging.Generators.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/TargetingPacks/netstandard2.1/analyzers/dotnet/roslyn4.0/cs/System.Text.Json.SourceGeneration.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers/Unity.Analyzers.Common.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers/Unity.Analyzers.LongLiving.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
+-analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/_Project/Missions/M3/Editor/M3SceneBuilder.cs"
+-langversion:9.0
+/deterministic
+/optimize+
+/debug:portable
+/nologo
+/RuntimeMetadataVersion:v4.0.30319
+/nowarn:0169
+/nowarn:0649
+/nowarn:0282
+/nowarn:1701
+/nowarn:1702
+/utf8output
+/preferreduilang:en-US
+/additionalfile:"Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.UnityAdditionalFile.txt"
+##### Custom Environment Variables
+DOTNET_HOST_PATH=C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\DotNetSdk\dotnet.exe
+DOTNET_MULTILEVEL_LOOKUP=0
+DOTNET_SYSTEM_GLOBALIZATION_USENLS=1
+##### ExitCode
+1
+##### Output
+Assets\_Project\Missions\M3\Editor\M3SceneBuilder.cs(138,15): error CS1061: 'DebriefCard' does not contain a definition for 'missionId' and no accessible extension method 'missionId' accepting a first argument of type 'DebriefCard' could be found (are you missing a using directive or an assembly reference?)
+
+Assets\_Project\Missions\M3\Editor\M3SceneBuilder.cs(139,48): error CS0117: 'MissionIds' does not contain a definition for 'Title'
+*** Tundra build failed (0.61 seconds), 2 items updated, 830 evaluated
+## Script Compilation Error for: Csc Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.dll (+2 others)
+## CmdLine: "C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\DotNetSdk\dotnet.exe" exec "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/DotNetSdk/sdk/8.0.318/Roslyn/bincore/csc.dll" /nostdlib /noconfig /shared "@Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.rsp" "@Library/Bee/artifacts/1900b0aE.dag/LastSignal.M3.Editor.rsp2"
+## Output:
+Assets\_Project\Missions\M3\Editor\M3SceneBuilder.cs(138,15): error CS1061: 'DebriefCard' does not contain a definition for 'missionId' and no accessible extension method 'missionId' accepting a first argument of type 'DebriefCard' could be found (are you missing a using directive or an assembly reference?)
+Assets\_Project\Missions\M3\Editor\M3SceneBuilder.cs(139,48): error CS0117: 'MissionIds' does not contain a definition for 'Title'
+
+Assets\_Project\Missions\M3\Editor\M3SceneBuilder.cs(138,15): error CS1061: 'DebriefCard' does not contain a definition for 'missionId' and no accessible extension method 'missionId' accepting a first argument of type 'DebriefCard' could be found (are you missing a using directive or an assembly reference?)
+Assets\_Project\Missions\M3\Editor\M3SceneBuilder.cs(139,48): error CS0117: 'MissionIds' does not contain a definition for 'Title'
+AssetDatabase: script compilation time: 2.253339s
+Total cache size 96435212
+Total cache size after purge 96435212, took 00:00:00.0682173
+Safe Mode: Only loading a subset of assemblies
 Begin MonoManager ReloadAssembly
-'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 Native extension for WindowsStandalone target not found
 Native extension for WebGL target not found
-ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
 Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  0.698 seconds
-Domain Reload Profiling: 1423ms
-	BeginReloadAssembly (256ms)
-		DisableScriptedObjects (24ms)
-		CreateAndSetChildDomain (55ms)
-	RebuildCommonClasses (9ms)
-	RebuildNativeTypeToScriptingClass (17ms)
-	initialDomainReloadingComplete (61ms)
-	LoadAllAssembliesAndSetupDomain (380ms)
-		LoadAssemblies (257ms)
-		TypeCache.Refresh (82ms)
-			TypeCache.ScanAssembly (74ms)
-		AnalyzeDomain (38ms)
-			BuildScriptInfoCaches (32ms)
-			ResolveRequiredComponents (4ms)
-	FinalizeReload (700ms)
+- Finished resetting the current domain, in  0.389 seconds
+Domain Reload Profiling: 851ms
+	BeginReloadAssembly (206ms)
+		DisableScriptedObjects (21ms)
+		CreateAndSetChildDomain (41ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (42ms)
+	LoadAllAssembliesAndSetupDomain (192ms)
+		LoadAssemblies (152ms)
+		TypeCache.Refresh (6ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (390ms)
 		SetupLoadedEditorAssemblies (0ms)
-			LogAssemblyErrors (3ms)
-			BeforeProcessingInitializeOnLoad (97ms)
-			ProcessInitializeOnLoadAttributes (155ms)
-			ProcessInitializeOnLoadMethodAttributes (188ms)
+			BeforeProcessingInitializeOnLoad (92ms)
+			ProcessInitializeOnLoadAttributes (66ms)
+			ProcessInitializeOnLoadMethodAttributes (34ms)
 			AfterProcessingInitializeOnLoad (6ms)
-		AwakeInstancesAfterBackupRestoration (23ms)
-Starting new worker id: 0 with log in D:/NASAProj/NASA-HACKTHONNNN/Logs/AssetImportWorkerHW0.log
-Importing 'GUID: d19f4f8a13b6edb48b986a47ec96402e - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapShadowMaskIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+		AwakeInstancesAfterBackupRestoration (20ms)
 
-Compiling Ray Tracing Shader "LightmapShadowMaskIntegration.urtshader", keywords = <no keywords>
-    finished in 0.01 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: d19f4f8a13b6edb48b986a47ec96402e' -> (Import Result ID: 'e6b164358a186e3fee55bdd87d6cc164') in 0.060 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0532816fd84997bd77e79edfcaabcfc1 DependenciesID=87ea213b26e57e9665cd005b7939c148 StaticDependenciesID=9fd4e9b2e1ad89e7cbffc601eff4d03f 
-Importing 'GUID: 737a1597422c12547a8714d76a9406ec - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapGBufferDebug.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapGBufferDebug.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 737a1597422c12547a8714d76a9406ec' -> (Import Result ID: 'ee3a05d4209fa8948764500def1d050f') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=be65fd5a3801d34e2c92ff5bad9849fe DependenciesID=7274e5b67ff94e9bc538a6b04415a353 StaticDependenciesID=b513b01e29d0aa4d28825e4d4fb57fb4 
-Importing 'GUID: f32463968f29423cad25aee15a14b9f1 - Path: Packages/com.unity.render-pipelines.core/Runtime/Lighting/SurfaceCache/PunctualLightSampling.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "PunctualLightSampling.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: f32463968f29423cad25aee15a14b9f1' -> (Import Result ID: '859ebe840a1aea162333743514762dea') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9fe701f9fc3a2099e7414cde1470877f DependenciesID=40c42293c8d444e9123e0c095641a96e StaticDependenciesID=b63d74c4e924df89cb98a36e44fc1845 
-Importing 'GUID: 1451d029813b192429211be28181beab - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapNormalIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapNormalIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 1451d029813b192429211be28181beab' -> (Import Result ID: '3696d8349a0298a151ba39973f008040') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=19104af7a5da512dd0048175a9ef26bf DependenciesID=6b79b10b494405ce0947414056da7245 StaticDependenciesID=5afd8eadeec03e368f74c3a5603c453d 
-Importing 'GUID: 94a070d33e408384bafc1dea4a565df9 - Path: Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/RenderingLayerMask/TraceRenderingLayerMask.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "TraceRenderingLayerMask.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 94a070d33e408384bafc1dea4a565df9' -> (Import Result ID: 'baded2ab4a60ff92fbe5167a8a342b5d') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=70890531d20a29078551a973281e6302 DependenciesID=a8d1e2aab63c92609952ac148f02936f StaticDependenciesID=25a592d065c9c4788553066128367c57 
-Importing 'GUID: 94a39d12848d8d64ca962a72b74e7c50 - Path: Packages/com.unity.render-pipelines.core/Runtime/Lighting/SurfaceCache/Estimation.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "Estimation.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 94a39d12848d8d64ca962a72b74e7c50' -> (Import Result ID: 'a215312f93d637ad95d97c9b2e0c996c') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=76187e63f0e4062360d4f45149e374be DependenciesID=78f46c5c77803647b941ccaa177b700e StaticDependenciesID=ffb0a11028fb7b99287455d15347e1d8 
-Importing 'GUID: f5ba4d424d4566249b3d94cf81a3e916 - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapDirectDirectionalAndEnvironmentIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapDirectDirectionalAndEnvironmentIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: f5ba4d424d4566249b3d94cf81a3e916' -> (Import Result ID: '9012223282fb9379e2f75ccb5df524f7') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5784104160f214817b844f400868aa02 DependenciesID=ecd9e61469f5d141caab2dd98984dea9 StaticDependenciesID=d4bdfd2147f181839dcd88d16b4cc45b 
-Importing 'GUID: 7624adbeb148b5c48ab5ab660cc2602a - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapIndirectIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapIndirectIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 7624adbeb148b5c48ab5ab660cc2602a' -> (Import Result ID: 'f111b24a233c42124309978fb6183e07') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=56025212acb8da19a01e5f410ee4d497 DependenciesID=5f86426580f83930c8376dd9e17fda05 StaticDependenciesID=637eaa30376abb268136eb146f59c034 
-Importing 'GUID: 5951703b3d165764c95c653e98350884 - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapDirectBRDFIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapDirectBRDFIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 5951703b3d165764c95c653e98350884' -> (Import Result ID: '5dd9a83e5b3f374fff792aee2df15875') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cb1d3e9f643d1580e0b1e204bb0febff DependenciesID=9b1b73484e02b13e603cbb7d023dd0f9 StaticDependenciesID=059ad849da4bff5dcc29e3cff7813344 
-Importing 'GUID: 99ac6221b6ecd7b479be13e8b9866300 - Path: Packages/com.unity.render-pipelines.core/Tests/Editor/PathTracing/Shaders/TerrainRayMarchingTest.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "TerrainRayMarchingTest.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 99ac6221b6ecd7b479be13e8b9866300' -> (Import Result ID: '6b96fa8cd938eb68f9f30875c53cab48') in 0.006 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fdade55c8075c6e874a2adf7cbd24c9c DependenciesID=52279c14e5ace4d97098c61109e43fdc StaticDependenciesID=9bd449fe018a48415143d373811214ef 
-Importing 'GUID: e9f4de6d1e07fb94f9a60d35b618f724 - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapGBufferIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapGBufferIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: e9f4de6d1e07fb94f9a60d35b618f724' -> (Import Result ID: '5fdecb6a90ecdf38ab1673f69518f4b4') in 0.006 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=800984d3dc0a7fd5e3b51df5fdc559c6 DependenciesID=4501529fd411c1bd5db8244b9bb11a3b StaticDependenciesID=3c625e26646b7228663e0de2b2c1d69b 
-Importing 'GUID: 5a2a534753fbdb44e96c3c78b5a6999d - Path: Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/DynamicGI/DynamicGISkyOcclusion.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "DynamicGISkyOcclusion.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 5a2a534753fbdb44e96c3c78b5a6999d' -> (Import Result ID: 'c9be63572e88ae23939b1b070466286d') in 0.006 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e97ef9a97addf8364620ab5b1d71ed1a DependenciesID=9ed507d9324e3aaffb3cdc134f180f97 StaticDependenciesID=72ee5fda06862b709c15f6cbb7db6f05 
-Importing 'GUID: 5bbebdef5916845478fcef13fa10d89f - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapDirectStochasticLightIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapDirectStochasticLightIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 5bbebdef5916845478fcef13fa10d89f' -> (Import Result ID: '765b2533fa554c2b7810846d7380bcaa') in 0.010 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1ae126ef683edd211e36ea5f5aec00ef DependenciesID=448f862f4f220f1944ec3bd3baf2fdd1 StaticDependenciesID=471ca71b6b19c4611a46691a7356c8a6 
-Importing 'GUID: 1c410815c01ce1d4d82c645c0cd45747 - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapAOIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapAOIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 1c410815c01ce1d4d82c645c0cd45747' -> (Import Result ID: 'eafe6cd6241b7f682d10c8ae1d8b69b9') in 0.006 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=dcbba0c3d2ab34368c2e544ef593d392 DependenciesID=3e8af374301fe397e7fb637904fcf59d StaticDependenciesID=219d1b7269d01f2442d424f53e04d073 
-Importing 'GUID: 2c32233d92a2d0745930664c087c5c9a - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/ProbeIntegrationValidity.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "ProbeIntegrationValidity.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 2c32233d92a2d0745930664c087c5c9a' -> (Import Result ID: '1b60c6df20891d75b32691e39fd9a290') in 0.005 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=244e0e159a0e9570045e5524105bc2dd DependenciesID=313c5aae53d71172117b5dd61d57cfba StaticDependenciesID=89ce6b5e76d568c473e42bb2e82d857d 
-Importing 'GUID: ace95ac84e213794891b4bd7c9b3c158 - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/LightmapValidityIntegration.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "LightmapValidityIntegration.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: ace95ac84e213794891b4bd7c9b3c158' -> (Import Result ID: '6d49f7dc214dac7791a5c76345dfb6bc') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=8ed2d448a893d129cf225107997c11f5 DependenciesID=93da38d6f066eaba26d267686ee7dc4b StaticDependenciesID=af3a8789fbe725883be9c99ebb7cf5e2 
-Importing 'GUID: 5ecdabd800f05984696f22ba95284516 - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/ProbeIntegrationIndirect.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "ProbeIntegrationIndirect.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 5ecdabd800f05984696f22ba95284516' -> (Import Result ID: '12e9fad82bf0c218bb91640553a06411') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d9f1ac2c5be4bc82231b4e551ba1ce02 DependenciesID=0ce8d315ae209510f7bf0a9b2441619b StaticDependenciesID=1ad901001e2e557153e1de5753d25220 
-Importing 'GUID: 6e0b547bab30a804c8123974120d583f - Path: Packages/com.unity.render-pipelines.core/Tests/Runtime/PathTracing/PathIteratorTest.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "PathIteratorTest.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 6e0b547bab30a804c8123974120d583f' -> (Import Result ID: 'f302c3bb6b7a1d6ca056fb5b4dca85c5') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3f6ee12a8a2e8608fe04ab3e70347ae5 DependenciesID=b9bf39197348b20c049af0a60fbc2adf StaticDependenciesID=e24ea404bb4dabe55ffbcaa7b840b299 
-Importing 'GUID: de3013e16d99f2746ab1735ec06a660b - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/ProbeIntegrationOcclusion.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "ProbeIntegrationOcclusion.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: de3013e16d99f2746ab1735ec06a660b' -> (Import Result ID: '37fe33353a82a7dcf47de55e56dbdff0') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=53fea2e113c80379731eeea3b7445aec DependenciesID=09c00152b788bc43ea5095fd4076ccc1 StaticDependenciesID=d23a0c4a2896e547ad436f2fd232bb27 
-Importing 'GUID: fe7f1a959d1d3f544a208b7e8805e6cd - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/ProbeIntegrationDirectDirectionalAndEnvironment.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "ProbeIntegrationDirectDirectionalAndEnvironment.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: fe7f1a959d1d3f544a208b7e8805e6cd' -> (Import Result ID: '13c1ea97abd69deb682f538f7d3c9f4d') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9b6cb00324709ca31208d3b08b6e052b DependenciesID=e0923ece69f50910f1592edd4f2a8087 StaticDependenciesID=b8525778ccd6bf87644fae631483c773 
-Importing 'GUID: 1f9bfe60b4ad75943a5281839c1a4e5c - Path: Packages/com.unity.render-pipelines.core/Runtime/PathTracing/Shaders/ProbeIntegrationDirectStochasticLight.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "ProbeIntegrationDirectStochasticLight.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: 1f9bfe60b4ad75943a5281839c1a4e5c' -> (Import Result ID: 'e9b59a8d3a4f99676933b62d12d6a5ed') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bb3b00e92b4d31dd8b932205bd7ce413 DependenciesID=261788e1fe01e9d9bd9e1ddf9977761b StaticDependenciesID=bb23e9aed0fe8778db1283cad6c57003 
-Importing 'GUID: ff2cbab5da58bf04d82c5f34037ed123 - Path: Packages/com.unity.render-pipelines.core/Editor/Lighting/ProbeVolume/VirtualOffset/TraceVirtualOffset.urtshader' with importer (ScriptedImporter : Unity.Rendering.LightTransport.Editor:UnityEditor.Rendering.UnifiedRayTracing:UnifiedRTShaderImporter)
-
-Compiling Ray Tracing Shader "TraceVirtualOffset.urtshader", keywords = <no keywords>
-    finished in 0.00 seconds. Local cache hits 1, remote cache hits 0, compiled 0 platform variants
-Imported 'GUID: ff2cbab5da58bf04d82c5f34037ed123' -> (Import Result ID: '066a40511484f02ed925b3f4037a6ee8') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=992fc0d0f3f93b10a8a2e72556a4f46a DependenciesID=e4d30c89069321e1ce8e50efe40b3b34 StaticDependenciesID=577fb2ca56f9c9cef1dba593cc7f61b6 
-
-Asset Pipeline Refresh (id=ea458db59b2196e4c8962bf3757cee39): Total: 4.364 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+Asset Pipeline Refresh (id=8bb3e8fb500cdff4689840cddb3b4565): Total: 7.347 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
 	(Values over 0.05ms)
 	Summary:
-		Imports: total=22 (actual=22, local cache=0, cache server=0)
-		Asset DB Process Time: managed=2 ms, native=1321 ms
-		Asset DB Callback time: managed=120 ms, native=182 ms
-		Scripting: domain reloads=1, domain reload time=764 ms, compile time=1940 ms, other=32 ms
-		Project Asset Count: scripts=877, non-scripts=1680
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=4541 ms
+		Asset DB Callback time: managed=0 ms, native=6 ms
+		Scripting: domain reloads=1, domain reload time=504 ms, compile time=2256 ms, other=37 ms
+		Project Asset Count: scripts=897, non-scripts=1722
 		Asset File Changes: new=0, changed=0, moved=0, deleted=0
 		Scan Filter Count: 0
-	InvokePackagesCallback: 8.832ms
-	ApplyChangesToAssetFolders: 0.463ms
-	Scan: 63.441ms
-	Collect global state as custom dependencies: 17.858ms
-	CategorizeScriptCompilationAssets: 16.983ms
-	ProcessAssetsWithTransientArtifactChanges: 34.166ms
-	CategorizeAssets: 35.344ms
-	CompileScripts: 1939.848ms
-	ImportOutOfDateAssets: 936.801ms (702.024ms without children)
-		ImportManagerImport: 224.790ms (1.637ms without children)
-			UpdateCategorizedAssets: 1.368ms
-		UnloadImportedAssets: 1.694ms
-		ReloadImportedAssets: 0.759ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.275ms
-		ImportSchedulerStart: 7.987ms
-	PostProcessAllAssets: 295.521ms
-		ComputeShaderImportPostprocess 121.496ms
-		RaytracingShaderImportPostprocess 51.492ms
-		VCAutoAddAssetPostprocess 0.782ms
-		XRBuildSystem.XRAssetImported 0.055ms
-		MonoPostProcessAllAssets: 120.935ms
-			AssetPostprocessor.OnPostprocessAllAssets 54.018ms
-			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 16.197ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 9.704ms
-			AssetChangedListener.OnPostprocessAllAssets 8.418ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 6.608ms
-			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.778ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.589ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.586ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.506ms
-			SyncVS.PostprocessSyncProject 1.074ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.804ms
-			MaterialPostprocessor.OnPostprocessAllAssets 0.704ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.634ms
-			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.585ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.576ms
-			PostProcessor.OnPostprocessAllAssets 0.557ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 0.484ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.471ms
-			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.391ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.244ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.243ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.236ms
-			AssetEvents.OnPostprocessAllAssets 0.199ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.188ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.182ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.163ms
-			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.155ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.136ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.116ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.102ms
-			AudioContainerPostProcessor.OnPostprocessAllAssets 0.064ms
-	PostAssetChangesProfiler: 1.073ms
-	UnloadStreamsBegin: 1.726ms
-	PersistCurrentRevisions: 0.179ms
-	GenerateScriptTypeHashes: 1.634ms
-	GenerateScriptTypeSerializationHashes: 3.569ms
-	Untracked: 889.431ms
+	InvokePackagesCallback: 8.562ms
+	ApplyChangesToAssetFolders: 0.607ms
+	Scan: 90.779ms
+	Collect global state as custom dependencies: 13.843ms
+	CategorizeScriptCompilationAssets: 13.018ms
+	ProcessAssetsWithTransientArtifactChanges: 14.721ms
+	CategorizeAssets: 33.981ms
+	CompileScripts: 2256.352ms
+	ImportOutOfDateAssets: 392.509ms (391.334ms without children)
+		UnloadImportedAssets: 1.001ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.165ms
+	UnloadStreamsBegin: 1.643ms
+	GenerateScriptTypeHashes: 2.332ms
+	GenerateScriptTypeSerializationHashes: 4.318ms
+	Untracked: 4500.073ms
 
 Application.AssetDatabase Initial Refresh End
-Scanning for USB devices : 4.756ms
+Shader 'Universal Render Pipeline/Terrain/Lit': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'Universal Render Pipeline/Terrain/Lit': dependency 'AddPassShader' shader 'Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)' not found
+Shader 'Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Shader 'Universal Render Pipeline/Terrain/Lit': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'Universal Render Pipeline/Terrain/Lit': dependency 'AddPassShader' shader 'Hidden/Universal Render Pipeline/Terrain/Lit (Add Pass)' not found
+Shader 'Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Shader 'Hidden/Universal Render Pipeline/Terrain/Lit (Base Pass)': fallback shader 'Hidden/Universal Render Pipeline/FallbackError' not found
+Scanning for USB devices : 1.891ms
 Initializing Unity extensions:
 [MODES] ModeService[none].Initialize
 [MODES] ModeService[none].LoadModes
 [MODES] Loading mode Default (0) for mode-current-id-The Last Known Signal
-Unloading 46 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3690 unused Assets / (7.9 MB). Loaded Objects now: 4664.
-Memory consumption went from 368.8 MB to 360.9 MB.
-Total: 8.440300 ms (FindLiveObjects: 0.371500 ms CreateObjectMapping: 0.140300 ms MarkObjects: 5.247100 ms  DeleteObjects: 2.508900 ms)
-
-[LAYOUT] About to load UserSettings\Layouts\default-6000.dwlt, keepMainWindow=False
-[LAYOUT] About to save layout D:\NASAProj\NASA-HACKTHONNNN\UserSettings\Layouts\default-6000.dwlt
-[LAYOUT] About to save layout C:/Users/qlsah/AppData/Roaming/Unity/Editor-5.x/Preferences\Layouts\current\default-6000.dwlt
-[MODES] ModeService[default].InitializeCurrentMode
-[MODES] ModeService[default].RaiseModeChanged(default, default)
-This project uses Input Manager, which is marked for deprecation. To manage input in your project, use the <a href="https://docs.unity3d.com/Packages/com.unity.inputsystem@latest">Input System package</a> instead.
+[MODES] ModeService[default].ChangeMode(safe_mode)
+[MODES] ModeService[safe_mode].RaiseModeChanged(default, safe_mode)
+[MODES] ModeService[safe_mode].OnModeChangeUpdate
 <RI> Initializing input.
 Using Windows.Gaming.Input
 <RI> Input initialized.
-[Project] Loading completed in 7.773 seconds
-	Project init time: 				6.594 seconds
+[Project] Loading completed in 10.325 seconds
+	Project init time: 				9.711 seconds
 		Template init time: 		0.000 seconds
-		Package Manager init time: 		0.221 seconds
-		Asset Database init time: 		0.189 seconds
-		Global illumination init time: 	0.003 seconds
-		Assemblies load time: 			1.225 seconds
-		Unity extensions init time: 	0.008 seconds
-		Asset Database refresh time: 	4.364 seconds
-	Scene opening time: 			0.921 seconds
-##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1794580419727,"processId":4200,"projectLoad":7.7728296,"projectInit":6.5939736,"templateInit":0.0,"packageManagerInit":0.2212491,"assetDatabaseInit":0.1891259,"globalIlluminationInit":0.0025899,"assembliesLoad":1.2250822,"unityExtensionsInit":0.0082238,"assetDatabaseRefresh":4.3644459,"sceneOpening":0.9212}
-##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1794580419727,"processId":4200,"editorVersion":"6000.6.9f1 (8c45277fb9c5)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
-Worker ready: AssetImportWorkerHW0 0
+		Package Manager init time: 		0.241 seconds
+		Asset Database init time: 		0.289 seconds
+		Global illumination init time: 	0.002 seconds
+		Assemblies load time: 			1.271 seconds
+		Unity extensions init time: 	0.013 seconds
+		Asset Database refresh time: 	7.347 seconds
+	Scene opening time: 			0.354 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1794587663639,"processId":10356,"projectLoad":10.3253933,"projectInit":9.7109902,"templateInit":0.0,"packageManagerInit":0.2412577,"assetDatabaseInit":0.2894912,"globalIlluminationInit":0.0020937,"assembliesLoad":1.271178,"unityExtensionsInit":0.0133822,"assetDatabaseRefresh":7.3468649,"sceneOpening":0.354499}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1794587663639,"processId":10356,"editorVersion":"6000.6.9f1 (8c45277fb9c5)","branch":"6000.6/staging","buildType":"Release","platform":"Windows"}
+Asset Pipeline Refresh (id=2439a22a0e706734a9fe956f2e762138): Total: 0.046 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Request Asset Garbage Collect because used heap size increased from 2.1 MB to 385.9 MB, exceeding the threshold of 256.0 MB.
+Created GICache directory at C:/Users/qlsah/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.008s, timestamps: [10.898 - 10.906]
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3807 unused Assets / (26.6 MB). Loaded Objects now: 5240.
+Memory consumption went from 382.9 MB to 356.3 MB.
+Total: 9.435900 ms (FindLiveObjects: 0.382000 ms CreateObjectMapping: 0.196200 ms MarkObjects: 5.282100 ms  DeleteObjects: 3.427300 ms)
+
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully resolved entitlement details
 [Licensing::Client] Successfully updated the access token
-[Licensing::Module] Successfully updated access token: "DZy0WGif"... (expires: 2026-11-13T14:56:52Z)
-Created GICache directory at C:/Users/qlsah/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.008s, timestamps: [8.821 - 8.829]
+[Licensing::Module] Successfully updated access token: "NpwD_d5N"... (expires: 2026-11-13T16:56:54Z)
 [Licensing::Client] Successfully resolved entitlement details
-Start Indexing on Editor startup
-[Indexing] Starting Initial Indexing for Assets
-Asset Pipeline Refresh (id=88b2d8f3171e19144b0e5ec08831bcf7): Total: 0.057 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
-Starting new worker id: 1 with log in D:/NASAProj/NASA-HACKTHONNNN/Logs/AssetImportWorkerHW1.log
-Starting new worker id: 2 with log in D:/NASAProj/NASA-HACKTHONNNN/Logs/AssetImportWorkerHW2.log
-[Worker0] Imported GUID: 069b8f17e39e18548be5e07d9ccbfc36 - Path: Assets/_Project/Core/PipDialogueUI.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '621f742d7f4f7160f33b474f88d648d5') in 0.0954697 seconds
-[Worker0] Imported GUID: 95f5b1e8963ec9c48a43fecff980f1af - Path: Assets/_Project/Core/LastSignal.Core.asmdef - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '94a93e3c776878e409d94c50f2098441') in 0.1871005 seconds
-[Worker0] Imported GUID: a8a0dfb5215ab994a8610f9e94a1b38f - Path: Assets/_Project/Scenes/M1_Ground.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'a9030714576a98f99aa01a48067a6388') in 0.0122282 seconds
-[Worker0] Imported GUID: 9ebb54b0bbd16414993defc985340684 - Path: Assets/_Project/Art/Materials/asphalt.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9cc5b2665ae86f9c23cc6fd7cdda9d98') in 0.0319849 seconds
-[Worker0] Imported GUID: 8d223b4e27b91ee40bb01671d0bc9774 - Path: Assets/_Project/Core/EndScreens.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'fe811beb59e85c8e037d938a2d478fa1') in 0.0122565 seconds
-[Worker0] Imported GUID: c0d68e0719bbd814ba43a87e98443f33 - Path: Assets/_Project/Scenes/M2_Preflight.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '892973a031cd9f664c38f6370438e323') in 0.0102326 seconds
-[Worker0] Imported GUID: dca9029d82cef344cb0d1843ca7d168c - Path: Assets/_Project/Core/SharedTypes.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '05ab471ac5d70ae363d33210850524ce') in 0.0098247 seconds
-[Worker0] Imported GUID: dd2c72b6248d5b44b944f62f0c24ff28 - Path: Assets/_Project/Art/Materials/steel_frame.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'df394f766b29d3bc7f15347a2408f808') in 0.0102177 seconds
-[Worker0] Imported GUID: 5f3f03a7966741c48b556270f6b10a9a - Path: Assets/_Project/Core/SpaceMotion.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '4857da385b572a2b86f95439bacf2d2b') in 0.0108046 seconds
-[Worker0] Imported GUID: 279b450ea067ad34a9953a9eff87d903 - Path: Assets/_Project/Scenes/M3_DeepSpace.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '44f4670f88baacbc9be328444f0270ea') in 0.0122721 seconds
-[Worker0] Imported GUID: d9fccffd8ba48d744a998a6c230ff7a3 - Path: Assets/_Project/Core/MissionManager.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'f764b8fd9588ce3c3a39ffd76970aad9') in 0.0089473 seconds
-[Worker0] Imported GUID: dff9ebb1b65f90647aae3a9bca530b36 - Path: Assets/_Project/Core/RiskGaugeWidget.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '8b90a3678320c4d36f9af5271a409799') in 0.0094459 seconds
-[Worker0] Imported GUID: fa2ddc34ed1bce24ba99f6ac334f62a6 - Path: Assets/_Project/Art/Materials/siding_white.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'dfe706811d0d586fe064e99f215d6319') in 0.0130684 seconds
-[Worker0] Imported GUID: b7fd66b908c6d7d47bbc735264849bde - Path: Assets/_Project/Docs/PLANNER_DESIGN.md - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'bfa74b35e7799e7e4aa0d760872fb422') in 0.0107102 seconds
-[Worker0] Imported GUID: 2c11ca93ae4c81441b331ed9be64868a - Path: Assets/_Project/Core/DebriefCard.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'b8a94a8f9284f187d5fb084c259170ef') in 0.0097247 seconds
-[Worker0] Imported GUID: 37c70179f432ba14f93b60603e38223a - Path: Assets/_Project/Art/Materials/tree_leaves.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '329ec653aac4eb6a3b64437b25a0196c') in 0.0122201 seconds
-[Worker0] Imported GUID: 10b97f095f7bccc4ca6451a25705d90d - Path: Assets/_Project/Core/DebriefCardUI.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '7f35cd6325117ec63e768be1bab0bd77') in 0.0123615 seconds
-[Worker0] Imported GUID: e68e7dcac3813c64296189ffb1cbfb12 - Path: Assets/_Project/Art/Materials/wood_bench.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'b683fe2801bf9775a8027c8fea9f78e1') in 0.0105156 seconds
-[Worker0] Imported GUID: 30c418f7b54782d4fac8c1efe1b9da47 - Path: Assets/_Project/Scenes/M4_Planet.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '811523283288deb4e5ddc980e180fc4e') in 0.0100689 seconds
-[Worker0] Imported GUID: 193a824b16838a3438b4697f9f9886b6 - Path: Assets/_Project/Art/Materials/sun_corona.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '67455f0072f559f72bfe6ece455ea63e') in 0.0119591 seconds
-[Worker0] Imported GUID: 21319bc74c1890b4aa21ce1d89b31118 - Path: Assets/_Project/Core/UIFactory.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '6c8a226d8832d84f2ff4c4417a2ee0db') in 0.0120588 seconds
-[Worker0] Imported GUID: e70147c68b0eb0344bda220456e2c0b8 - Path: Assets/_Project/Art/Materials/roof_dark.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1fe7b8bd5b63e735b7ae8fa719eb31fb') in 0.012411 seconds
-[Worker0] Imported GUID: 27e76dd87369b5a44ba12de148e18a9c - Path: Assets/_Project/Art/Materials/tree_bark.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '868f0042e713a882ef400b52d933072a') in 0.0112802 seconds
-[Worker0] Imported GUID: 380c8ef64cd885d46a5af9f11661e39e - Path: Assets/_Project/Core/StubMission.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '2435d172b76eaee3d295b86507754864') in 0.0118861 seconds
-[Worker0] Imported GUID: 2d008e65b467a0d48a161bbb7dfd6ecb - Path: Assets/DefaultVolumeProfile.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '2c8d02c06abc95d1c1e54e2a5ea39bb7') in 0.0174769 seconds
-[Worker0] Imported GUID: bfff4a2ebd7240f41a29ab88ff8a87f2 - Path: Assets/UniversalRenderPipelineGlobalSettings.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'f0e6cc8be1c941499cee11ad7a7f8e68') in 0.0808361 seconds
-[Worker0] Imported GUID: e3be1b275b328a84ab596d33fc3b8235 - Path: Assets/_Project/Art/Materials/moon_surface.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '771330b8e31c2afc880dfd4382c8c7c9') in 0.0656421 seconds
-[Worker0] Imported GUID: 0d8a546d3790af4468720de79055edd8 - Path: Assets/_Project/Art/Materials/sun_surface.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3641d8066fb5cba18dc66ec8be6a8e76') in 0.0542846 seconds
-[Worker0] Imported GUID: 4c891ef1a3ef6ec48bd1b8e3f81dac43 - Path: Assets/_Project/Core/FailPanelUI.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '309e1713f577adb85b32f2f522fc864f') in 0.0229872 seconds
-[Worker0] Imported GUID: a1e93e01666a5dd4582b2cc1f34640e9 - Path: Assets/_Project/Art/Materials/sidewalk.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '84113856433ad1ba15edf934623da07b') in 0.0207036 seconds
-[Worker0] Imported GUID: b3940c49cd17ac843aafaa06a31ff1e0 - Path: Assets/_Project/Art/Materials/__grass.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '861f3f0b232037cca83907569d51d961') in 0.0131346 seconds
-[Worker0] Imported GUID: 6ffa300d6fa83df459c00840bcb13a3d - Path: Assets/_Project/Art/Materials/antenna_red.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '94de9f0faf26cb08efb75fddd954e83a') in 0.0138372 seconds
-[Worker0] Imported GUID: 1635b57f6fd4a884c83f5bc8f70cb849 - Path: Assets/_Project/Art/Shaders/Earth.shader - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'c5a3d40933d948eb42ce283739af84f1') in 0.0188424 seconds
-[Worker0] Imported GUID: 60e9d6d9ee1f3c4428288d48ce02bac4 - Path: Assets/_Project/Art/Shaders/Clouds.shader - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '038632d6d64e50766a035de5af12fc38') in 0.0105346 seconds
-[Worker0] Imported GUID: 62ed71ba75d7c1d43ba9dbad2ce6e79c - Path: Assets/_Project/Core/PlayerState.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '57809c5ae9844b9e73b83ba988aef594') in 0.0118111 seconds
-[Worker0] Imported GUID: 9d940997e41e2f44bbcfb4baf2d03374 - Path: Assets/_Project/Core/TitleScreenUI.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9d49171e486135c05e75be68e06b397f') in 0.0168011 seconds
-[Worker0] Imported GUID: 2a7a43b295b11144c8a6905a70c0bebd - Path: Assets/_Project/Scenes/DesignMode.unity - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '5fbd86bb3bd235de7072625c1c38e9bb') in 0.0147479 seconds
-[Worker0] Imported GUID: 53fa816df151d2041bce96af7097d066 - Path: Assets/_Project/Art/Materials/earth_surface.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'fd4511fbfa93c1a052f4f8dd35f36fee') in 0.1025161 seconds
-[Worker0] Imported GUID: 604cd39cbc797724aa75e648d95ed758 - Path: Assets/_Project/Art/Materials/brick.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3d1230da2a0824a585b10a79dbdea395') in 0.0148208 seconds
-[Worker0] Imported GUID: 7dbb2637288383c419ae747732b709ad - Path: Assets/_Project/Art/Materials/skybox_material.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '778ed262cb244af73f721a5ff414351f') in 0.0555494 seconds
-[Worker0] Imported GUID: 64e09ac7124410244b523e5ee067e603 - Path: Assets/_Project/Art/Materials/grass.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '5fe19ed7bf305703501a13065cea4419') in 0.0116465 seconds
-[Worker0] Imported GUID: 4707a1dc5e69fa5428527ff72fe76d8f - Path: Assets/_Project/Art/Materials/earth_clouds.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1e85b40089a8e7413bfe38b2f255d1e4') in 0.0588196 seconds
-[Worker0] Imported GUID: 24734c4c2d7f4f14b9a08a52095bb525 - Path: Assets/_Project/Art/Materials/metal_corrugated.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'c98a1caf78c0f07a1dd21a8cbb95f3a4') in 0.0147129 seconds
-[Worker0] Imported GUID: 8333f6beb8a115d4787d91b4fe0b06d1 - Path: Assets/_Project/Docs/ARCHITECTURE.md - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'aa62987f5ea10687e3c8bbe903923d00') in 0.0185837 seconds
-[Worker0] Imported GUID: 4948c526889e60b41bce645085b40640 - Path: Assets/_Project/Art/Materials/concrete_dark.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '2ed99824eaea7d8c83abd030adcf83a6') in 0.011886 seconds
-[Worker0] Imported GUID: ac8cb8b1fb6b93149a3fbb2dd292527b - Path: Assets/_Project/Art/Materials/concrete_light.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '00dbc5ed27a436a0cd15bd83947c8501') in 0.0105352 seconds
-[Worker0] Imported GUID: b4c10133b5f021b4d88c1aace03f048b - Path: Assets/_Project/Core/FatherLogBook.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '49e3cfcf0f610ad2e53696701b66c227') in 0.0131152 seconds
-[Worker0] Imported GUID: 8f9e8841be97ac940bedace1d20279f0 - Path: Assets/_Project/Core/README_CORE_API.md - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '6763c5ed6bd0b63114e4c526ec2fabbb') in 0.0180874 seconds
-[Worker0] Imported GUID: e3f2d45fac950f946835fe253c93e6af - Path: Assets/_Project/Core/FatherLogUI.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '479d0a4ef7d3776fffe56fed309d6168') in 0.0115571 seconds
-[Worker0] Imported GUID: bc4aa8416631e14459a9f304fccee0e2 - Path: Assets/_Project/Art/Materials/glass_blue.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '0f49b5d23e2a38c71ccc7a04673b4d38') in 0.0144059 seconds
-[Worker0] Imported GUID: e109d6934e4455849bfbee9ebe46038c - Path: Assets/_Project/Art/Materials/__sky_ground.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'de086de3cf9325ec111d47cb88c10a2e') in 0.0139761 seconds
-[Worker0] Imported GUID: 1d27302afa754974d8f6d1f5e6795b3b - Path: Assets/_Project/Art/Materials/glass_tinted.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1b7742c3eee3e0a34f36d0973fd415b2') in 0.0130858 seconds
-[Worker0] Imported GUID: 84276976654c9504aa9a38814d852013 - Path: Assets/_Project/Core/HudShell.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'af4e6642e88bf6f46908d81414c7ac40') in 0.0130287 seconds
-[Worker0] Imported GUID: 0720e08d938b2684e9caeb01a902f45c - Path: Assets/_Project/Art/Shaders/Atmosphere.shader - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '40546b09580eaef996afd351950cffd5') in 0.0104208 seconds
-[Worker0] Imported GUID: 3ab5be5b82aa6ab41a4bcd11ccdc7ebd - Path: Assets/_Project/Art/Materials/lamp_metal.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '7db1f9ae0881618b1efe0874ee7d745d') in 0.0110617 seconds
-[Worker0] Imported GUID: 6a4562917e91e7449bc4ca5d51fc68e9 - Path: Assets/_Project/Art/Materials/earth_atmosphere.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '0a5ecdcff0053d1ae45f4516c6b294bc') in 0.0100801 seconds
-[Worker0] Imported GUID: 887169aab1cac67418c1b742b62f7bad - Path: Assets/_Project/Art/Materials/__apron.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'bfea609478eec14eee0e6445c25eac67') in 0.0117815 seconds
-[Worker0] Imported GUID: 5b7a91617c017c341b657e44b51d7a30 - Path: Assets/_Project/Core/GameBootstrap.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '2e342e8b3c10df556af17827885f05bb') in 0.0099474 seconds
-[Worker0] Imported GUID: 04a56f61700c36e49817794c8aa9d95e - Path: Assets/_Project/Art/Materials/glass_clear.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'a5e688448cb85cf4b883046aa432da1e') in 0.012288 seconds
-[Worker0] Imported GUID: f3ee17fdcd09b15409e5287b9dba6051 - Path: Assets/_Project/Core/PipLineSet.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'cc9244334b94899fefd6feb51823a5e8') in 0.0110993 seconds
-[Worker0] Imported GUID: 3b6c4f205f193b244ac53c4e5ebc85af - Path: Assets/_Project/Art/Textures/earth_clouds.jpg - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '11099ca311a3d15f3c652eb2f1c6f2d9') in 0.0413102 seconds
-[Worker0] Imported GUID: 962bea62325f3884d87deb038c47dd97 - Path: Assets/_Project/Core/EndCardUI.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'fc1ab2ec91a723ccb8a7ca7dadae442d') in 0.0136608 seconds
-[Worker0] Imported GUID: 08424fc357ce86a499f89049c4b5c8ad - Path: Assets/_Project/Art/Materials/roof_tile.mat - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3678fb2509078f8610520e4bf2fa40ce') in 0.0120892 seconds
-[Worker0] Imported GUID: 727935711dfe42241a25330a4b23b599 - Path: Assets/_Project/UI/RiskGauge.prefab - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'bc7616400cc6ff038651daca25584a37') in 0.0413968 seconds
-[Worker0] Imported GUID: 7369bd12beaa9004eabd30946ff44017 - Path: Assets/_Project/Art/Models/Buildings/city_district.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '8f8539f4eba958e91b8eeaf151db3b6b') in 0.0538413 seconds
-[Worker0] Imported GUID: 8913400a9907f6e4a9a0257ab084c2bb - Path: Assets/_Project/Core/Editor/SetupScenes.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3fdcc94b3052230d16df2c5f3b7c947f') in 0.010205 seconds
-[Worker0] Imported GUID: 7bc5dd2203f118046bb35b68c0df3960 - Path: Assets/_Project/Art/Models/Buildings/street_lamp.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '32ffe7a7bebe990e83f04e945fe89c00') in 0.0195679 seconds
-[Worker0] Imported GUID: 3ec7596410385054a9e0bc90377fbe63 - Path: Packages/com.unity.test-framework/LICENSE.md - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1ffce9637061d7745a4e6b32ce231092') in 0.0114229 seconds
-[Worker0] Imported GUID: 9db19a04003fca7439552acd4de9baa1 - Path: Packages/com.unity.test-framework/UnityEditor.TestRunner/AssemblyInfo.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '187ff4fb865df90e1fbb6718802333ad') in 0.0096133 seconds
-[Worker0] Imported GUID: a9d58667fd4947242a4f7a5fdb0f39cd - Path: Assets/_Project/Core/Editor/SetupVisuals.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '4528a5ef3e553073c7d7ce34c8972499') in 0.0113515 seconds
-[Worker0] Imported GUID: 26440fe1f462e3b47a748deebfa6187b - Path: Assets/_Project/Core/Resources/LastSignal/Debrief_M2.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'b72f714053502f7466a8d422cf593ea8') in 0.0119754 seconds
-[Worker0] Imported GUID: 41ce4de6663322043ace526262f22260 - Path: Assets/_Project/Core/Settings/GlobalVolumeProfile.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '6f0c5d0f7edb871553e7a171e373eb0e') in 0.0124632 seconds
-[Worker0] Imported GUID: a6f6bb3dc9a522f48a7bd7263777e8c4 - Path: Assets/_Project/Art/Textures/earth_daymap.jpg - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '645b6b0ac99ed0eb7ff56805bcbda149') in 0.0144838 seconds
-[Worker0] Imported GUID: 1fbaca965a1f635439face569d395edd - Path: Assets/_Project/Art/Models/Celestial/earth/earth.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3b4d40b9df3e09b939b6747e6e076a81') in 0.0625659 seconds
-[Worker0] Imported GUID: 2da52f5682bd7014e83beb6b4ecefa2c - Path: Assets/_Project/Art/Models/Celestial/moon/moon.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '6331f4bc4876e5ea92388164ee766c66') in 0.0218649 seconds
-[Worker0] Imported GUID: c856b5e56bd1075408c46a910119b6d0 - Path: Assets/_Project/Art/Models/Celestial/earth/earth_clouds.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'cdc8abb319612695e34b058fc8862a6a') in 0.0275162 seconds
-[Worker0] Imported GUID: 91f364f662e6233479054b274093ca25 - Path: Assets/_Project/Core/Tests/FlowTests.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '6b5a78627174285302bb06b7084c700d') in 0.0108764 seconds
-[Worker0] Imported GUID: 2f40d0b810954ef6b56f0b0db708d5cb - Path: Assets/_Project/Missions/M1/M1GroundMission.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9f8844604f72cd2ff87b3f6fbce72a2f') in 0.0093843 seconds
-[Worker0] Imported GUID: 12b94ba8620f4bd45a901dcede6f8704 - Path: Assets/_Project/Core/Editor/ArtImportSettings.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '39b05cca04f16f6558a1103787d9c453') in 0.0101119 seconds
-[Worker0] Imported GUID: c430bdf8a03886d4a9f7a35c10280abb - Path: Assets/_Project/Art/Models/Celestial/space/space_skybox.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'e6e52973270f861f3bb963b264efd199') in 0.016051 seconds
-[Worker0] Imported GUID: 5549cec177685014b80a3cbb7e59f422 - Path: Assets/_Project/Core/Tests/RiskModelTests.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '5435282dce4450e66efac698dc6180f5') in 0.0101563 seconds
-[Worker0] Imported GUID: 6d5fca209f954769a8d7a7520b4f40a1 - Path: Assets/_Project/UI/Planner/PlannerPanel.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3e2ea95b8c311af280f9a7f94e1f3a62') in 0.0110265 seconds
-[Worker0] Imported GUID: 15af937da485959478db2882112bd00a - Path: Assets/_Project/Art/Textures/sun.jpg - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '07c6ddcbef2553007f94108dd12fb8a9') in 0.0151239 seconds
-[Worker0] Imported GUID: 81f642888aa6a2043bfa4b0d8a2cb0cb - Path: Assets/_Project/Core/Resources/LastSignal/Debrief_M4.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'ee7bdf2b14c0c870beba9a6af222f559') in 0.0097034 seconds
-[Worker0] Imported GUID: 7fff78dc1dd41e04c9f927afd4aa7b24 - Path: Assets/_Project/Art/Textures/moon.jpg - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '51d44ef17bfd552b98948fb610a238a9') in 0.0167127 seconds
-[Worker0] Imported GUID: d3d36511708d3ca4b891d247e9a05b64 - Path: Assets/_Project/Art/Textures/earth_nightmap.jpg - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'd24808b34d5c4fc9bd2c758fec45ec38') in 0.0172835 seconds
-[Worker0] Imported GUID: a164ebb7ea670894ca1e407b90f88e31 - Path: Assets/_Project/Art/Models/Buildings/office_building_01.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '456bde0bd7254b7dd5b936ac3f9e5bca') in 0.0167803 seconds
-[Worker0] Imported GUID: 14e86f88e9a8c9c448d7e7df92f2aeec - Path: Packages/com.unity.modules.physicscore2d/package.ModuleCompilationTrigger - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '2f4d38bb916a6c02eb3c2e674941ecaf') in 0.010565 seconds
-[Worker0] Imported GUID: 4fc99c1a5df1e36459758f983d0131e5 - Path: Assets/_Project/Art/Models/Buildings/warehouse_01.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'a9abbebc62b88909ecee67b850e6a8bf') in 0.0149336 seconds
-[Worker0] Imported GUID: 251b6454127da6841a94c10e53aad039 - Path: Assets/_Project/Core/Editor/LastSignalSetup.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '484c21d060ce2e1fd62148107b01271e') in 0.0107388 seconds
-[Worker0] Imported GUID: dc56084ff686f9e4583c42666f7b7afb - Path: Assets/_Project/Art/Models/Buildings/tower_antenna.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '6f21361d8ac606f6c5530436d4380cd4') in 0.0159983 seconds
-[Worker0] Imported GUID: 9b1d5ca0f87d46d6b1c9a0a7952f32d4 - Path: Assets/_Project/UI/Planner/Resources/LastSignal/PlannerPanel.prefab - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '09983523d79b6941305e7949d23b6a80') in 0.0117039 seconds
-[Worker0] Imported GUID: ef296c3e4fd3c6e4d82d3ff98aed2bc2 - Path: Assets/_Project/Art/Models/Buildings/residential_01.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'cb51c6977c190734d6d0a5dfab7c1683') in 0.0196063 seconds
-[Worker0] Imported GUID: 6163f3f81cc78dd44a27113e9504054d - Path: Assets/_Project/Core/Editor/SetupContent.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '7243c7bf30c7db049678bd78c793283b') in 0.0100688 seconds
-[Worker0] Imported GUID: c49781edcc8831244839954b5510038c - Path: Assets/_Project/Core/Resources/LastSignal/PlayerState.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '91eedf47b183f75f75297f0a53389549') in 0.0127396 seconds
-Worker ready: AssetImportWorkerHW1 1
-[Worker0] Imported GUID: d6a2e6e4803de7b43baacdc355fc144d - Path: Packages/com.unity.test-framework/package.json - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'f8848fa7e14767b5deef83fa591f0215') in 0.0192143 seconds
-[Worker0] Imported GUID: dbfbdefaf749d1f4a916b651e3190a15 - Path: Assets/_Project/Core/Resources/LastSignal/Debrief_Final.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'b9bfd9e859129fcf1b31e49156024a5e') in 0.0108001 seconds
-[Worker0] Imported GUID: d691174143fd3774ba63d7c493633b99 - Path: Packages/com.unity.test-framework/CHANGELOG.md - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1add227fd7b559a16ec540a020a496e0') in 0.0116986 seconds
-[Worker0] Imported GUID: 1f3c14c085d4a6048b07ba465986ea97 - Path: Assets/_Project/Art/Models/Celestial/earth/earth.mtl - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '5dddda9f0c1e998c43b301e614870ccb') in 0.0115697 seconds
-[Worker0] Imported GUID: 18080c26ac8a0fe4d9b5312077141e7b - Path: Assets/_Project/Core/Resources/LastSignal/PipLines.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9047c1d8f3945b6fcad36a9ae463f14d') in 0.0126917 seconds
-[Worker0] Imported GUID: 9bc1485609a551b4c99c34dc9f352b9f - Path: Assets/_Project/Art/Models/Buildings/tree_01.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9f413f0e0619477d263979020aa355e4') in 0.0155299 seconds
-[Worker0] Imported GUID: 9f37611ac5e0dd943b51a1b7c3a40488 - Path: Assets/_Project/Art/Textures/stars_milkyway.jpg - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '807c7f3a88fa1569d3c7047f9445936c') in 0.016849 seconds
-Worker ready: AssetImportWorkerHW2 2
-[Worker0] Imported GUID: df495b6a21c5b554b8c43afc90bee188 - Path: Assets/_Project/Core/Settings/LastSignalRenderer.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '51cc9a8741cd4129ced70ba161ddccd2') in 0.0318612 seconds
-[Worker0] Imported GUID: 939b89fc6b924ea2e821fc1be1b09f56 - Path: Packages/com.unity.modules.tetgen/package.json - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '7e1cf8a0abb151045c3cfb9efbf8dafa') in 0.0140594 seconds
-[Worker0] Imported GUID: a667f6654ad7a9548b8c8e68b51c8895 - Path: Packages/com.unity.test-framework/UnityEditor.TestRunner/RequireApiProfileAttribute.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9350d52d9c9d73bea8c6cb0ff4d7101c') in 0.0156795 seconds
-[Worker0] Imported GUID: 2a43c5751782f1e4ba1bdf7b986829e3 - Path: Assets/_Project/Art/Models/Celestial/sun/sun.mtl - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '2d7e57bec0e477b801d57b52885d5c4d') in 0.0139705 seconds
-[Worker0] Imported GUID: fcf0c3e26aa63b2469b8247ce7f9ec75 - Path: Assets/_Project/Art/Models/Celestial/space/space_skybox.mtl - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '276031702f8b6d85c9ca54079413de8b') in 0.0163727 seconds
-[Worker0] Imported GUID: 422e4e91deae80f459fd2d90f303a220 - Path: Assets/_Project/Art/Models/Buildings/skyscraper_02.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '33a75eb0b69219b602b28d40ffe1fcc3') in 0.0155006 seconds
-[Worker0] Imported GUID: 43e7809d5dc8a2b4e9a74cfc4040831f - Path: Assets/_Project/Core/Resources/LastSignal/FatherLog.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'dabd6ac39c8fffc7886746d7d336df10') in 0.0131339 seconds
-[Worker0] Imported GUID: 0d35ca3ad1ae5d04b971583e7e6d5c4a - Path: Assets/_Project/Art/Models/Celestial/moon/moon.mtl - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'ea2c5b4437a66ac23231ba29ceba4ee9') in 0.0113426 seconds
-[Worker0] Imported GUID: 55b1edcc9c660df40b5205e185f6428a - Path: Assets/_Project/Art/Models/Celestial/earth/earth_atmosphere.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1ae91c011186ad943011e4eddae0da68') in 0.0181223 seconds
-[Worker0] Imported GUID: 31ab2b91787e5d64b83cd810f5fbd46e - Path: Assets/_Project/Core/Resources/LastSignal/Debrief_M1.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'ae86a2c14e8a1997c9c4ef8a372fa48d') in 0.0115609 seconds
-[Worker0] Imported GUID: 20806a113cc832542a38072a4789c9b7 - Path: Assets/_Project/Art/Models/Buildings/bench.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '3e6e03550417c7757c5151adef66028c') in 0.0562947 seconds
-[Worker0] Imported GUID: f9082a9b9f3f281408a3d9079e88cecb - Path: Assets/_Project/Art/Models/Buildings/city_block.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '4aef7c1b01ba760ce85b62afe7f5bbee') in 0.0299084 seconds
-[Worker0] Imported GUID: b5930dbc378b45d406aeb881f06b6dfa - Path: Packages/com.unity.modules.physicscore2d/package.json - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '31a945e4172a46307e8a4448a317637e') in 0.0268455 seconds
-[Worker0] Imported GUID: 4bf139fc5e9d9240edc107e25d67d398 - Path: Packages/com.unity.modules.tetgen/package.ModuleCompilationTrigger - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9d20b92d0cff0b46c84c515fef73f9f2') in 0.0109241 seconds
-[Worker0] Imported GUID: 4697ed727f35a1d46bfe10b6e67b74ff - Path: Assets/_Project/Core/Resources/LastSignal/Debrief_M3.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '1d4fb9a4780ac1fb7a343e76e3f804fd') in 0.0113895 seconds
-[Worker0] Imported GUID: dbbb984d0fd96a84ea26fe9e1ca42b48 - Path: Assets/_Project/Art/Models/Buildings/residential_02.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '91014d040998d8e2462990bd141ecf75') in 0.0178965 seconds
-[Worker0] Imported GUID: 57d7abdef1188e14aa665cd279606634 - Path: Assets/_Project/Art/Models/Celestial/sun/sun_corona.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '026458ee6442123c5f9a629127ae7169') in 0.0151234 seconds
-[Worker0] Imported GUID: dafc9c5e19f4f4448b3fe2aebff366cd - Path: Assets/_Project/Core/Settings/LastSignalURP.asset - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '20dfa3f1269c440d618e136cc92a7ee1') in 0.0344928 seconds
-[Worker0] Imported GUID: c7d685e387e16e24580ff5bca06fe794 - Path: Assets/_Project/Art/Models/Buildings/buildings.mtl - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '30e80e73425c761d4a3a69b8e2b1122f') in 0.0095685 seconds
-[Worker0] Imported GUID: 6b5108bc6127ba14590b531b298a0aa4 - Path: Assets/_Project/Art/Models/Buildings/skyscraper_01.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: 'cf8377d016e3c3a222d96492f38d4932') in 0.0156893 seconds
-[Worker0] Imported GUID: 7ce94c3e662a4feeb3fa7f87d2a193e8 - Path: Assets/_Project/Missions/M2/M2PreflightMission.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '4f2144250c0e5533a2770c31794202f7') in 0.0101685 seconds
-[Worker0] Imported GUID: 21cdf3f99efb17c41bd8c0e3770c4963 - Path: Assets/_Project/Core/Editor/LastSignal.Editor.asmdef - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '4cf19d0845127dcd0a0831cb97c621f0') in 0.0102977 seconds
-[Worker0] Imported GUID: 55a0f4e3df5e4d7e9be46d17a87bcb21 - Path: Assets/_Project/UI/Planner/PlannerRuntimeBootstrap.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '7f3598751334a717cd84d68f42b2c3f4') in 0.0097553 seconds
-[Worker0] Imported GUID: 3547a2cdbb9610843b29e3dba62c7b4f - Path: Assets/_Project/Art/Models/Celestial/sun/sun.obj - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '170062bcccbc979d72535114c4098f3a') in 0.0243112 seconds
-[Worker0] Imported GUID: d2146428d3f1ad54eb7326c9a44b3284 - Path: Packages/com.unity.test-framework/UnityEditor.TestRunner/RequirePlatformSupportAttribute.cs - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '394a83f9e2e6d7f07234347bcc6f4c93') in 0.010006 seconds
-[Worker0] Imported GUID: 6f3a25cff12141e4e84f58f8b6e7eab2 - Path: Assets/_Project/Core/Tests/LastSignal.Tests.asmdef - Importer: ScriptedImporter/UnityEditor.QuickSearchModule:UnityEditor.Search:ASIAI0B -> (ImportResultId: '9d33b27a9aacbe47a88e0808c83cbc74') in 0.0091673 seconds
-Reloading assemblies for play mode.
-Reloading assemblies after forced synchronous recompile.
-Begin MonoManager ReloadAssembly
-'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-Native extension for WindowsStandalone target not found
-Native extension for WebGL target not found
-ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
-[MODES] ModeService[none].Initialize
-[MODES] ModeService[none].LoadModes
-Scripting: successfully reloaded assembly
-- Finished resetting the current domain, in  1.373 seconds
-Domain Reload Profiling: 1968ms
-	BeginReloadAssembly (370ms)
-		DisableScriptedObjects (102ms)
-		CreateAndSetChildDomain (98ms)
-	RebuildCommonClasses (8ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (44ms)
-	LoadAllAssembliesAndSetupDomain (158ms)
-		LoadAssemblies (117ms)
-		TypeCache.Refresh (5ms)
-		AnalyzeDomain (21ms)
-			ResolveRequiredComponents (19ms)
-	FinalizeReload (1374ms)
-		SetupLoadedEditorAssemblies (0ms)
-			BeforeProcessingInitializeOnLoad (88ms)
-			ProcessInitializeOnLoadAttributes (249ms)
-			ProcessInitializeOnLoadMethodAttributes (119ms)
-			AfterProcessingInitializeOnLoad (5ms)
-		AwakeInstancesAfterBackupRestoration (548ms)
-No restricted APIs configured; Validation skipped.
-Checking 6 assemblies for restricted APIs found 0 usage(s) in 5 ms
-
-Asset Pipeline Refresh (id=e1d7acf77e06671428dab2cae08d39f4): Total: 2.440 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
-	(Values over 0.05ms)
-	Summary:
-		Imports: total=0 (actual=0, local cache=0, cache server=0)
-		Asset DB Process Time: managed=0 ms, native=1527 ms
-		Asset DB Callback time: managed=224 ms, native=59 ms
-		Scripting: domain reloads=1, domain reload time=626 ms, compile time=2 ms, other=0 ms
-		Project Asset Count: scripts=877, non-scripts=1680
-		Asset File Changes: new=0, changed=0, moved=0, deleted=0
-		Scan Filter Count: 0
-	InvokePackagesCallback: 1.607ms
-	ApplyChangesToAssetFolders: 0.120ms
-	Collect global state as custom dependencies: 2.346ms
-	ProcessAssetsWithTransientArtifactChanges: 72.854ms
-	CategorizeAssets: 32.136ms
-	CompileScripts: 1.653ms
-	ImportOutOfDateAssets: 1378.450ms (1375.943ms without children)
-		CollectScriptTypesHashes: 1.308ms
-		ReloadNativeAssets: 0.737ms
-		UnloadImportedAssets: 1.164ms
-		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.285ms
-		ImportSchedulerStart: 0.304ms
-	PostProcessAllAssets: 280.673ms
-		PostProcessCallbackCreateDeferredMaterials 6.000ms
-		PostprocessAssetsUpdateCachedIcon 5.525ms
-		AssemblyValidation.PostprocessAllAssets 4.559ms
-		ShaderAssetModifiedCallback 2.959ms
-		RaytracingShaderImportPostprocess 2.829ms
-		ComputeShaderImportPostprocess 2.557ms
-		SpeedTreeImporter.PostprocessAllAssets 2.055ms
-		LocalizationDatabase.AssetDatabasePostprocessCallback 1.228ms
-		BlockShaderImporter.PostprocessAllAssets 1.203ms
-		XRBuildSystem.XRAssetImported 0.058ms
-		MonoPostProcessAllAssets: 222.126ms
-			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 69.491ms
-			PostProcessor.OnPostprocessAllAssets 22.735ms
-			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 14.693ms
-			MaterialPostprocessor.OnPostprocessAllAssets 13.841ms
-			AssetPostprocessor.OnPostprocessAllAssets 13.722ms
-			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 13.428ms
-			InputActionAssetPostprocessor.OnPostprocessAllAssets 12.629ms
-			TextAssetPostProcessor.OnPostprocessAllAssets 8.514ms
-			BuilderAssetPostprocessor.OnPostprocessAllAssets 7.936ms
-			AssetChangedListener.OnPostprocessAllAssets 5.808ms
-			SpeedTree9Postprocessor.OnPostprocessAllAssets 3.394ms
-			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 2.619ms
-			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.749ms
-			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.285ms
-			SyncVS.PostprocessSyncProject 1.114ms
-			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.905ms
-			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.577ms
-			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.574ms
-			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.328ms
-			ThemePostprocessor.OnPostprocessAllAssets 0.317ms
-			StyleCatalogPostProcessor.OnPostprocessAllAssets 0.314ms
-			EditModeScopePostprocessor.OnPostprocessAllAssets 0.289ms
-			AudioMixerPostprocessor.OnPostprocessAllAssets 0.272ms
-			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.254ms
-			AssetEvents.OnPostprocessAllAssets 0.228ms
-			SpeedTreePostProcessor.OnPostprocessAllAssets 0.225ms
-			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.180ms
-			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.162ms
-			ConfigAssetsTracker.OnPostprocessAllAssets 0.119ms
-			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.112ms
-			AudioContainerPostProcessor.OnPostprocessAllAssets 0.076ms
-	PostAssetChangesProfiler: 3.379ms
-	GatherAllCurrentPrimaryImportResultRevisions: 0.190ms
-	UnloadStreamsBegin: 1.091ms
-	PersistCurrentRevisions: 0.064ms
-	GenerateScriptTypeHashes: 3.104ms
-	GenerateScriptTypeSerializationHashes: 5.872ms
-	Untracked: 652.794ms
-
-Loaded scene 'Temp/__Backupscenes/0.backup'
-	Deserialize:            1.236 ms
-	Integration:            130.275 ms
-	Integration of assets:  0.003 ms
-	Thread Wait Time:       0.009 ms
-	Total Operation Time:   131.522 ms
-[Licensing::Client] Successfully resolved entitlement details
+Asset Pipeline Refresh (id=b37a4a11d14925043ab77918032813ef): Total: 0.004 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+EditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+GUILayout: Mismatched LayoutGroup.mouseUp
+EditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+GUILayout: Mismatched LayoutGroup.mouseUp
+EditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+GUILayout: Mismatched LayoutGroup.mouseUp
+EditorHelper: Unable to use the external script editor. Trying the internal script editor now.
+Asset Pipeline Refresh (id=39e98bd5d19f57a42804ff8d2e94cfe7): Total: 0.005 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
 TrimDiskCacheJob: Current cache size 0mb
-Asset Pipeline Refresh (id=743ebd6a0252bed4699baafa2d32d88f): Total: 0.011 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
-[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
-Asset Pipeline Refresh (id=fd4f03e1d2a2c7a4c8965f2462623a02): Total: 0.041 seconds - Initiated by RefreshV2(NoUpdateAssetOptions)
-[Licensing::Client] Successfully resolved entitlement details
-Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
-WorkingDir: D:/NASAProj/NASA-HACKTHONNNN
-MonoPathRemapper: Attempts to remap: 28560; Successful remaps: 16146
+Asset Pipeline Refresh (id=2d7b26ec6a1a0854dbc040103479db20): Total: 0.003 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+Asset Pipeline Refresh (id=3ce45ba2be8d53d49ac40ebf4169fcfc): Total: 0.003 seconds - Initiated by RefreshV2(AllowForceSynchronousImport)
+MonoPathRemapper: Attempts to remap: 9713; Successful remaps: 0
 Serialized file version minimum: 23, current 23
-[LAYOUT] About to save layout D:\NASAProj\NASA-HACKTHONNNN\UserSettings\Layouts\default-6000.dwlt
-[LAYOUT] About to save layout C:/Users/qlsah/AppData/Roaming/Unity/Editor-5.x/Preferences\Layouts\current\default-6000.dwlt
+Starting new worker id: 0 with log in D:/NASAProj/NASA-HACKTHONNNN/Logs/AssetImportWorkerHW0.log
 Input System module state changed to: ShutdownInProgress.
 Input Polling Thread exited.
 Input System module state changed to: Shutdown.
-'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
-'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
 [Physics::Module] Cleanup current backend.
 [Physics::Module] Id: 0xf2b8ea05
 [Licensing::IpcConnector] LicenseClient-qlsah-1.19.0-notifications channel disconnected successfully.
 [Licensing::IpcConnector] LicenseClient-qlsah-1.19.0 channel disconnected successfully.
-ExitCode: 0 Duration: 2s153ms
-[593/760    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
-[744/760    0s] Csc Library/Bee/artifacts/1900b0aE.dag/LastSignal.Core.dll (+2 others)
-Assets\_Project\Core\UIFactory.cs(39,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-[746/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/LastSignal.Core.dll (+pdb)
-Processing assembly Library/Bee/artifacts/1900b0aE.dag/LastSignal.Core.dll, with 149 defines and 273 references
-
-processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
-
-1 processor(s) skipped this assembly
-
-running Unity.Jobs.CodeGen.JobsILPostProcessor
-[747/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/LastSignal.Tests.dll (+pdb)
-Processing assembly Library/Bee/artifacts/1900b0aE.dag/LastSignal.Tests.dll, with 147 defines and 301 references
-
-processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
-
-1 processor(s) skipped this assembly
-
-running Unity.Jobs.CodeGen.JobsILPostProcessor
-[750/760    0s] CopyFiles Library/ScriptAssemblies/LastSignal.Core.pdb
-[751/760    0s] CopyFiles Library/ScriptAssemblies/LastSignal.Core.dll
-[752/760    0s] Csc Library/Bee/artifacts/1900b0aE.dag/LastSignal.Editor.dll (+2 others)
-[753/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/LastSignal.Editor.dll (+pdb)
-Processing assembly Library/Bee/artifacts/1900b0aE.dag/LastSignal.Editor.dll, with 147 defines and 307 references
-
-processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
-
-1 processor(s) skipped this assembly
-
-running Unity.Jobs.CodeGen.JobsILPostProcessor
-[754/760    0s] CopyFiles Library/ScriptAssemblies/LastSignal.Editor.pdb
-[755/760    0s] CopyFiles Library/ScriptAssemblies/LastSignal.Editor.dll
-[756/760    0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
-Assets\_Project\UI\Planner\PlannerRuntimeBootstrap.cs(17,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\_Project\UI\Planner\PlannerRuntimeBootstrap.cs(19,49): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
-
-Assets\_Project\Missions\M1\M1GroundMission.cs(16,24): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\_Project\Missions\M2\M2PreflightMission.cs(15,24): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
-
-Assets\_Project\Missions\M1\M1GroundMission.cs(12,14): warning CS0414: The field 'M1GroundMission._serialFound' is assigned but its value is never used
-[757/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
-Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 149 defines and 310 references
-
-processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
-
-1 processor(s) skipped this assembly
-
-running Unity.Jobs.CodeGen.JobsILPostProcessor
-[758/760    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
-[759/760    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
-*** Tundra build success (1.99 seconds), 14 items updated, 760 evaluated
-Lingering sessions upon destruction of worker manager
 Unity Data Store service was successfully shut down
 UDS shutting down local client system
 Shut down UDS service system complete
 AcceleratorClientConnectionCallback - disconnected - :0
 Cleanup mono
 CodeReloadManager destroyed
-abort_threads: Failed aborting id: 0000000000008708, mono_thread_manage will ignore it
+abort_threads: Failed aborting id: 000000000001690C, mono_thread_manage will ignore it
 
-abort_threads: Failed aborting id: 00000000000013B4, mono_thread_manage will ignore it
+abort_threads: Failed aborting id: 0000000000015F84, mono_thread_manage will ignore it
 
-abort_threads: Failed aborting id: 0000000000008708, mono_thread_manage will ignore it
+abort_threads: Failed aborting id: 000000000001690C, mono_thread_manage will ignore it
 
-abort_threads: Failed aborting id: 00000000000013B4, mono_thread_manage will ignore it
+abort_threads: Failed aborting id: 0000000000015F84, mono_thread_manage will ignore it
 
-debugger-agent: Unable to listen on 4876
+debugger-agent: Unable to listen on 4868
 VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
 Checking for leaked weakptr:
   Found no leaked weakptrs.
 [Package Manager] Server process was shutdown
-##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794580662211,"processId":4200,"allocatedMemory":15370513,"memoryLabels":[{"Default":195107},{"Permanent":15516},{"NewDelete":69745},{"Thread":4205136},{"Manager":823168},{"VertexData":8},{"Geometry":824},{"Texture":24},{"Shader":859808},{"Material":132},{"GfxDevice":144424},{"Animation":952},{"Audio":320},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":214424},{"Input":45280},{"JobScheduler":264},{"TextLib":32342},{"Mono":48},{"MonoCode":128},{"ScriptingNativeRuntime":1259880},{"BaseObject":49664},{"Resource":1444},{"Renderer":2504},{"Transform":4781},{"File":7393},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":904164},{"StaticString":3808},{"Utility":2675442},{"Curl":48},{"PoolAlloc":2360},{"AI":80},{"TypeTree":17165},{"ScriptManager":19032},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7728},{"WebRequest":17164},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"NativeArray":1080},{"Camera":729},{"Secure":265},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":1120},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":267723},{"EditorUtility":412698},{"VersionControl":8},{"Undo":931},{"AssetDatabase":2544319},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":36921},{"Upm":1988},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":274},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3600},{"Windowing":456},{"Licensing":13180},{"AssetReference":32},{"IPCStream":32}]}
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1794587735569,"processId":10356,"allocatedMemory":13876302,"memoryLabels":[{"Default":171499},{"Permanent":15516},{"NewDelete":70133},{"Thread":4205600},{"Manager":35552},{"VertexData":8},{"Geometry":824},{"Texture":24},{"Shader":848384},{"Material":132},{"GfxDevice":182024},{"Animation":952},{"Audio":1272},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":111528},{"Input":45280},{"JobScheduler":264},{"TextLib":8726},{"Mono":48},{"ScriptingNativeRuntime":1194688},{"BaseObject":48784},{"Resource":1444},{"Renderer":2504},{"Transform":4781},{"File":4424},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":1050814},{"StaticString":3808},{"Utility":2675470},{"Curl":48},{"PoolAlloc":2168},{"AI":80},{"TypeTree":17165},{"ScriptManager":12688},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7296},{"WebRequest":14539},{"VR":49650},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":729},{"Secure":265},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":1120},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14536},{"Identifiers":7152},{"EntityIdStore":33088},{"Gui":612},{"EditorUtility":123888},{"VersionControl":8},{"Undo":931},{"AssetDatabase":2460425},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":36921},{"Upm":1988},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":218},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3600},{"Windowing":456},{"Licensing":1760},{"AssetReference":32},{"IPCStream":32}]}

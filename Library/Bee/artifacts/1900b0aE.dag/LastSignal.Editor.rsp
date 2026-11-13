@@ -463,10 +463,14 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/_Project/Core/Editor/ArtImportSettings.cs"
+"Assets/_Project/Core/Editor/CaptureShots.cs"
 "Assets/_Project/Core/Editor/LastSignalSetup.cs"
 "Assets/_Project/Core/Editor/SetupContent.cs"
 "Assets/_Project/Core/Editor/SetupScenes.cs"
 "Assets/_Project/Core/Editor/SetupVisuals.cs"
+"Assets/_Project/Core/Editor/StageKit.cs"
+"Assets/_Project/Core/Editor/StageM1.cs"
+"Assets/_Project/Core/Editor/StageM2.cs"
 -langversion:9.0
 /deterministic
 /optimize+
