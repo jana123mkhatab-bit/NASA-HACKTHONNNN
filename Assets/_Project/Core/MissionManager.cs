@@ -75,6 +75,8 @@ namespace LastSignal.Core
         void Start()
         {
             // Play-from-any-scene: the scene that is already open becomes the current mission.
+            // (The first scene was loaded before this manager existed, so OnSceneLoaded never ran for it.)
+            UIFactory.EnsureEventSystem();
             BeginMission(MissionIds.IdForScene(SceneManager.GetActiveScene().name));
         }
 
@@ -172,7 +174,17 @@ namespace LastSignal.Core
 
         void BeginMission(string id)
         {
-            if (id == null) return;
+            if (id == null)
+            {
+                // A scene outside the mission flow (for example the old sandbox): keep our UI out of the way.
+                State = MissionState.Idle;
+                CurrentMissionId = null;
+                _title.SetVisible(false);
+                _hud.SetVisible(false);
+                _log.SetVisible(false);
+                HideAllPanels();
+                return;
+            }
             if (State == MissionState.Running && CurrentMissionId == id && !_isRetry) return; // already started
 
             CurrentMissionId = id;
@@ -202,9 +214,19 @@ namespace LastSignal.Core
             MissionEvents.OnMissionStart(id);
         }
 
+        /// <summary>
+        /// A mission may report before the manager's own Start has run (for example from its Awake).
+        /// Accept it by beginning that mission first, so MissionEvents.OnMissionComplete always works.
+        /// </summary>
+        bool Accept(string id)
+        {
+            if (State == MissionState.Idle && MissionIds.SceneFor(id) != null) BeginMission(id);
+            return State == MissionState.Running && id == CurrentMissionId;
+        }
+
         void OnComplete(string id)
         {
-            if (State != MissionState.Running || id != CurrentMissionId) return;
+            if (!Accept(id)) return;
             GetRecord(id).completed = true;
             FatherLog.AddForMission(id);
 
@@ -228,7 +250,7 @@ namespace LastSignal.Core
 
         void OnFail(string id, string reason)
         {
-            if (State != MissionState.Running || id != CurrentMissionId) return;
+            if (!Accept(id)) return;
             State = MissionState.Failed;
             Pip.Hint(id);
             _fail.Show(reason, Retry);

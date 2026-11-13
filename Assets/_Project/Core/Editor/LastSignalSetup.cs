@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using LastSignal.Core;
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -26,8 +27,8 @@ namespace LastSignal.EditorTools
         static readonly string[] Folders =
         {
             Root + "/Core", Root + "/Core/Resources", Root + "/Core/Scenes", Root + "/Core/Editor", Root + "/Core/Tests",
-            Root + "/Missions", Root + "/Missions/M1_Ground", Root + "/Missions/M2_Preflight", Root + "/Missions/M3_DeepSpace",
-            Root + "/Missions/M4_Planet", Root + "/Missions/Final",
+            Root + "/Missions", Root + "/Missions/M1", Root + "/Missions/M2", Root + "/Missions/M3",
+            Root + "/Missions/M4", Root + "/Missions/Final", Root + "/Shared/Ship", Root + "/UI/Planner", Root + "/Cinematics",
             Root + "/DesignMode", Root + "/Shared", Root + "/UI", Root + "/Data", Root + "/Audio", Root + "/Docs",
             Root + "/Art", Root + "/Art/Models", Root + "/Art/Textures", Root + "/Art/Characters", Root + "/Art/Materials", Root + "/Art/Prefabs"
         };
@@ -40,6 +41,7 @@ namespace LastSignal.EditorTools
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
 
             for (int i = 0; i < Folders.Length; i++) EnsureFolder(Folders[i]);
+            PlayerSettings.productName = "The Last Known Signal";
 
             CreatePlayerStateAsset();
             CreatePipLinesAsset();
