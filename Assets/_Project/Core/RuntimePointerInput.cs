@@ -19,25 +19,46 @@ namespace LastSignal
 
         void Update()
         {
+            bool pressed;
+            bool released;
+            Vector2 position;
             Mouse mouse = Mouse.current;
-            if (mouse == null) return;
+            if (mouse != null)
+            {
+                position = mouse.position.ReadValue();
+                pressed = mouse.leftButton.wasPressedThisFrame;
+                released = mouse.leftButton.wasReleasedThisFrame;
+            }
+            else
+            {
+                position = Input.mousePosition;
+                pressed = Input.GetMouseButtonDown(0);
+                released = Input.GetMouseButtonUp(0);
+            }
+            _data.position = position;
 
-            _data.position = mouse.position.ReadValue();
-            if (mouse.leftButton.wasPressedThisFrame)
+            if (pressed)
             {
                 _pressed = RaycastTarget();
-                if (_pressed != null) ExecuteEvents.Execute(_pressed, _data, ExecuteEvents.pointerDownHandler);
+                if (_pressed != null)
+                {
+                    _data.pointerPress = _pressed;
+                    _data.rawPointerPress = _pressed;
+                    ExecuteEvents.ExecuteHierarchy(_pressed, _data, ExecuteEvents.pointerDownHandler);
+                }
             }
 
-            if (!mouse.leftButton.wasReleasedThisFrame) return;
+            if (!released) return;
 
-            GameObject released = RaycastTarget();
+            GameObject releasedTarget = RaycastTarget();
             if (_pressed != null)
             {
-                ExecuteEvents.Execute(_pressed, _data, ExecuteEvents.pointerUpHandler);
-                if (_pressed == released)
-                    ExecuteEvents.Execute(_pressed, _data, ExecuteEvents.pointerClickHandler);
+                ExecuteEvents.ExecuteHierarchy(_pressed, _data, ExecuteEvents.pointerUpHandler);
+                if (_pressed == releasedTarget)
+                    ExecuteEvents.ExecuteHierarchy(_pressed, _data, ExecuteEvents.pointerClickHandler);
             }
+            _data.pointerPress = null;
+            _data.rawPointerPress = null;
             _pressed = null;
         }
 
