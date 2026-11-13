@@ -131,18 +131,16 @@ namespace LastSignal
             var es = Object.FindFirstObjectByType<EventSystem>();
             if (es == null) es = new GameObject("EventSystem", typeof(EventSystem)).GetComponent<EventSystem>();
             var go = es.gameObject;
-#if ENABLE_INPUT_SYSTEM
-            // Remove the legacy module: it throws/does nothing when only the new Input System is active.
+            es.enabled = true;
+            es.sendNavigationEvents = true;
+
+            // ProjectSettings uses Both input backends. StandaloneInputModule is the
+            // reliable mouse path for runtime-created canvases and needs no action asset.
+            var inputSystemModule = go.GetComponent<InputSystemUIInputModule>();
+            if (inputSystemModule != null) inputSystemModule.enabled = false;
             var legacy = go.GetComponent<StandaloneInputModule>();
-            if (legacy != null) Object.Destroy(legacy);
-            var mod = go.GetComponent<InputSystemUIInputModule>();
-            if (mod == null) mod = go.AddComponent<InputSystemUIInputModule>();
-            // Components added at runtime have no actions assigned, so no pointer/click is ever read.
-            if (mod.actionsAsset == null || mod.point == null || mod.point.action == null)
-                mod.AssignDefaultActions();
-#else
-            if (go.GetComponent<BaseInputModule>() == null) go.AddComponent<StandaloneInputModule>();
-#endif
+            if (legacy == null) legacy = go.AddComponent<StandaloneInputModule>();
+            legacy.enabled = true;
         }
 
         public static RectTransform Rect(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax)
