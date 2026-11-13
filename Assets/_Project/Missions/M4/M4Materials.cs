@@ -14,10 +14,26 @@ namespace LastSignal.M4
         static Shader _lit, _unlit, _particles;
         static readonly Dictionary<string, Material> Cache = new Dictionary<string, Material>();
 
-        static Shader Lit => _lit != null ? _lit : (_lit = Shader.Find("Universal Render Pipeline/Lit"));
-        static Shader UnlitShader => _unlit != null ? _unlit : (_unlit = Shader.Find("Universal Render Pipeline/Unlit"));
+        // A shader that a player build stripped makes Shader.Find return null, and new Material(null) throws,
+        // which would stop the whole planet from building. Fall back down a chain instead.
+        static Shader Lit => _lit != null ? _lit
+            : (_lit = FindFirst("Universal Render Pipeline/Lit", "Universal Render Pipeline/Simple Lit", "Universal Render Pipeline/Unlit"));
+        static Shader UnlitShader => _unlit != null ? _unlit
+            : (_unlit = FindFirst("Universal Render Pipeline/Unlit", "Universal Render Pipeline/Lit"));
         static Shader ParticleShader => _particles != null ? _particles
-            : (_particles = Shader.Find("Universal Render Pipeline/Particles/Unlit") ?? UnlitShader);
+            : (_particles = FindFirst("Universal Render Pipeline/Particles/Unlit", "Universal Render Pipeline/Unlit", "Universal Render Pipeline/Lit"));
+
+        static Shader FindFirst(params string[] names)
+        {
+            foreach (var n in names)
+            {
+                var s = Shader.Find(n);
+                if (s != null) return s;
+            }
+            Debug.LogError("[M4] None of these shaders are in the build: " + string.Join(", ", names) +
+                           ". Add one to Project Settings > Graphics > Always Included Shaders.");
+            return Shader.Find("Hidden/InternalErrorShader");
+        }
 
         public static void ClearCache() => Cache.Clear();
 

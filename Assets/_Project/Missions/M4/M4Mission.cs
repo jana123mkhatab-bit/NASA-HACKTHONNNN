@@ -79,12 +79,32 @@ namespace LastSignal.M4
         void OnMissionStart(string id)
         {
             if (id == MissionIds.Final && World != null) StartFinal();
+            // After a Retry, Core raises Start("M4") and then plays the M4 intro ("pick your landing site"), which would
+            // replace the checkpoint lines. Play them again one frame later so the player hears the right thing.
+            else if (id == MissionIds.M4 && _pendingPip != null) StartCoroutine(PipNextFrame(_pendingPip));
+        }
+
+        string[] _pendingPip;
+
+        IEnumerator PipNextFrame(string[] lines)
+        {
+            yield return null;
+            if (_pendingPip != lines) yield break;
+            _pendingPip = null;
+            Pip(lines);
         }
 
         static void Pip(params string[] lines)
         {
             var mm = MissionManager.Instance;
             if (mm != null && mm.pipUI != null) mm.pipUI.PlayLines(lines);
+        }
+
+        /// <summary>Hides Pip's box (it would sit over the letterbox subtitles). An empty PlayLines closes it at once.</summary>
+        public static void SilencePip()
+        {
+            var mm = MissionManager.Instance;
+            if (mm != null && mm.pipUI != null) mm.pipUI.PlayLines(new string[0]);
         }
 
         static void Hud(bool on)
@@ -135,7 +155,9 @@ namespace LastSignal.M4
             Vector2 startXZ = Site.xz - approachDir * 70f;
             float siteGround = M4World.Height(Site.xz.x, Site.xz.y);
             float y = Mathf.Max(siteGround + 150f, M4World.Height(startXZ.x, startXZ.y) + 70f);
-            var startVel = new Vector3(approachDir.x, 0f, approachDir.y) * 4f + Vector3.down * 9f;
+            // 2.4 m/s of drift toward the site: a hands-off 25-35 s descent ends within about 15 m of the target,
+            // so the valley's 26 m ellipse is forgiving while the 10-11 m ellipses need RCS corrections.
+            var startVel = new Vector3(approachDir.x, 0f, approachDir.y) * 2.4f + Vector3.down * 9f;
 
             var st = State;
             float fuel = Mathf.Max(st != null ? st.fuel : 100f, 55f);                 // floor so a rough M3 is still landable
@@ -150,8 +172,12 @@ namespace LastSignal.M4
             UI.ShowLanding(true);
             UI.SetObjective($"Land inside the ellipse at site {Site.id} {Site.name}");
             M4Hooks.Phase("Descent");
-            if (resumed) Pip($"Back at the approach checkpoint. Site {Site.id}, same limits.", $"Keep the sink rate under {Site.SafeVerticalSpeed:0.0} metres per second.");
-            else Pip("Descent started. Hold SPACE for the main engine, WASD to translate.", $"Sink rate under {Site.SafeVerticalSpeed:0.0} m/s at touchdown. Watch the battery.");
+            if (resumed)
+            {
+                _pendingPip = new[] { $"Back at the approach checkpoint. Site {Site.id}, same limits.", $"Keep the sink rate under {Site.SafeVerticalSpeed:0.0} metres per second." };
+                Pip(_pendingPip);
+            }
+            else Pip("Descent started. Hold SPACE for the main engine, WASD to translate.", $"Touch down inside the gold ellipse, sink rate under {Site.SafeVerticalSpeed:0.0} m/s. Watch the battery.");
         }
 
         void OnLandingFinished(bool ok, string reason)
@@ -260,6 +286,9 @@ namespace LastSignal.M4
         {
             _hatchUse.available = false;
             UI.SetObjective(null);
+            // Stage the father on the clear spot in front of the hatch while the log panel covers the screen,
+            // so the reveal never depends on where the player happened to stand.
+            Father.Teleport(World.HatchStandPoint(), World.HatchStandYaw());
             UI.ShowSonLog(() => { _logRead = true; PlayReveal(); });
         }
 
@@ -290,7 +319,9 @@ namespace LastSignal.M4
             if (Son == null)
             {
                 var hide = World.SonHidingSpot.position;
-                Son = SurfaceWalker.Spawn("Son", true, M4World.Ground(new Vector2(hide.x, hide.z), 0.1f), 0f, World.Root);
+                Vector3 toFather = Father.transform.position - hide; toFather.y = 0f;
+                float yaw = Mathf.Atan2(toFather.x, toFather.z) * Mathf.Rad2Deg;
+                Son = SurfaceWalker.Spawn("Son", true, M4World.Ground(new Vector2(hide.x, hide.z), 0.1f), yaw, World.Root);
                 Son.inputEnabled = false;
                 Son.gravity = Gravity;
             }
@@ -300,35 +331,41 @@ namespace LastSignal.M4
         IEnumerator RevealFallback()
         {
             Hud(false);
+            SilencePip();
             UI.SetObjective(null);
             yield return StartCoroutine(UI.Letterbox(true));
             PostFx.Cinematic(true, 9f);
 
             var f = Father.transform;
             Vector3 toShip = World.SonsShip.position - f.position; toShip.y = 0; toShip.Normalize();
-            Vector3 side = Vector3.Cross(Vector3.up, toShip);
+            Vector3 shipSide = Vector3.Cross(Vector3.up, toShip);
+            // The son comes around the nose; every later shot is framed on the father-son line, not the hull.
+            Vector3 toSon = Son.transform.position - f.position; toSon.y = 0; toSon.Normalize();
+            Vector3 side = Vector3.Cross(Vector3.up, toSon);
 
             // Shot 1: low, behind the father, the ship looming. Silence.
-            Rig.Shot(f.position - toShip * 4f + side * 1.2f + Vector3.up * 1.1f, f.position - toShip * 3f + side * 0.8f + Vector3.up * 1.0f,
+            Rig.Shot(f.position - toShip * 4f + shipSide * 1.2f + Vector3.up * 1.1f, f.position - toShip * 3f + shipSide * 0.8f + Vector3.up * 1.0f,
                 World.SonsShip, Vector3.up * 1.5f, 4f, 38f);
-            UI.Subtitle(null, "Footsteps on the other side of the hull.");
+            UI.Subtitle(null, "Footsteps on the gravel, from around the nose of the ship.");
             yield return new WaitForSeconds(2f);
 
             // The son steps out and stops a few metres in front of the father.
             var mark = new GameObject("Reveal Mark").transform;
             mark.SetParent(World.Root, false);
-            mark.position = f.position + toShip * 3.2f;
-            mark.rotation = Quaternion.LookRotation(-toShip);
+            mark.position = M4World.Ground(new Vector2(f.position.x, f.position.z) + new Vector2(toSon.x, toSon.z) * 3.0f, 0.05f);
+            mark.rotation = Quaternion.LookRotation(-toSon);
             Son.followOffset = Vector3.zero;
             Son.followTarget = mark;
             yield return new WaitForSeconds(3.5f);
 
             // Shot 2: over the father's shoulder onto the son, slow push-in, shallow focus.
             Son.followTarget = null;
-            Son.transform.rotation = Quaternion.LookRotation(-toShip);
-            Father.transform.rotation = Quaternion.LookRotation(toShip);
-            Vector3 ots = f.position - toShip * 1.6f + side * 0.7f + Vector3.up * 1.65f;
-            Rig.Shot(ots, ots + toShip * 0.8f, Son.transform, Vector3.up * 1.55f, 16f, 30f, 1.0f);
+            Vector3 miss = Son.transform.position - mark.position; miss.y = 0f;
+            if (miss.magnitude > 0.8f) Son.Teleport(mark.position, mark.eulerAngles.y); // never frame the line on a stuck walker
+            Son.transform.rotation = Quaternion.LookRotation(-toSon);
+            Father.transform.rotation = Quaternion.LookRotation(toSon);
+            Vector3 ots = f.position - toSon * 1.6f + side * 0.7f + Vector3.up * 1.65f;
+            Rig.Shot(ots, ots + toSon * 0.8f, Son.transform, Vector3.up * 1.55f, 16f, 30f, 1.0f);
             PostFx.Focus(3.4f);
             string[,] lines =
             {
@@ -348,7 +385,9 @@ namespace LastSignal.M4
 
             // Shot 3: wide two-shot, the ship and the far beacon.
             Vector3 mid = (Father.transform.position + Son.transform.position) * 0.5f;
-            Rig.Shot(mid + side * 9f - toShip * 3f + Vector3.up * 2.5f, mid + side * 11f - toShip * 5f + Vector3.up * 3.5f, Son.transform, Vector3.up * 0.8f, 4.5f, 45f, 1.6f);
+            // Camera on the side away from the hull (the rig has no collision, so it must never dolly into the ship).
+            Vector3 away = Vector3.Dot(side, mid - World.SonsShip.position) >= 0f ? side : -side;
+            Rig.Shot(mid + away * 9f - toSon * 3f + Vector3.up * 2.5f, mid + away * 11f - toSon * 5f + Vector3.up * 3.5f, Son.transform, Vector3.up * 0.8f, 4.5f, 45f, 1.6f);
             PostFx.Focus(10f);
             UI.Subtitle(null, "");
             yield return new WaitForSeconds(3.5f);
@@ -429,11 +468,19 @@ namespace LastSignal.M4
                 Lander = LandingController.Create(World.Root);
                 Lander.Park(M4World.Ground(World.Sites[0].xz), 30f);
             }
-            var shipSide = World.SonsShip.position + World.SonsShip.right * -6f;
-            if (Father == null) SpawnFather(shipSide);
+            if (Father == null)
+            {
+                // Same collider-free spot used for the reveal, facing away from the hatch.
+                float yaw = World.HatchStandYaw() + 180f;
+                Father = SurfaceWalker.Spawn("Father", false, World.HatchStandPoint(), yaw, World.Root);
+                Father.gravity = Gravity;
+                Rig.Follow(Father.transform, yaw);
+            }
             if (Son == null)
             {
-                Son = SurfaceWalker.Spawn("Son", true, Father.transform.position + Father.transform.right * 1.6f, Father.transform.eulerAngles.y, World.Root);
+                // In front of the father (away from the ship): sideways would put him in the crates or under the wing.
+                var p = Father.transform.position + Father.transform.forward * 1.8f;
+                Son = SurfaceWalker.Spawn("Son", true, M4World.Ground(new Vector2(p.x, p.z), 0.05f), Father.transform.eulerAngles.y, World.Root);
                 Son.gravity = Gravity;
             }
             Son.inputEnabled = false;
@@ -466,9 +513,10 @@ namespace LastSignal.M4
                     }
                     break;
                 case 7: // straight to the reveal
+                    if (Son != null || _finalStarted) break;
                     if (Father == null) { DebugSkipTo6(); }
                     _waterRead = true; _logRead = true;
-                    Father.Teleport(World.SonsHatch.position + World.SonsShip.right * -2.5f, World.SonsShip.eulerAngles.y + 90f);
+                    Father.Teleport(World.HatchStandPoint(), World.HatchStandYaw());
                     UI.HideAll();
                     PlayReveal();
                     break;

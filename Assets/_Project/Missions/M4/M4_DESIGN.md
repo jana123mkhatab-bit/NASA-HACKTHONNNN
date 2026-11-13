@@ -131,5 +131,16 @@ Exoplanet values (radius, insolation, equilibrium temperature, orbital period) c
 
 Game gravity = 2.4 m/s2 x the CSV-based gravity estimate (Kepler-442 b: 1.55 g -> 3.7 m/s2).
 
+Touchdown also fails outside the landing ellipse (radius + 3 m leg allowance); the HUD turns TARGET red and flashes
+OUTSIDE ELLIPSE below 40 m. The approach starts 70 m out drifting 2.4 m/s toward the site.
+
+Landing simulation (`landsim.py`, a port of LandingController; 12 wind seeds each, 40 battery, 55 fuel):
+
+| Site | Hands-off (engine only) | Careful pilot | Fast descent, late brake |
+|---|---|---|---|
+| A Valley | 0/12 (sideways > 1.6 m/s) | 12/12, lands ~18 m from target | 12/12 |
+| B Ridge | 0/12 | 0/12 (gusts push it 18-21 m off, limit 13 m) | 12/12 |
+| C Crater | 0/12 | 0/12 (battery empty at ~23 s) | 12/12, 5.9 % battery left |
+
 ## 5. Debug keys (Editor only)
 F5 approach at site A · F6 land now · F7 jump to the reveal · F8 start the Final.

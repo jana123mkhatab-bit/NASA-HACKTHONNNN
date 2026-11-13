@@ -28,6 +28,10 @@ namespace LastSignal.M4
         public bool Active { get; private set; }
         public float DistanceToTarget => Vector2.Distance(new Vector2(transform.position.x, transform.position.z), Site.xz);
 
+        /// <summary>Leg footprint allowance beyond the ellipse radius (game balance).</summary>
+        public const float EllipseTolerance = 3f;
+        public bool InsideEllipse => Site != null && DistanceToTarget <= Site.EllipseRadius + EllipseTolerance;
+
         public event Action<bool, string> Finished;
 
         Transform _visual, _socket;
@@ -154,6 +158,8 @@ namespace LastSignal.M4
                 Fail($"Ground slope {slope:0} deg. The lander tipped over (limit {MaxGroundTiltDeg:0} deg).");
             else if (boulder)
                 Fail("A leg came down on a boulder. Pick a clearer spot inside the ellipse.");
+            else if (!InsideEllipse)
+                Fail($"Touched down {DistanceToTarget:0} m from the target, outside the {Site.EllipseRadius:0} m landing ellipse. That ground was never scanned for hazards.");
             else
             {
                 Active = false;

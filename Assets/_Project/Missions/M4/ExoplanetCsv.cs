@@ -18,6 +18,11 @@ namespace LastSignal.M4
         public float periodDays = float.NaN;    // pl_orbper [days]
         public float distancePc = float.NaN;    // sy_dist  [parsec]
         public float starTempK = float.NaN;     // st_teff  [K]
+        public bool isDefault;                  // default_flag = 1 (the Archive's recommended parameter set)
+
+        /// <summary>How many of the four scanner values this row has (rows from different papers often leave gaps).</summary>
+        public int Completeness =>
+            (float.IsNaN(radiusEarth) ? 0 : 1) + (float.IsNaN(insolation) ? 0 : 1) + (float.IsNaN(eqTempK) ? 0 : 1) + (float.IsNaN(periodDays) ? 0 : 1);
 
         /// <summary>
         /// Rough surface gravity in g for a rocky planet, from radius only.
@@ -67,9 +72,14 @@ namespace LastSignal.M4
             }
             var rows = Parse(ta.text);
             if (rows.Count == 0) { sourceLabel += " (empty)"; return new ExoplanetRecord(); }
+            // The Archive's Planetary Systems table has one row per paper: prefer default_flag = 1, then the most complete row.
+            ExoplanetRecord best = null;
             foreach (var r in rows)
-                if (string.Equals(r.name.Trim(), PreferredPlanet, StringComparison.OrdinalIgnoreCase)) return r;
-            return rows[0];
+            {
+                if (!string.Equals(r.name.Trim(), PreferredPlanet, StringComparison.OrdinalIgnoreCase)) continue;
+                if (best == null || (r.isDefault && !best.isDefault) || (r.isDefault == best.isDefault && r.Completeness > best.Completeness)) best = r;
+            }
+            return best ?? rows[0];
         }
 
         public static List<ExoplanetRecord> Parse(string text)
@@ -80,7 +90,7 @@ namespace LastSignal.M4
             Dictionary<string, int> col = null;
             foreach (var raw in lines)
             {
-                var line = raw.Trim();
+                var line = raw.Trim().TrimStart((char)0xFEFF); // Excel "CSV UTF-8" adds a byte-order mark; string.Trim keeps it
                 if (line.Length == 0 || line.StartsWith("#")) continue;
                 var cells = SplitCsv(line);
                 if (col == null)
@@ -99,6 +109,7 @@ namespace LastSignal.M4
                     periodDays = Num(cells, col, "pl_orbper", "orbital_period_days", "period"),
                     distancePc = Num(cells, col, "sy_dist", "distance_pc"),
                     starTempK = Num(cells, col, "st_teff", "star_temp_k"),
+                    isDefault = Str(cells, col, "default_flag") == "1",
                 };
                 list.Add(r);
             }

@@ -453,9 +453,28 @@ namespace LastSignal.M4
                 Prim(PrimitiveType.Cylinder, "Bottle " + i, camp, new Vector3(1.4f + (i % 3) * 0.25f, 0.2f, 0.8f + (i / 3) * 0.25f),
                     new Vector3(0.18f, 0.2f, 0.18f), Vector3.zero, M4Materials.Glass("WaterBottle", new Color(0.4f, 0.7f, 0.9f, 0.55f)));
             PointLight("Camp Lamp", camp, new Vector3(0.2f, 1.2f, 0.6f), new Color(1f, 0.62f, 0.32f), 3f, 9f, true);
+            // The son steps out from around the nose on the hatch side. From here to the reveal mark in front of
+            // HatchStandPoint the straight path clears the fuselage, the left wing and the camp crates (all have colliders).
             SonHidingSpot = new GameObject("Son Hiding Spot").transform;
             SonHidingSpot.SetParent(root, false);
-            SonHidingSpot.localPosition = new Vector3(3.5f, 0f, -6.5f);
+            SonHidingSpot.localPosition = new Vector3(-1.0f, 0f, 8.5f);
+        }
+
+        /// <summary>
+        /// Clear standing spot in front of the hatch, outside every collider: the wing ends at local z 0.9,
+        /// the crates start at z 2.1. Used for the son's-log and reveal staging.
+        /// </summary>
+        public Vector3 HatchStandPoint()
+        {
+            var p = SonsShip.TransformPoint(new Vector3(-4.6f, 0f, 1.6f));
+            return Ground(new Vector2(p.x, p.z), 0.05f);
+        }
+
+        /// <summary>Yaw (degrees) that faces the hatch from HatchStandPoint.</summary>
+        public float HatchStandYaw()
+        {
+            Vector3 d = SonsHatch.position - HatchStandPoint(); d.y = 0f;
+            return Mathf.Atan2(d.x, d.z) * Mathf.Rad2Deg;
         }
 
         // ------------------------------------------------------------------ cable, footprints, flags

@@ -105,7 +105,7 @@ namespace LastSignal.M4
 
         void BuildPicker()
         {
-            _picker = UIFactory.Box("SitePicker", _modal.transform, new Vector2(0.07f, 0.13f), new Vector2(0.93f, 0.9f), Vector2.zero, Vector2.zero, UIFactory.Panel);
+            _picker = UIFactory.Box("SitePicker", _modal.transform, new Vector2(0.07f, 0.19f), new Vector2(0.93f, 0.92f), Vector2.zero, Vector2.zero, UIFactory.Panel);
             UIFactory.Label("Title", _picker, "CHOOSE A LANDING SITE", 34, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(34, -70), new Vector2(-34, -20), UIFactory.Accent);
             UIFactory.Label("Note", _picker, "Orbital scan data. Slope, sunlight and boulders change how hard the landing is. Touchdown limits are game-balance values.", 21,
                 TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(34, -108), new Vector2(-34, -72), new Color(0.6f, 0.7f, 0.8f));
@@ -207,7 +207,7 @@ namespace LastSignal.M4
                 $"ALTITUDE        <b>{Mathf.Max(0f, lc.Altitude):0.0} m</b>\n" +
                 $"V-SPEED          <color={Col(vsBad)}><b>{vs:0.0} m/s</b></color>   <color={Dim}>safe {s.SafeVerticalSpeed:0.0}</color>\n" +
                 $"H-SPEED          <color={Col(hsBad)}><b>{hs:0.0} m/s</b></color>   <color={Dim}>safe {s.SafeHorizontalSpeed:0.0}</color>\n" +
-                $"TARGET            {lc.DistanceToTarget:0} m  <color={Dim}>(ellipse {s.EllipseRadius:0} m)</color>\n" +
+                $"TARGET            <color={Col(!lc.InsideEllipse)}><b>{lc.DistanceToTarget:0} m</b></color>  <color={Dim}>(ellipse {s.EllipseRadius:0} m)</color>\n" +
                 $"WIND               {lc.Wind.magnitude:0.0} m/s2  <color={Dim}>{windDir}</color>\n" +
                 $"BATTERY DRAIN  {lc.PowerDrain:0.00} %/s\n" +
                 $"<color={Dim}>gravity {lc.Gravity:0.0} m/s2 (game-scaled)</color>";
@@ -220,6 +220,7 @@ namespace LastSignal.M4
             else if (lc.Fuel <= 0f) w = "FUEL EMPTY";
             else if (lc.Altitude < 40f && vsBad) w = "SINK RATE";
             else if (lc.Altitude < 25f && hsBad) w = "DRIFT";
+            else if (lc.Altitude < 40f && !lc.InsideEllipse) w = "OUTSIDE ELLIPSE";
             _warn.text = w;
             _warn.enabled = w.Length > 0 && Mathf.Repeat(Time.time, 0.8f) < 0.55f;
         }
@@ -295,7 +296,7 @@ namespace LastSignal.M4
 
         void BuildLog()
         {
-            _log = UIFactory.Box("SonLog", _modal.transform, new Vector2(0.22f, 0.12f), new Vector2(0.78f, 0.9f), Vector2.zero, Vector2.zero, new Color(0.01f, 0.03f, 0.02f, 0.97f));
+            _log = UIFactory.Box("SonLog", _modal.transform, new Vector2(0.22f, 0.19f), new Vector2(0.78f, 0.92f), Vector2.zero, Vector2.zero, new Color(0.01f, 0.03f, 0.02f, 0.97f));
             UIFactory.Label("Title", _log, "LK-2590  ·  TRANSMISSION LOG", 30, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(30, -66), new Vector2(-30, -20), new Color(0.4f, 1f, 0.55f));
             _logCount = UIFactory.Label("Count", _log, "", 46, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(30, -130), new Vector2(-30, -70), new Color(0.6f, 1f, 0.7f));
             _logLines = UIFactory.Label("Lines", _log, "", 23, TextAnchor.LowerLeft, new Vector2(0, 0), new Vector2(1, 1), new Vector2(30, 100), new Vector2(-30, -140), new Color(0.45f, 0.9f, 0.55f));
@@ -376,7 +377,7 @@ namespace LastSignal.M4
 
         void BuildSurvey()
         {
-            _survey = UIFactory.Box("Survey", _modal.transform, new Vector2(0.24f, 0.14f), new Vector2(0.76f, 0.88f), Vector2.zero, Vector2.zero, UIFactory.Panel);
+            _survey = UIFactory.Box("Survey", _modal.transform, new Vector2(0.24f, 0.19f), new Vector2(0.76f, 0.92f), Vector2.zero, Vector2.zero, UIFactory.Panel);
             UIFactory.Label("Title", _survey, "SURVEY PACKET FOR EARTH", 32, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(30, -68), new Vector2(-30, -20), UIFactory.Accent);
             _items = new Text[4];
             for (int i = 0; i < 4; i++)

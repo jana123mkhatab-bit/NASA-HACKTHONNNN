@@ -29,6 +29,12 @@ namespace LastSignal.Finale
             if (mm != null && mm.hud != null) mm.hud.SetVisible(false);
             _m.Father.inputEnabled = false;
             _m.UI.SetObjective(null);
+
+            // Core plays Pip's Final intro right after raising Start("Final"). Let it finish over the open landscape
+            // (at most 12 s), then close Pip's box so it never sits on top of the letterbox subtitles.
+            yield return null;
+            for (float w = 0f; w < 12f && mm != null && mm.pipUI != null && mm.pipUI.IsPlaying; w += Time.deltaTime) yield return null;
+            M4Mission.SilencePip();
             yield return StartCoroutine(_m.UI.Letterbox(true));
             StartCoroutine(Sunset(10f));
 
@@ -129,6 +135,7 @@ namespace LastSignal.Finale
             _m.UI.SetObjective(null);
             var mm = MissionManager.Instance;
             if (mm != null && mm.hud != null) mm.hud.SetVisible(false);
+            M4Mission.SilencePip();
             yield return StartCoroutine(_m.UI.Letterbox(true));
 
             // Crane up and back from the two figures at the collector to the whole valley under the stars.
