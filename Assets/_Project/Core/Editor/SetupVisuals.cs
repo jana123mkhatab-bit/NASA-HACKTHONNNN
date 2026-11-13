@@ -48,6 +48,12 @@ namespace LastSignal.EditorTools
             urp.mainLightShadowmapResolution = 4096;
             urp.colorGradingMode = ColorGradingMode.HighDynamicRange;
             urp.colorGradingLutSize = 32;
+            urp.maxAdditionalLightsCount = 8;
+            // Soft shadows and shadows from the range floodlights have no public setters.
+            var uso = new SerializedObject(urp);
+            SetInt(uso, "m_SoftShadowsSupported", 1);
+            SetInt(uso, "m_AdditionalLightShadowsSupported", 1);
+            uso.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(urp);
 
             GraphicsSettings.defaultRenderPipeline = urp;
@@ -67,6 +73,13 @@ namespace LastSignal.EditorTools
 
             SetupVolumeProfile();
             AssetDatabase.SaveAssets();
+        }
+
+        static void SetInt(SerializedObject so, string prop, int value)
+        {
+            var p = so.FindProperty(prop);
+            if (p == null) { Debug.LogWarning("[LastSignal] URP setting not found: " + prop); return; }
+            if (p.propertyType == SerializedPropertyType.Boolean) p.boolValue = value != 0; else p.intValue = value;
         }
 
         static void TryAddSsao(UniversalRendererData rend)
@@ -98,14 +111,15 @@ namespace LastSignal.EditorTools
                 AssetDatabase.CreateAsset(p, VolumePath);
             }
             var bloom = Get<Bloom>(p);
-            bloom.threshold.Override(0.95f); bloom.intensity.Override(0.9f); bloom.scatter.Override(0.72f);
+            // Moody sci-fi grade: glow only on emissive accents, deep but readable shadows.
+            bloom.threshold.Override(1.05f); bloom.intensity.Override(0.55f); bloom.scatter.Override(0.7f);
             bloom.highQualityFiltering.Override(true);
             var tm = Get<Tonemapping>(p); tm.mode.Override(TonemappingMode.ACES);
             var ca = Get<ColorAdjustments>(p);
-            ca.postExposure.Override(0.15f); ca.contrast.Override(14f); ca.saturation.Override(10f);
-            var vg = Get<Vignette>(p); vg.intensity.Override(0.28f); vg.smoothness.Override(0.45f);
-            var ab = Get<ChromaticAberration>(p); ab.intensity.Override(0.06f);
-            var wb = Get<WhiteBalance>(p); wb.temperature.Override(4f);
+            ca.postExposure.Override(0.25f); ca.contrast.Override(12f); ca.saturation.Override(6f);
+            var vg = Get<Vignette>(p); vg.intensity.Override(0.3f); vg.smoothness.Override(0.45f);
+            var ab = Get<ChromaticAberration>(p); ab.intensity.Override(0.03f);
+            var wb = Get<WhiteBalance>(p); wb.temperature.Override(0f);
             EditorUtility.SetDirty(p);
         }
 
@@ -165,13 +179,169 @@ namespace LastSignal.EditorTools
             Materials["__grass"] = Save("__grass", LitMat("__grass", new Color(0.18f, 0.32f, 0.13f), 0.1f, 0f));
             Materials["__apron"] = Save("__apron", LitMat("__apron", new Color(0.55f, 0.55f, 0.52f), 0.15f, 0f));
 
-            // Procedural sky for ground scenes.
+            // Procedural dusk sky for the ground scenes: the sun sits on the horizon behind the set.
             var proc = new Material(Shader.Find("Skybox/Procedural"));
-            proc.SetFloat("_SunSize", 0.06f); proc.SetFloat("_AtmosphereThickness", 1.1f);
-            proc.SetColor("_SkyTint", new Color(0.5f, 0.6f, 0.8f));
+            proc.SetFloat("_SunSize", 0.035f); proc.SetFloat("_SunSizeConvergence", 4f);
+            proc.SetFloat("_AtmosphereThickness", 1.45f); proc.SetFloat("_Exposure", 0.85f);
+            proc.SetColor("_SkyTint", new Color(0.36f, 0.46f, 0.78f));
+            proc.SetColor("_GroundColor", Palette.Shadow);
             Materials["__sky_ground"] = Save("__sky_ground", proc);
 
+            BuildStageMaterials();
+            Materials["st_sky_dusk"] = Save("st_sky_dusk", DuskSky());
             AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Palette-driven dusk sky: a lat-long gradient (orange horizon band, violet, deep navy zenith)
+        /// with a few stars, rendered by Unity's built-in Skybox/Panoramic shader.
+        /// </summary>
+        static Material DuskSky()
+        {
+            const string path = "Assets/_Project/Art/Generated/tex_sky_dusk.asset";
+            Directory.CreateDirectory("Assets/_Project/Art/Generated");
+            const int w = 512, h = 256;
+            var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            bool isNew = tex == null;
+            if (isNew) tex = new Texture2D(w, h, TextureFormat.RGBAHalf, false);
+            var keys = new[]
+            {
+                (0.00f, Palette.Shadow), (0.47f, Palette.Fog), (0.50f, Palette.Horizon * 1.25f),
+                (0.53f, Palette.Hex("#C0614A")), (0.58f, Palette.Hex("#5B3F63")), (0.68f, Palette.Hex("#2A3558")),
+                (0.82f, Palette.SkyTop), (1.00f, Palette.Hex("#0A111E")),
+            };
+            var rng = new System.Random(11);
+            var px = new Color[w * h];
+            for (int y = 0; y < h; y++)
+            {
+                float v = y / (h - 1f);
+                Color c = keys[keys.Length - 1].Item2;
+                for (int k = 0; k < keys.Length - 1; k++)
+                    if (v <= keys[k + 1].Item1)
+                    {
+                        float t = Mathf.InverseLerp(keys[k].Item1, keys[k + 1].Item1, v);
+                        c = Color.Lerp(keys[k].Item2, keys[k + 1].Item2, Mathf.SmoothStep(0f, 1f, t));
+                        break;
+                    }
+                for (int x = 0; x < w; x++)
+                {
+                    // Brighter glow on one side of the sky, where the sun went down.
+                    float az = Mathf.Cos((x / (float)w - 0.25f) * Mathf.PI * 2f) * 0.5f + 0.5f;
+                    float band = Mathf.Exp(-Mathf.Pow((v - 0.5f) / 0.06f, 2f));
+                    Color p = c + Palette.Horizon * (band * az * 0.6f);
+                    if (v > 0.62f && rng.NextDouble() < 0.0016) p += Color.white * (0.4f + (float)rng.NextDouble() * 0.8f) * Mathf.InverseLerp(0.62f, 0.85f, v);
+                    p.a = 1f;
+                    px[y * w + x] = p;
+                }
+            }
+            tex.SetPixels(px);
+            tex.wrapModeU = TextureWrapMode.Repeat;
+            tex.wrapModeV = TextureWrapMode.Clamp;
+            tex.filterMode = FilterMode.Bilinear;
+            tex.Apply(false);
+            if (isNew) AssetDatabase.CreateAsset(tex, path); else EditorUtility.SetDirty(tex);
+            var m = new Material(Shader.Find("Skybox/Panoramic"));
+            m.SetTexture("_MainTex", tex);
+            m.SetFloat("_Mapping", 1f);
+            m.SetFloat("_ImageType", 0f);
+            m.SetFloat("_Exposure", 1f);
+            m.SetFloat("_Rotation", 0f);
+            return m;
+        }
+
+        // ---------------------------------------------------------------- stage materials (palette)
+
+        static void BuildStageMaterials()
+        {
+            Stage("st_sand", Palette.Sand, 0.12f, 0f);
+            var floor = LitMat("st_floor", Color.white, 0.32f, 0f);
+            floor.SetTexture("_BaseMap", ConcreteTexture());
+            floor.SetTextureScale("_BaseMap", new Vector2(20f, 4f));
+            Materials["st_floor"] = Save("st_floor", floor);
+            Stage("st_track", Palette.Wall, 0.3f, 0.1f);
+            Stage("st_hangar", Palette.Wall, 0.35f, 0.3f);
+            Stage("st_mountain", Palette.Shadow, 0f, 0f);
+            Stage("st_ceramic", Palette.Ceramic, 0.55f, 0f);
+            Stage("st_steel", Palette.Steel, 0.62f, 0.85f);
+            Stage("st_steel_dark", Palette.SteelDark, 0.45f, 0.6f);
+            Stage("st_rust", Palette.Rust, 0.45f, 0.05f);
+            Stage("st_foil", Palette.Foil, 0.78f, 1f);
+            Stage("st_hazard", Palette.Warn * 0.85f, 0.3f, 0f);
+            Stage("st_scorch", Palette.Scorch, 0.35f, 0.5f);
+            Stage("st_nozzle", Palette.Hex("#3A2E2A"), 0.6f, 0.9f);
+            Stage("st_glass", Palette.Ink, 0.95f, 0.3f);
+
+            Glow("st_glow_cyan", Palette.Accent, 3.2f);
+            Glow("st_glow_amber", Palette.Warn, 3.0f);
+            Glow("st_glow_red", Palette.Bad, 3.6f);
+            Glow("st_glow_green", Palette.Good, 3.0f);
+            Glow("st_glow_warm", Palette.LampWarm, 2.6f);
+            Glow("st_screen", Palette.Accent, 0.9f);
+
+            Materials["st_plume_outer"] = Save("st_plume_outer", Additive(new Color(3.2f, 1.25f, 0.3f, 0.55f)));
+            Materials["st_plume_core"] = Save("st_plume_core", Additive(new Color(5f, 5.6f, 7f, 0.9f)));
+        }
+
+        static void Stage(string name, Color c, float smooth, float metallic)
+        {
+            c.a = 1f;
+            Materials[name] = Save(name, LitMat(name, c, smooth, metallic));
+        }
+
+        static void Glow(string name, Color c, float intensity)
+        {
+            var m = LitMat(name, c * 0.25f, 0.4f, 0f);
+            m.EnableKeyword("_EMISSION");
+            m.SetColor("_EmissionColor", new Color(c.r * intensity, c.g * intensity, c.b * intensity, 1f));
+            // Without this flag URP's material validation strips the emission keyword.
+            m.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;
+            Materials[name] = Save(name, m);
+        }
+
+        static Material Additive(Color hdr)
+        {
+            var m = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+            m.SetColor("_BaseColor", hdr);
+            m.SetFloat("_Surface", 1f);
+            m.SetFloat("_Blend", 2f);
+            m.SetFloat("_SrcBlend", (float)BlendMode.SrcAlpha);
+            m.SetFloat("_DstBlend", (float)BlendMode.One);
+            m.SetFloat("_ZWrite", 0f);
+            m.SetFloat("_Cull", 0f);
+            m.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            m.SetOverrideTag("RenderType", "Transparent");
+            m.renderQueue = (int)RenderQueue.Transparent;
+            m.SetShaderPassEnabled("ShadowCaster", false);
+            return m;
+        }
+
+        /// <summary>Small tiling concrete texture: slab seams and a little noise so the range floor reads at scale.</summary>
+        static Texture2D ConcreteTexture()
+        {
+            const string path = "Assets/_Project/Art/Generated/tex_concrete.asset";
+            Directory.CreateDirectory("Assets/_Project/Art/Generated");
+            const int n = 128;
+            var tex = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            bool isNew = tex == null;
+            if (isNew) tex = new Texture2D(n, n, TextureFormat.RGB24, true);
+            var rng = new System.Random(7);
+            var px = new Color[n * n];
+            Color b = Palette.Floor;
+            for (int y = 0; y < n; y++)
+                for (int x = 0; x < n; x++)
+                {
+                    float v = 1f + ((float)rng.NextDouble() - 0.5f) * 0.14f;
+                    v += (Mathf.PerlinNoise(x * 0.06f, y * 0.06f) - 0.5f) * 0.22f;
+                    if (x < 2 || y < 2) v *= 0.55f; // slab seam
+                    px[y * n + x] = new Color(b.r * v, b.g * v, b.b * v, 1f);
+                }
+            tex.SetPixels(px);
+            tex.wrapMode = TextureWrapMode.Repeat;
+            tex.filterMode = FilterMode.Trilinear;
+            tex.anisoLevel = 8;
+            tex.Apply(true);
+            if (isNew) AssetDatabase.CreateAsset(tex, path); else EditorUtility.SetDirty(tex);
+            return tex;
         }
 
         static Texture2D T(string file) => AssetDatabase.LoadAssetAtPath<Texture2D>(Tex + file);

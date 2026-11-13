@@ -16,14 +16,14 @@ MonoBehaviour:
   - missionId: M1
     intro:
     - I am Pip. I keep the count so you do not have to.
-    - A piece of the capsule came down in the desert. Weigh it. Test the thrust.
-      The serial number is stamped on the fragment.
+    - Build a test frame on the sled. Pick an engine and only the payload this test
+      needs, lock the clamps, then fire. Watch a = F / m.
     failHint: Mass fights thrust. Check the numbers before the next test.
   - missionId: M2
     intro:
-    - Your son's plan scores about ten percent. I ran it three times.
-    - Every subsystem works only 63 times in 100. Five in a row, and the whole ship
-      works one time in ten.
+    - Your son's flight assessment is in the records. It was never in his briefing.
+    - Open it, then fix the plan in the Mission Planner. Every check runs against
+      the plan you apply.
     failHint: One copy of each part is not enough. Add a spare where the failures
       hurt most.
   - missionId: M3

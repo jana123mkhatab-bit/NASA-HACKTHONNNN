@@ -19,3 +19,4 @@ sysinfo.txt
 *.aab
 *.unitypackage
 Assets/Plugins/Android/*.keystore
+/[Cc]aptures/

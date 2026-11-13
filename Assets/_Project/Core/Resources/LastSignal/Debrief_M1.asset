@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
   m_Name: Debrief_M1
   m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
-  title: What Fell to Earth
-  concept: Mass vs. thrust (thrust-to-weight ratio)
-  nasaSource: NASA Glenn Research Center, Beginner's Guide to Rocketry
-  body: A rocket only lifts off when thrust is larger than its weight. Every kilogram
-    you add needs more thrust to carry it.
+  title: Why mass is the enemy of every mission
+  concept: 'Newton''s second law: acceleration = thrust / mass'
+  nasaSource: 'NASA Glenn Research Center, Beginner''s Guide to Rockets (Newton''s
+    laws of motion) [person 6: confirm exact page]'
+  body: The same engine pushes a heavier frame more slowly. Every kilogram you add
+    needs more thrust, and on a real rocket more propellant, which is more mass again
+    (the rocket equation). Engineers fight for every kilogram. Part masses and thrusts
+    in M1 are game-balance values.

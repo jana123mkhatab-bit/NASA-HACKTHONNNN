@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
   m_Name: Debrief_M3
   m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
-  title: The Ship That Came Out of Nowhere
-  concept: Orbital debris and collision risk
-  nasaSource: NASA Orbital Debris Program Office (ODPO)
-  body: Destroying a satellite creates fragments that stay in orbit and can hit other
-    spacecraft. When resources are short, engineers triage repairs by what keeps
-    the crew alive.
+  title: Single points of failure in deep-space communication
+  concept: Relay networks and light delay
+  nasaSource: 'NASA Deep Space Network; JPL Horizons [persons 3 and 6: fill in]'
+  body: (Placeholder for person 3.) One relay between a ship and Earth is a single
+    point of failure. Light delay = distance / speed of light.

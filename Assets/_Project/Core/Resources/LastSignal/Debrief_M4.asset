@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
   m_Name: Debrief_M4
   m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
-  title: Someone's Been Living Here
-  concept: Landing-site selection
-  nasaSource: NASA Planetary Data System (PDS) and Lunar Reconnaissance Orbiter imagery
-  body: Safe landing sites need gentle slopes and few boulders. Water ice makes a
-    site valuable for a long stay.
+  title: How scientists judge habitability from a few numbers
+  concept: Habitability from radius, insolation and temperature
+  nasaSource: 'NASA Exoplanet Archive [persons 4 and 6: fill in]'
+  body: (Placeholder for person 4.) Radius, insolation, equilibrium temperature and
+    orbital period hint at whether liquid water could exist.

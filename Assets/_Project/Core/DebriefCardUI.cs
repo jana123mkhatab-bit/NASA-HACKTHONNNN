@@ -7,32 +7,52 @@ namespace LastSignal
     public class DebriefCardUI : MonoBehaviour
     {
         Canvas _canvas;
-        Text _title, _concept, _source, _body;
+        Text _title, _concept, _source, _body, _planned;
 
         public bool IsOpen => _canvas != null && _canvas.enabled;
 
         public void Build()
         {
-            _canvas = ScreenKit.Overlay(transform, "Debrief", 40, out var p, new Vector2(0.2f, 0.15f), new Vector2(0.8f, 0.85f));
-            UIFactory.Label("Header", p, "MISSION DEBRIEF", 24, TextAnchor.UpperLeft,
-                new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -60), new Vector2(-40, -20), UIFactory.Accent);
-            _title = UIFactory.Label("Title", p, "", 44, TextAnchor.UpperLeft,
-                new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -140), new Vector2(-40, -60));
-            _concept = UIFactory.Label("Concept", p, "", 30, TextAnchor.UpperLeft,
-                new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -230), new Vector2(-40, -150), UIFactory.Warn);
-            _source = UIFactory.Label("Source", p, "", 26, TextAnchor.UpperLeft,
-                new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -300), new Vector2(-40, -235), UIFactory.Good);
-            _body = UIFactory.Label("Body", p, "", 28, TextAnchor.UpperLeft,
-                new Vector2(0, 0), new Vector2(1, 1), new Vector2(40, 110), new Vector2(-40, -310));
-            UIFactory.Button("Continue", p, "Continue", new Vector2(1, 0), new Vector2(1, 0), new Vector2(-300, 30), new Vector2(-40, 100), OnContinue);
+            _canvas = ScreenKit.Overlay(transform, "Debrief", 40, out var p, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                "MISSION DEBRIEF", "WHAT NASA REALLY DOES");
+            p.offsetMin = new Vector2(-560, -330); p.offsetMax = new Vector2(560, 330);
+
+            _title = UIFactory.Label("Title", p, "", 50, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -150), new Vector2(-40, -78)).Bold();
+
+            var c = UIFactory.Round("ConceptBox", p, new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -256), new Vector2(-40, -166), Palette.Inset, 8);
+            c.raycastTarget = false;
+            UIFactory.Label("ConceptL", c.rectTransform, "THE REAL CONCEPT", 15, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(18, -32), new Vector2(-18, -10), Palette.Warn).Mono();
+            _concept = UIFactory.Label("Concept", c.rectTransform, "", 28, TextAnchor.LowerLeft,
+                new Vector2(0, 0), new Vector2(1, 1), new Vector2(18, 10), new Vector2(-18, -30)).Bold();
+
+            var s = UIFactory.Round("SourceBox", p, new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -350), new Vector2(-40, -268), Palette.Inset, 8);
+            s.raycastTarget = false;
+            UIFactory.Label("SourceL", s.rectTransform, "NASA SOURCE", 15, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(18, -32), new Vector2(-18, -10), Palette.Good).Mono();
+            _source = UIFactory.Label("Source", s.rectTransform, "", 24, TextAnchor.LowerLeft,
+                new Vector2(0, 0), new Vector2(1, 1), new Vector2(18, 10), new Vector2(-18, -30));
+
+            _body = UIFactory.Label("Body", p, "", 25, TextAnchor.UpperLeft,
+                new Vector2(0, 0), new Vector2(1, 1), new Vector2(40, 112), new Vector2(-40, -372));
+            _body.lineSpacing = 1.1f;
+            _planned = UIFactory.Label("Planned", p, "", 17, TextAnchor.MiddleLeft,
+                new Vector2(0, 0), new Vector2(1, 0), new Vector2(40, 34), new Vector2(-340, 96), Palette.TextDim).Mono();
+            UIFactory.Button("Continue", p, "CONTINUE", new Vector2(1, 0), new Vector2(1, 0), new Vector2(-300, 34), new Vector2(-40, 96), OnContinue);
         }
 
         public void Show(DebriefCard card)
         {
             _title.text = card.title;
-            _concept.text = "NASA concept: " + card.concept;
-            _source.text = "Data source: " + card.nasaSource;
+            _concept.text = card.concept;
+            _source.text = card.nasaSource;
             _body.text = card.body;
+            var m = MissionManager.Instance;
+            _planned.text = m != null
+                ? "Planned success going in: " + (m.PlannedSuccess * 100f).ToString("0.0") + "%   ·   Retries so far: " + m.Retries
+                : "";
+            Sfx.Play(Sfx.Id.Success);
             _canvas.enabled = true;
         }
 

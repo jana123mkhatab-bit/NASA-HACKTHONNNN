@@ -2,13 +2,6 @@ using UnityEngine;
 
 namespace LastSignal
 {
-    /// <summary>Slow rotation for planets, clouds, the sun corona. Degrees per second per axis.</summary>
-    public class SlowSpin : MonoBehaviour
-    {
-        public Vector3 degreesPerSecond = new Vector3(0, 2f, 0);
-        void Update() { transform.Rotate(degreesPerSecond * Time.deltaTime, Space.Self); }
-    }
-
     /// <summary>Cinematic camera drift: orbits a target at a fixed radius and height, always looking at it.</summary>
     public class CameraOrbit : MonoBehaviour
     {

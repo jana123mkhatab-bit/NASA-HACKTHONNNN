@@ -3,43 +3,76 @@ using UnityEngine.UI;
 
 namespace LastSignal
 {
-    /// <summary>Always-on HUD: supplies, hull and power bars, mission label, and a planned-success gauge.</summary>
+    /// <summary>
+    /// Always-on HUD: one slim strip along the top with the mission name, supplies / hull / power bars,
+    /// the father's log button and the planned-success gauge. Hidden on the title screen.
+    /// </summary>
     public class HudShell : MonoBehaviour
     {
         Image _supplies, _hull, _power;
-        Text _supT, _hullT, _powT, _mission;
+        Text _supT, _hullT, _powT, _mission, _kicker;
         RiskGaugeWidget _gauge;
         Canvas _canvas;
+        bool _visible = true;
 
         public void Build()
         {
             _canvas = UIFactory.CreateCanvas("HUD", 10);
             _canvas.transform.SetParent(transform, false);
             var root = (RectTransform)_canvas.transform;
-            var panel = UIFactory.Box("Panel", root, new Vector2(0, 1), new Vector2(0, 1), Vector2.zero, new Vector2(460, 190), UIFactory.Panel);
-            panel.pivot = new Vector2(0, 1);
-            panel.anchoredPosition = new Vector2(20, -20);
 
-            _supplies = Row(panel, "SUPPLIES", 0, UIFactory.Accent, out _supT);
-            _hull = Row(panel, "HULL", 1, UIFactory.Good, out _hullT);
-            _power = Row(panel, "POWER", 2, UIFactory.Warn, out _powT);
-            _mission = UIFactory.Label("Mission", panel, "", 22, TextAnchor.MiddleLeft,
-                new Vector2(0, 0), new Vector2(1, 0), new Vector2(14, 8), new Vector2(-14, 40), new Color(0.7f, 0.85f, 1f));
+            var bar = UIFactory.Box("TopBar", root, new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, -UIFactory.TopBar), Vector2.zero,
+                Palette.A(Palette.PanelBgSolid, 0.92f));
+            bar.GetComponent<Image>().raycastTarget = false;
+            var rule = UIFactory.Box("Rule", bar, new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, -2), new Vector2(0, 0), Palette.A(Palette.Accent, 0.45f));
+            rule.GetComponent<Image>().raycastTarget = false;
+            var glow = UIFactory.Rect("Glow", bar, new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, -26), new Vector2(0, -2));
+            var gi = glow.gameObject.AddComponent<Image>();
+            gi.sprite = UISkin.FadeDown(); gi.color = Palette.A(Palette.Accent, 0.10f); gi.raycastTarget = false;
 
-            _gauge = RiskGaugeWidget.Create(root, new Vector2(20, -225), new Vector2(460, 110));
+            // Left: mission identity.
+            var mark = UIFactory.Round("Mark", bar, new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(24, -9), new Vector2(42, 9), Palette.Accent, 4);
+            mark.rectTransform.localEulerAngles = new Vector3(0, 0, 45f);
+            mark.raycastTarget = false;
+            _kicker = UIFactory.Label("Kicker", bar, "", 15, TextAnchor.LowerLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 1), new Vector2(60, 1), new Vector2(700, -8), Palette.Accent).Mono();
+            _mission = UIFactory.Label("Mission", bar, "", 27, TextAnchor.UpperLeft,
+                new Vector2(0, 0), new Vector2(0, 0.5f), new Vector2(60, 4), new Vector2(760, 5)).Bold();
+            _mission.horizontalOverflow = HorizontalWrapMode.Overflow;
+
+            // Right: gauge, then log button, then the three resource bars (laid out right to left).
+            _gauge = RiskGaugeWidget.Create(bar, Vector2.zero, new Vector2(214, 56));
+            var grt = (RectTransform)_gauge.transform;
+            grt.anchorMin = grt.anchorMax = new Vector2(1, 0.5f);
+            grt.pivot = new Vector2(1, 0.5f);
+            grt.anchoredPosition = new Vector2(-20, 0);
+            _gauge.showBackground = false;
+            _gauge.caption = "PLANNED SUCCESS";
+            _gauge.Build();
+
+            UIFactory.Button("Log", bar, "LOG  [L]", new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-360, -19), new Vector2(-252, 19),
+                () =>
+                {
+                    var log = transform.parent != null ? transform.parent.GetComponentInChildren<FatherLogUI>() : null;
+                    if (log != null) log.Toggle();
+                }, ButtonStyle.Ghost);
+
+            _power = Stat(bar, "POWER", 0, Palette.Warn, out _powT);
+            _hull = Stat(bar, "HULL", 1, Palette.Good, out _hullT);
+            _supplies = Stat(bar, "SUPPLIES", 2, Palette.Accent, out _supT);
             Refresh();
         }
 
-        static Image Row(RectTransform parent, string label, int index, Color color, out Text valueText)
+        static Image Stat(RectTransform parent, string label, int indexFromRight, Color color, out Text valueText)
         {
-            float top = -14 - index * 40;
-            UIFactory.Label(label + "_L", parent, label, 20, TextAnchor.MiddleLeft,
-                new Vector2(0, 1), new Vector2(0, 1), new Vector2(14, top - 30), new Vector2(150, top));
-            var bar = UIFactory.Bar(label + "_B", parent, new Vector2(0, 1), new Vector2(1, 1),
-                new Vector2(160, top - 28), new Vector2(-80, top - 4), color);
-            valueText = UIFactory.Label(label + "_V", parent, "100", 20, TextAnchor.MiddleRight,
-                new Vector2(1, 1), new Vector2(1, 1), new Vector2(-70, top - 30), new Vector2(-14, top));
-            return bar;
+            float right = -384 - indexFromRight * 196;
+            float left = right - 180;
+            UIFactory.Label(label + "_L", parent, label, 14, TextAnchor.LowerLeft,
+                new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(left, 4), new Vector2(right - 46, 24), Palette.TextDim).Mono();
+            valueText = UIFactory.Label(label + "_V", parent, "100", 20, TextAnchor.LowerRight,
+                new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(right - 60, 2), new Vector2(right, 26)).Bold();
+            return UIFactory.Bar(label + "_B", parent, new Vector2(1, 0.5f), new Vector2(1, 0.5f),
+                new Vector2(left, -16), new Vector2(right, -3), color);
         }
 
         void Update()
@@ -51,11 +84,28 @@ namespace LastSignal
         {
             var m = MissionManager.Instance;
             if (m == null || m.state == null || _supplies == null) return;
+            // The title screen owns the whole frame.
+            _canvas.enabled = _visible && m.Current != MissionIds.Boot;
             Set(_supplies, _supT, m.state.supplies);
             Set(_hull, _hullT, m.state.hull);
             Set(_power, _powT, m.state.power);
-            _mission.text = "MISSION " + m.Current + "  ·  " + MissionIds.TitleFor(m.Current);
+            _kicker.text = KickerFor(m.Current);
+            _mission.text = MissionIds.TitleFor(m.Current).ToUpperInvariant();
             _gauge.SetValue(m.PlannedSuccess);
+        }
+
+        static string KickerFor(string id)
+        {
+            switch (id)
+            {
+                case MissionIds.M1: return "MISSION 1 OF 4  ·  GROUND TEST RANGE";
+                case MissionIds.M2: return "MISSION 2 OF 4  ·  PREFLIGHT";
+                case MissionIds.M3: return "MISSION 3 OF 4  ·  DEEP SPACE";
+                case MissionIds.M4: return "MISSION 4 OF 4  ·  SURFACE";
+                case MissionIds.Final: return "FINALE";
+                case MissionIds.DesignMode: return "FREE PLAY";
+                default: return "";
+            }
         }
 
         static void Set(Image bar, Text t, float v)
@@ -64,6 +114,6 @@ namespace LastSignal
             t.text = Mathf.RoundToInt(v).ToString();
         }
 
-        public void SetVisible(bool on) { if (_canvas != null) _canvas.enabled = on; }
+        public void SetVisible(bool on) { _visible = on; if (_canvas != null) _canvas.enabled = on; }
     }
 }

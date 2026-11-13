@@ -17,7 +17,7 @@ namespace LastSignal
             _canvas = UIFactory.CreateCanvas("StubMission", 5);
             _canvas.transform.SetParent(transform, false);
             var root = (RectTransform)_canvas.transform;
-            var p = UIFactory.Box("Panel", root, new Vector2(1, 1), new Vector2(1, 1), new Vector2(-460, -230), new Vector2(-20, -20), UIFactory.Panel);
+            var p = UIFactory.Window("Panel", root, new Vector2(1, 1), new Vector2(1, 1), new Vector2(-476, -316), new Vector2(-24, -92));
             _label = UIFactory.Label("Label", p, "", 24, TextAnchor.UpperLeft,
                 new Vector2(0, 1), new Vector2(1, 1), new Vector2(14, -80), new Vector2(-14, -10));
             UIFactory.Button("Complete", p, "Complete mission", new Vector2(0, 0), new Vector2(0.5f, 0), new Vector2(10, 12), new Vector2(-5, 70),

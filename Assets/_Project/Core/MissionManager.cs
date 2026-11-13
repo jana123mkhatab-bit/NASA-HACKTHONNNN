@@ -46,6 +46,7 @@ namespace LastSignal
         public EndCardUI endUI;
         public PipDialogueUI pipUI;
         public HudShell hud;
+        public ScreenFader fader;
 
         public static MissionManager Ensure()
         {
@@ -132,18 +133,27 @@ namespace LastSignal
         IEnumerator GoToRoutine(string id)
         {
             Busy = true;
+            if (fader != null) yield return fader.FadeOut();
             Current = id;
             SaveCheckpoint();
+            pipUI?.SetBottom(40f);
             string scene = MissionIds.SceneFor(id);
             if (SceneManager.GetActiveScene().name != scene)
             {
                 var op = SceneManager.LoadSceneAsync(scene);
-                if (op == null) { Debug.LogError($"[MissionManager] Scene '{scene}' is not in Build Settings. Run LastSignal > Setup > Run All."); Busy = false; yield break; }
+                if (op == null)
+                {
+                    Debug.LogError($"[MissionManager] Scene '{scene}' is not in Build Settings. Run LastSignal > Setup > Run All.");
+                    Busy = false;
+                    if (fader != null) yield return fader.FadeIn();
+                    yield break;
+                }
                 while (!op.isDone) yield return null;
             }
             Busy = false;
             MissionEvents.RaiseStart(id);
             hud?.Refresh();
+            if (fader != null) yield return fader.FadeIn(KickerFor(id), MissionIds.TitleFor(id).ToUpperInvariant());
             pipUI?.Play(id);
         }
 
@@ -160,12 +170,27 @@ namespace LastSignal
         IEnumerator RetryRoutine()
         {
             Busy = true;
+            if (fader != null) yield return fader.FadeOut();
             var op = SceneManager.LoadSceneAsync(MissionIds.SceneFor(Current));
             while (op != null && !op.isDone) yield return null;
             Busy = false;
             MissionEvents.RaiseStart(Current);
             hud?.Refresh();
+            if (fader != null) yield return fader.FadeIn();
             pipUI?.Play(Current);
+        }
+
+        static string KickerFor(string id)
+        {
+            switch (id)
+            {
+                case MissionIds.M1: return "MISSION 1";
+                case MissionIds.M2: return "MISSION 2";
+                case MissionIds.M3: return "MISSION 3";
+                case MissionIds.M4: return "MISSION 4";
+                case MissionIds.Final: return "FINALE";
+                default: return "FREE PLAY";
+            }
         }
 
         public void ContinueAfterDebrief()

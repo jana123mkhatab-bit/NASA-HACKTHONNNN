@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
   m_Name: Debrief_M2
   m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
-  title: Ten Percent
-  concept: Reliability and redundancy in series systems
-  nasaSource: NASA Systems Engineering Handbook (NASA/SP-2016-6105)
-  body: If every subsystem must work, the success chances multiply. Spare copies
-    (redundancy) raise each subsystem's chance of working at the cost of mass. Reliability
-    numbers in this game are game-balance values, not NASA data.
+  title: Redundancy, and why risk numbers must reach the crew
+  concept: Reliability of series systems and redundancy
+  nasaSource: 'NASA Systems Engineering Handbook, NASA/SP-2016-6105 Rev2 [person
+    6: confirm section]'
+  body: 'If every subsystem must work, their chances multiply: five parts at 63%
+    give about 10%. A backup unit raises one subsystem from r to 1 - (1 - r)^n, at
+    the cost of mass. Real programs also make sure the crew sees the risk number.
+    Reliabilities in this game are game-balance values, not NASA data.'

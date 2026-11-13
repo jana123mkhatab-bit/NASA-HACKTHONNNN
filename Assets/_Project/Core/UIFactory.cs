@@ -8,18 +8,31 @@ using UnityEngine.InputSystem.UI;
 
 namespace LastSignal
 {
-    /// <summary>Tiny code-only uGUI builder so every screen works without hand-made prefabs.</summary>
+    public enum ButtonStyle { Primary, Ghost, Danger, Confirm }
+
+    /// <summary>
+    /// Code-only uGUI builder so every screen works without hand-made prefabs.
+    /// All colours come from <see cref="Palette"/>, all shapes and fonts from <see cref="UISkin"/>.
+    /// </summary>
     public static class UIFactory
     {
-        public static readonly Color Panel = new Color(0.04f, 0.06f, 0.10f, 0.88f);
-        public static readonly Color Accent = new Color(0.30f, 0.80f, 1.00f, 1f);
-        public static readonly Color Good = new Color(0.30f, 0.90f, 0.50f, 1f);
-        public static readonly Color Warn = new Color(1.00f, 0.75f, 0.20f, 1f);
-        public static readonly Color Bad = new Color(1.00f, 0.30f, 0.30f, 1f);
-        public static readonly Color TextCol = new Color(0.90f, 0.95f, 1f, 1f);
+        // Kept for existing callers: these are the palette's UI colours.
+        public static readonly Color Panel = Palette.PanelBg;
+        public static readonly Color Accent = Palette.Accent;
+        public static readonly Color Good = Palette.Good;
+        public static readonly Color Warn = Palette.Warn;
+        public static readonly Color Bad = Palette.Bad;
+        public static readonly Color TextCol = Palette.Text;
 
-        static Font _font;
-        public static Font Font => _font != null ? _font : (_font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"));
+        public static Font Font => UISkin.Body;
+        public static Font FontBold => UISkin.Bold;
+        public static Font FontMono => UISkin.Mono;
+
+        // Screen zones shared by every mission layout (reference resolution 1920 x 1080).
+        public const float TopBar = 68f;      // HUD strip height
+        public const float Margin = 24f;
+        public const float ColumnW = 452f;    // left / right mission columns
+        public const float ConsoleH = 196f;   // bottom-centre mission console
 
         public static Canvas CreateCanvas(string name, int sortOrder)
         {
@@ -54,11 +67,78 @@ namespace LastSignal
             return rt;
         }
 
+        /// <summary>Plain solid rectangle (dims, dividers, fills).</summary>
         public static RectTransform Box(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax, Color color)
         {
             var rt = Rect(name, parent, aMin, aMax, offMin, offMax);
             var img = rt.gameObject.AddComponent<Image>();
             img.color = color;
+            return rt;
+        }
+
+        /// <summary>Rounded rectangle (chips, insets, cards).</summary>
+        public static Image Round(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax, Color color, int radius = 8)
+        {
+            var rt = Rect(name, parent, aMin, aMax, offMin, offMax);
+            var img = rt.gameObject.AddComponent<Image>();
+            img.sprite = UISkin.Rounded(radius);
+            img.type = Image.Type.Sliced;
+            img.color = color;
+            return img;
+        }
+
+        /// <summary>Rounded outline with no fill.</summary>
+        public static Image Stroke(string name, Transform parent, Color color, int radius = 8, float thickness = 1.5f)
+        {
+            var rt = Rect(name, parent, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            var img = rt.gameObject.AddComponent<Image>();
+            img.sprite = UISkin.Outline(radius, thickness);
+            img.type = Image.Type.Sliced;
+            img.color = color;
+            img.raycastTarget = false;
+            return img;
+        }
+
+        /// <summary>
+        /// The standard window: soft shadow, dark glass body, cyan edge and an optional header strip.
+        /// Returns the body; put content inside it. With a title, content starts 56 px below the top.
+        /// </summary>
+        public static RectTransform Window(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax,
+            string title = null, string kicker = null)
+        {
+            var body = Round(name, parent, aMin, aMax, offMin, offMax, Palette.PanelBg, 12);
+            var rt = body.rectTransform;
+
+            var shadow = Rect("Shadow", rt, Vector2.zero, Vector2.one, new Vector2(-24, -30), new Vector2(24, 18));
+            var si = shadow.gameObject.AddComponent<Image>();
+            si.sprite = UISkin.Shadow(12, 24); si.type = Image.Type.Sliced;
+            si.color = new Color(0f, 0f, 0f, 0.55f); si.raycastTarget = false;
+            // Draw the shadow behind the body without it being clipped: it is a child, so it renders on top
+            // of the body's own pixels only outside the rounded rect, where the body is transparent.
+            shadow.SetAsFirstSibling();
+            var cover = Round("Body", rt, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, Palette.PanelBgSolid, 12);
+            cover.color = Palette.A(Palette.PanelBgSolid, 0.90f);
+            cover.raycastTarget = false;
+            body.color = new Color(0, 0, 0, 0.001f); // keeps raycast blocking, visuals come from the cover
+
+            var sheen = Rect("Sheen", rt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(2, -120), new Vector2(-2, -2));
+            var sh = sheen.gameObject.AddComponent<Image>();
+            sh.sprite = UISkin.FadeDown(); sh.color = new Color(0.45f, 0.75f, 1f, 0.07f); sh.raycastTarget = false;
+
+            Stroke("Edge", rt, Palette.PanelEdge, 12);
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                var bar = Box("AccentBar", rt, new Vector2(0, 1), new Vector2(0, 1), new Vector2(22, -40), new Vector2(26, -18), Palette.Accent);
+                bar.GetComponent<Image>().raycastTarget = false;
+                Label("Title", rt, title, 26, TextAnchor.MiddleLeft,
+                    new Vector2(0, 1), new Vector2(1, 1), new Vector2(38, -46), new Vector2(-20, -12), Palette.Text).Bold();
+                if (!string.IsNullOrEmpty(kicker))
+                    Label("Kicker", rt, kicker, 17, TextAnchor.MiddleRight,
+                        new Vector2(0, 1), new Vector2(1, 1), new Vector2(38, -46), new Vector2(-22, -12), Palette.TextDim).Mono();
+                var line = Box("Rule", rt, new Vector2(0, 1), new Vector2(1, 1), new Vector2(20, -55), new Vector2(-20, -54), Palette.A(Palette.Accent, 0.22f));
+                line.GetComponent<Image>().raycastTarget = false;
+            }
             return rt;
         }
 
@@ -71,37 +151,100 @@ namespace LastSignal
             t.color = color ?? TextCol;
             t.horizontalOverflow = HorizontalWrapMode.Wrap;
             t.verticalOverflow = VerticalWrapMode.Overflow;
+            t.supportRichText = true;
             t.raycastTarget = false;
             return t;
         }
 
+        public static Text Bold(this Text t) { t.font = FontBold; return t; }
+        public static Text Mono(this Text t) { t.font = FontMono; return t; }
+
         public static Button Button(string name, Transform parent, string text,
-            Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax, UnityEngine.Events.UnityAction onClick)
+            Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax, UnityEngine.Events.UnityAction onClick,
+            ButtonStyle style = ButtonStyle.Primary)
         {
-            var rt = Box(name, parent, aMin, aMax, offMin, offMax, new Color(0.12f, 0.35f, 0.55f, 1f));
+            Color bg, edge, fg = Palette.Text;
+            switch (style)
+            {
+                case ButtonStyle.Ghost: bg = Palette.ButtonGhost; edge = Palette.A(Palette.Text, 0.22f); break;
+                case ButtonStyle.Danger: bg = Palette.A(Palette.Warn, 0.92f); edge = Palette.Warn; fg = Palette.Ink; break;
+                case ButtonStyle.Confirm: bg = Palette.A(Palette.Good, 0.90f); edge = Palette.Good; fg = Palette.Ink; break;
+                default: bg = Palette.ButtonBg; edge = Palette.A(Palette.Accent, 0.75f); break;
+            }
+            var img = Round(name, parent, aMin, aMax, offMin, offMax, bg, 8);
+            var rt = img.rectTransform;
             var b = rt.gameObject.AddComponent<Button>();
+            b.targetGraphic = img;
             var colors = b.colors;
-            colors.highlightedColor = new Color(0.6f, 0.9f, 1f, 1f);
-            colors.pressedColor = new Color(0.5f, 0.7f, 0.9f, 1f);
+            colors.normalColor = new Color(0.82f, 0.82f, 0.82f, 1f);
+            colors.highlightedColor = Color.white;
+            colors.pressedColor = new Color(0.6f, 0.6f, 0.6f, 1f);
+            colors.selectedColor = new Color(0.82f, 0.82f, 0.82f, 1f);
+            colors.disabledColor = new Color(0.45f, 0.45f, 0.45f, 0.55f);
+            colors.colorMultiplier = 1f;
+            colors.fadeDuration = 0.08f;
             b.colors = colors;
+            var nav = b.navigation; nav.mode = Navigation.Mode.None; b.navigation = nav;
             if (onClick != null) b.onClick.AddListener(onClick);
-            Label("Text", rt, text, 26, TextAnchor.MiddleCenter, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+            Stroke("Edge", rt, edge, 8);
+            int size = Mathf.Clamp(Mathf.RoundToInt((offMax.y - offMin.y) * 0.42f), 17, 28);
+            if (aMin.y != aMax.y) size = 24;
+            var label = Label("Text", rt, text, size, TextAnchor.MiddleCenter, Vector2.zero, Vector2.one, new Vector2(6, 0), new Vector2(-6, 0), fg).Bold();
+            label.horizontalOverflow = HorizontalWrapMode.Overflow;
+            rt.gameObject.AddComponent<UIButtonFx>();
             return b;
+        }
+
+        /// <summary>Change a button's caption.</summary>
+        public static void SetLabel(Button b, string text)
+        {
+            var t = b != null ? b.GetComponentInChildren<Text>() : null;
+            if (t != null) t.text = text;
         }
 
         /// <summary>A horizontal fill bar. Returns the fill Image (use fillAmount 0..1).</summary>
         public static Image Bar(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax, Color fill)
         {
-            var back = Box(name, parent, aMin, aMax, offMin, offMax, new Color(1, 1, 1, 0.12f));
-            var f = Box("Fill", back, Vector2.zero, Vector2.one, new Vector2(2, 2), new Vector2(-2, -2), fill);
+            var back = Round(name, parent, aMin, aMax, offMin, offMax, new Color(1, 1, 1, 0.10f), 4);
+            back.raycastTarget = false;
+            var f = Box("Fill", back.rectTransform, Vector2.zero, Vector2.one, new Vector2(3, 3), new Vector2(-3, -3), fill);
             var img = f.GetComponent<Image>();
             img.type = Image.Type.Filled;
             img.fillMethod = Image.FillMethod.Horizontal;
             img.fillOrigin = 0;
             img.fillAmount = 1f;
+            img.raycastTarget = false;
             // Filled images need a sprite to honour fillAmount; use a 1x1 white sprite.
             img.sprite = WhiteSprite();
             return img;
+        }
+
+        /// <summary>Small rounded status chip with a caption. Returns the caption so the caller can update it.</summary>
+        public static Text Chip(string name, Transform parent, string text, Color color,
+            Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax)
+        {
+            var img = Round(name, parent, aMin, aMax, offMin, offMax, Palette.A(color, 0.16f), 6);
+            img.raycastTarget = false;
+            Stroke("Edge", img.rectTransform, Palette.A(color, 0.7f), 6, 1.2f);
+            return Label("Text", img.rectTransform, text, 16, TextAnchor.MiddleCenter, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, color).Mono();
+        }
+
+        /// <summary>Recolour a chip made with <see cref="Chip"/>.</summary>
+        public static void SetChip(Text chip, string text, Color color)
+        {
+            if (chip == null) return;
+            chip.text = text; chip.color = color;
+            var bg = chip.transform.parent.GetComponent<Image>();
+            if (bg != null) bg.color = Palette.A(color, 0.16f);
+            var edge = chip.transform.parent.Find("Edge");
+            if (edge != null) edge.GetComponent<Image>().color = Palette.A(color, 0.7f);
+        }
+
+        /// <summary>Fade and enable/disable a whole group of widgets.</summary>
+        public static CanvasGroup Group(Component c)
+        {
+            var g = c.GetComponent<CanvasGroup>();
+            return g != null ? g : c.gameObject.AddComponent<CanvasGroup>();
         }
 
         static Sprite _white;
@@ -136,6 +279,15 @@ namespace LastSignal
             return k != null && (k.spaceKey.wasPressedThisFrame || k.enterKey.wasPressedThisFrame);
 #else
             return Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return);
+#endif
+        }
+
+        public static bool EscapeDown()
+        {
+#if ENABLE_INPUT_SYSTEM
+            return Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame;
+#else
+            return Input.GetKeyDown(KeyCode.Escape);
 #endif
         }
     }

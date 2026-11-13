@@ -36,6 +36,8 @@ namespace LastSignal.EditorTools
         public static void RunMissions12()
         {
             Directory.CreateDirectory(SceneDir);
+            SetupContent.Run();
+            SetupVisuals.SetupPipeline();
             SetupVisuals.BuildMaterials();
             LoadMaterial("concrete_light");
             LoadMaterial("__grass");
@@ -66,7 +68,7 @@ namespace LastSignal.EditorTools
 
         // ---------------------------------------------------------------- shared helpers
 
-        static GameObject Model(string relPath, string name, Vector3 pos, float scale = 1f, Vector3? euler = null)
+        public static GameObject Model(string relPath, string name, Vector3 pos, float scale = 1f, Vector3? euler = null)
         {
             var asset = AssetDatabase.LoadAssetAtPath<GameObject>(Models + relPath);
             if (asset == null) { Debug.LogError("Model missing: " + relPath); return new GameObject(name + " (missing)"); }
@@ -103,7 +105,41 @@ namespace LastSignal.EditorTools
             }
         }
 
-        static Light AddSun(Vector3 sunPos, Vector3 target, float intensity, Color color)
+        /// <summary>Dusk sky, gradient ambient and palette fog for the ground missions.</summary>
+        public static void DuskAtmosphere(float fogDensity)
+        {
+            RenderSettings.skybox = SetupVisuals.Materials["st_sky_dusk"];
+            RenderSettings.ambientMode = AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor = Palette.Hex("#4A5F88");
+            RenderSettings.ambientEquatorColor = Palette.Hex("#4A3E40");
+            RenderSettings.ambientGroundColor = Palette.Hex("#17130F");
+            RenderSettings.fog = true;
+            RenderSettings.fogMode = FogMode.ExponentialSquared;
+            RenderSettings.fogDensity = fogDensity;
+            RenderSettings.fogColor = Palette.Fog;
+            RenderSettings.defaultReflectionMode = DefaultReflectionMode.Skybox;
+            RenderSettings.reflectionIntensity = 0.6f;
+            DynamicGI.UpdateEnvironment();
+        }
+
+        /// <summary>Gameplay camera for the staged mission sets (a CameraRig drives it).</summary>
+        public static Camera AddStageCamera(float fov)
+        {
+            var go = new GameObject("Main Camera") { tag = "MainCamera" };
+            var cam = go.AddComponent<Camera>();
+            go.AddComponent<AudioListener>();
+            cam.nearClipPlane = 0.1f; cam.farClipPlane = 1500f; cam.fieldOfView = fov;
+            cam.allowHDR = true;
+            cam.clearFlags = CameraClearFlags.Skybox;
+            var data = cam.GetUniversalAdditionalCameraData();
+            data.renderPostProcessing = true;
+            data.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+            data.antialiasingQuality = AntialiasingQuality.High;
+            data.renderShadows = true;
+            return cam;
+        }
+
+        public static Light AddSun(Vector3 sunPos, Vector3 target, float intensity, Color color)
         {
             var go = new GameObject("Sun Light");
             var l = go.AddComponent<Light>();
@@ -218,33 +254,14 @@ namespace LastSignal.EditorTools
 
         static void BuildGround(Scene s)
         {
-            Ground(6000f, "__grass");
-            var district = Model("Buildings/city_district.obj", "City District", Vector3.zero);
-            Model("Buildings/tower_antenna.obj", "Telemetry Tower", new Vector3(380, 0, 40), 2f);
-            Model("Buildings/warehouse_01.obj", "Spaceport Hangar", new Vector3(420, 0, -60), 2f);
-            for (int i = 0; i < 12; i++)
-                Model("Buildings/tree_01.obj", "Tree " + i, new Vector3(340 + (i % 4) * 14, 0, -150 + (i / 4) * 16), 1.6f);
-            var sun = AddSun(new Vector3(-400, 300, 200), Vector3.zero, 1.9f, new Color(1f, 0.95f, 0.85f));
-            GroundAtmosphere(sun, 0.0008f);
-            AddCamera(false, district.transform, 300f, 90f, 2f);
+            StageKit.BuildShapes();
+            StageM1.Build();
         }
 
         static void BuildPreflight(Scene s)
         {
-            Ground(4000f, "__grass");
-            var apron = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            apron.name = "Launch Apron";
-            apron.transform.position = new Vector3(0, -0.02f, 0);
-            apron.transform.localScale = new Vector3(260, 0.1f, 200);
-            apron.GetComponent<Renderer>().sharedMaterial = SetupVisuals.Materials["__apron"];
-            var hangar = Model("Buildings/warehouse_01.obj", "Hangar", Vector3.zero, 3f);
-            Model("Buildings/tower_antenna.obj", "Antenna Tower", new Vector3(-90, 0, 40), 2f);
-            for (int i = 0; i < 6; i++)
-                Model("Buildings/street_lamp.obj", "Lamp " + i, new Vector3(-100 + i * 40, 0, 70), 2f);
-            Model("Buildings/bench.obj", "Bench", new Vector3(30, 0, 85), 2f);
-            var sun = AddSun(new Vector3(-500, 110, -200), Vector3.zero, 1.6f, new Color(1f, 0.72f, 0.5f)); // low evening sun
-            GroundAtmosphere(sun, 0.0012f);
-            AddCamera(false, hangar.transform, 140f, 28f, 3f, 20f);
+            StageKit.BuildShapes();
+            StageM2.Build();
         }
 
         static void BuildDeepSpace(Scene s)

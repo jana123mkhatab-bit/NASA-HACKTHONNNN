@@ -23,10 +23,10 @@ namespace LastSignal.EditorTools
             pip.entries = new List<PipLineSet.Entry>
             {
                 E("M1", "I am Pip. I keep the count so you do not have to.",
-                        "A piece of the capsule came down in the desert. Weigh it. Test the thrust. The serial number is stamped on the fragment.",
+                        "Build a test frame on the sled. Pick an engine and only the payload this test needs, lock the clamps, then fire. Watch a = F / m.",
                         "Mass fights thrust. Check the numbers before the next test."),
-                E("M2", "Your son's plan scores about ten percent. I ran it three times.",
-                        "Every subsystem works only 63 times in 100. Five in a row, and the whole ship works one time in ten.",
+                E("M2", "Your son's flight assessment is in the records. It was never in his briefing.",
+                        "Open it, then fix the plan in the Mission Planner. Every check runs against the plan you apply.",
                         "One copy of each part is not enough. Add a spare where the failures hurt most."),
                 E("M3", "A relay satellite is in your path. It will be destroyed.",
                         "Something is coming up behind us. It is not on any chart.",
@@ -54,18 +54,20 @@ namespace LastSignal.EditorTools
             };
             EditorUtility.SetDirty(log);
 
-            Card("M1", "What Fell to Earth", "Mass vs. thrust (thrust-to-weight ratio)",
-                "NASA Glenn Research Center, Beginner's Guide to Rocketry",
-                "A rocket only lifts off when thrust is larger than its weight. Every kilogram you add needs more thrust to carry it.");
-            Card("M2", "Ten Percent", "Reliability and redundancy in series systems",
-                "NASA Systems Engineering Handbook (NASA/SP-2016-6105)",
-                "If every subsystem must work, the success chances multiply. Spare copies (redundancy) raise each subsystem's chance of working at the cost of mass. Reliability numbers in this game are game-balance values, not NASA data.");
-            Card("M3", "The Ship That Came Out of Nowhere", "Orbital debris and collision risk",
-                "NASA Orbital Debris Program Office (ODPO)",
-                "Destroying a satellite creates fragments that stay in orbit and can hit other spacecraft. When resources are short, engineers triage repairs by what keeps the crew alive.");
-            Card("M4", "Someone's Been Living Here", "Landing-site selection",
-                "NASA Planetary Data System (PDS) and Lunar Reconnaissance Orbiter imagery",
-                "Safe landing sites need gentle slopes and few boulders. Water ice makes a site valuable for a long stay.");
+            Card("M1", "Why mass is the enemy of every mission", "Newton's second law: acceleration = thrust / mass",
+                "NASA Glenn Research Center, Beginner's Guide to Rockets (Newton's laws of motion) [person 6: confirm exact page]",
+                "The same engine pushes a heavier frame more slowly. Every kilogram you add needs more thrust, and on a real rocket more propellant, " +
+                "which is more mass again (the rocket equation). Engineers fight for every kilogram. Part masses and thrusts in M1 are game-balance values.");
+            Card("M2", "Redundancy, and why risk numbers must reach the crew", "Reliability of series systems and redundancy",
+                "NASA Systems Engineering Handbook, NASA/SP-2016-6105 Rev2 [person 6: confirm section]",
+                "If every subsystem must work, their chances multiply: five parts at 63% give about 10%. A backup unit raises one subsystem from r to 1 - (1 - r)^n, " +
+                "at the cost of mass. Real programs also make sure the crew sees the risk number. Reliabilities in this game are game-balance values, not NASA data.");
+            Card("M3", "Single points of failure in deep-space communication", "Relay networks and light delay",
+                "NASA Deep Space Network; JPL Horizons [persons 3 and 6: fill in]",
+                "(Placeholder for person 3.) One relay between a ship and Earth is a single point of failure. Light delay = distance / speed of light.");
+            Card("M4", "How scientists judge habitability from a few numbers", "Habitability from radius, insolation and temperature",
+                "NASA Exoplanet Archive [persons 4 and 6: fill in]",
+                "(Placeholder for person 4.) Radius, insolation, equilibrium temperature and orbital period hint at whether liquid water could exist.");
             Card("Final", "Call Home", "Deep-space communications",
                 "NASA Deep Space Network (JPL)",
                 "Signals take time to travel, and large antennas on Earth must point exactly at the spacecraft to hear it.");

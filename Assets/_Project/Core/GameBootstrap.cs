@@ -30,6 +30,8 @@ namespace LastSignal
             if (mm.debriefUI == null) mm.debriefUI = Add<DebriefCardUI>(root, "DebriefCard", d => d.Build());
             if (mm.failUI == null) mm.failUI = Add<FailPanelUI>(root, "FailPanel", f => f.Build());
             if (mm.endUI == null) mm.endUI = Add<EndCardUI>(root, "EndCard", e => e.Build());
+            if (mm.fader == null) mm.fader = Add<ScreenFader>(root, "Fader", f => f.Build());
+            Sfx.Ambience(true);
 
             if (scene.name == MissionIds.SceneFor(MissionIds.M1) &&
                 mm.Current == MissionIds.Boot && root.GetComponentInChildren<TitleScreenUI>() == null)
