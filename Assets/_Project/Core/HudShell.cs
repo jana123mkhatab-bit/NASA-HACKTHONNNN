@@ -128,5 +128,10 @@ namespace LastSignal
         }
 
         public void SetVisible(bool on) { _visible = on; if (_canvas != null) _canvas.enabled = on; }
+
+        public void ShowGauge(bool show)
+        {
+            if (_gauge != null) _gauge.gameObject.SetActive(show);
+        }
     }
 }

@@ -76,14 +76,15 @@ namespace LastSignal
             this.name = name; reliability = r; redundancy = n; this.massCost = massCost;
         }
 
-        public static class SubsystemNames
-        {
-            public const string Propulsion = "Propulsion";
-            public const string Power = "Power";
-            public const string LifeSupport = "Life support";
-            public const string Navigation = "Navigation";
-            public const string Comms = "Comms";
-        }
+    }
+
+    public static class SubsystemNames
+    {
+        public const string Propulsion = "Propulsion";
+        public const string Power = "Power";
+        public const string LifeSupport = "Life support";
+        public const string Navigation = "Navigation";
+        public const string Comms = "Comms";
     }
 
     /// <summary>A mission plan: a list of subsystems.</summary>
