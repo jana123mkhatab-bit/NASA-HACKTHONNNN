@@ -52,7 +52,7 @@ namespace LastSignal
             string[] names = { "Life support", "Backup comms", "Navigation", "Power", "Propulsion" };
             for (int i = 0; i < names.Length; i++) CreateRow(panel, i, names[i]);
 
-            _gauge = RiskGaugeWidget.Create(root, new Vector2(650, -610), new Vector2(560, 118));
+            _gauge = RiskGaugeWidget.Create(root, new Vector2(338, -684), new Vector2(560, 118));
             _briefing = UIFactory.Label("RiskBriefing", panel, "", 21, TextAnchor.UpperLeft,
                 new Vector2(0, 0), new Vector2(1, 0), new Vector2(28, 110), new Vector2(-28, 164), UIFactory.TextCol);
             UIFactory.Button("Apply", panel, "Apply plan", new Vector2(.5f, 0), new Vector2(1, 0),

@@ -12,7 +12,7 @@ namespace LastSignal
 
         void Start()
         {
-            var stub = FindObjectOfType<StubMission>();
+            var stub = FindFirstObjectByType<StubMission>();
             if (stub != null) Destroy(stub.gameObject);
             _canvas = UIFactory.CreateCanvas("M2 Preflight", 20);
             _canvas.transform.SetParent(transform, false);

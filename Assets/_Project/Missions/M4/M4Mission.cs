@@ -79,19 +79,6 @@ namespace LastSignal.M4
         void OnMissionStart(string id)
         {
             if (id == MissionIds.Final && World != null) StartFinal();
-            // After a Retry, Core raises Start("M4") and then plays the M4 intro ("pick your landing site"), which would
-            // replace the checkpoint lines. Play them again one frame later so the player hears the right thing.
-            else if (id == MissionIds.M4 && _pendingPip != null) StartCoroutine(PipNextFrame(_pendingPip));
-        }
-
-        string[] _pendingPip;
-
-        IEnumerator PipNextFrame(string[] lines)
-        {
-            yield return null;
-            if (_pendingPip != lines) yield break;
-            _pendingPip = null;
-            Pip(lines);
         }
 
         static void Pip(params string[] lines)
@@ -165,18 +152,19 @@ namespace LastSignal.M4
             if (st != null) st.fuel = fuel;
 
             M4Checkpoint.SaveApproach(_siteIndex);
-            MissionManager.Instance?.SaveCheckpoint();
+            var mgr = MissionManager.Instance;
+            if (mgr != null)
+            {
+                mgr.SaveCheckpoint();
+                mgr.SkipNextRetryIntro = true; // a Retry resumes here, so Core must not replay the "pick a site" intro
+            }
 
             Lander.Begin(Site, Gravity, fuel, _startBattery, new Vector3(startXZ.x, y, startXZ.y), startVel);
             Rig.Chase(Lander.transform, Mathf.Atan2(approachDir.x, approachDir.y) * Mathf.Rad2Deg);
             UI.ShowLanding(true);
             UI.SetObjective($"Land inside the ellipse at site {Site.id} {Site.name}");
             M4Hooks.Phase("Descent");
-            if (resumed)
-            {
-                _pendingPip = new[] { $"Back at the approach checkpoint. Site {Site.id}, same limits.", $"Keep the sink rate under {Site.SafeVerticalSpeed:0.0} metres per second." };
-                Pip(_pendingPip);
-            }
+            if (resumed) Pip($"Back at the approach checkpoint. Site {Site.id}, same limits.", $"Keep the sink rate under {Site.SafeVerticalSpeed:0.0} metres per second.");
             else Pip("Descent started. Hold SPACE for the main engine, WASD to translate.", $"Touch down inside the gold ellipse, sink rate under {Site.SafeVerticalSpeed:0.0} m/s. Watch the battery.");
         }
 
@@ -198,7 +186,7 @@ namespace LastSignal.M4
                 st.power = Mathf.Clamp(st.power - (_startBattery - Lander.Power), 0f, 100f);
             }
             M4Checkpoint.Clear();
-            MissionManager.Instance?.SaveCheckpoint();
+            if (MissionManager.Instance != null) { MissionManager.Instance.SaveCheckpoint(); MissionManager.Instance.SkipNextRetryIntro = false; }
             World.ShowEllipse(Site, false);
             Pip("Contact light. We're down. " + reason, Site.id == "A" ? "That beacon is close. Someone is powering it." : "Long walk to the beacon. Someone is powering it.");
             StartCoroutine(AfterLanding());

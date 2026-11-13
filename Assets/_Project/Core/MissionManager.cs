@@ -34,6 +34,13 @@ namespace LastSignal
 
         public bool Busy { get; private set; }
 
+        /// <summary>
+        /// Set by a mission that resumes mid-mission on Retry (M4 resumes at its approach checkpoint). The next
+        /// retry then skips the generic mission intro, which would talk about the start of the mission.
+        /// Cleared automatically after one retry.
+        /// </summary>
+        public bool SkipNextRetryIntro { get; set; }
+
         PlayerState.Snapshot _checkpoint;
         string _checkpointMission = MissionIds.Boot;
         readonly HashSet<string> _completed = new HashSet<string>();
@@ -165,7 +172,8 @@ namespace LastSignal
             Busy = false;
             MissionEvents.RaiseStart(Current);
             hud?.Refresh();
-            pipUI?.Play(Current);
+            if (!SkipNextRetryIntro) pipUI?.Play(Current);
+            SkipNextRetryIntro = false;
         }
 
         public void ContinueAfterDebrief()
@@ -179,9 +187,12 @@ namespace LastSignal
 
         void HandleComplete(string id)
         {
+            // Completion is processed once per run. A second Complete for the same mission (double click, a
+            // mission raising it twice) would stack debrief cards or open the end card twice.
+            // BeginRun clears the set, so a new run starts clean.
+            if (!_completed.Add(id)) return;
             // Any scene can call this directly: adopt the id if we were not tracking it yet.
             if (Current != id) Current = id;
-            _completed.Add(id);
             if (id == MissionIds.Final)
             {
                 if (endUI != null) endUI.Show(PlannedSuccess, ActualSuccess, Retries);
@@ -195,6 +206,7 @@ namespace LastSignal
 
         void HandleFail(string id, string reason)
         {
+            if (failUI != null && failUI.IsOpen) return; // one fail panel at a time
             if (Current != id) Current = id;
             string hint = pipLines != null ? pipLines.Find(id)?.failHint : null;
             if (failUI != null) failUI.Show(id, reason, string.IsNullOrEmpty(hint) ? "Try again. Check the plan first." : hint);
