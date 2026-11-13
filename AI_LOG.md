@@ -15,6 +15,7 @@ Needed for the NASA Space Apps AI-use disclosure. Add a row whenever AI writes o
 | 2026-11-13 | 1 + 2 (visual pass) | Core/Editor: StageKit, StageM1 (test range), StageM2 (launch pad), SetupVisuals palette materials + dusk sky, CaptureShots | Claude Code | Built the M1 and M2 3D sets from code | Rendered shots reviewed |
 | 2026-11-13 | 2 (Missions 1-2/Planner) | Missions/M1 (M1Parts, M1GroundMission), Missions/M2, UI/Planner/PlannerPanel, Docs/PLANNER_DESIGN.md | Claude Code | Rewrote the M1 sled test, M2 preflight and the Planner trade-off (grade + redundancy vs mass budget) | CaptureFlow test asserts the son's plan reads 9-11%; full play-through by a person still needed |
 | 2026-11-13 | 1 | SetupContent debrief and Pip text for M1 and M2 | Claude Code | Rewrote card text to match the design doc titles | Person 6 must confirm the exact NASA source pages |
+| 2026-11-13 | 6 (Data/Design Mode) | Data/Resources/LastSignal CSVs, DesignMode/DataTable and DesignModeController, Docs/DATA_FLOW.md | Claude Code | Downloaded NASA data from public pages and APIs, wrote the CSVs, README and the Design Mode flow | A person must open every source_url logged out and confirm numbers; Unity play-through pending |
 
 Fonts: Rajdhani and Share Tech Mono (Google Fonts, SIL Open Font License 1.1); licence files sit next to the fonts in Core/Resources/LastSignal/Fonts.
 

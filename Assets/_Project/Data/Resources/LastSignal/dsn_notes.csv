@@ -1,0 +1,8 @@
+id,note,number,unit,source_url,retrieved
+dsn_complexes,"Three complexes: Goldstone (California), Madrid (Spain), Canberra (Australia). As Earth rotates, the next site picks up the signal.",3,complexes,https://deepspace.jpl.nasa.gov/dsn/,2026-11-13
+dsn_70m,"Each site has one 70-metre (230 ft) dish, the largest and most sensitive.",70,m,https://deepspace.jpl.nasa.gov/dsn/,2026-11-13
+dsn_34m,Each site also has multiple 34-metre (112 ft) dishes and one 26-metre (85 ft) dish.,34,m,https://deepspace.jpl.nasa.gov/dsn/,2026-11-13
+dsn_now,"DSN Now shows live ground-station data, refreshed every 5 seconds, not a schedule.",5,s,https://deepspace.jpl.nasa.gov/dsn/,2026-11-13
+dsn_doppler,Spacecraft position and speed are inferred from radio frequency shift (Doppler effect).,,,https://deepspace.jpl.nasa.gov/dsn/,2026-11-13
+dsn_continuous,Each site is built for continuous contact with several spacecraft at once.,,,https://www.nasa.gov/directorates/somd/space-communications-navigation-program/what-is-the-deep-space-network/,2026-11-13
+v1_light_day,"Voyager 1 reaches one light-day from Earth on Nov 18 2026, over 16 billion miles away.",16,billion miles,https://science.nasa.gov/mission/voyager/voyager-1/,2026-11-13
