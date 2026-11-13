@@ -128,12 +128,20 @@ namespace LastSignal
 
         public static void EnsureEventSystem()
         {
-            if (Object.FindFirstObjectByType<EventSystem>() != null) return;
-            var go = new GameObject("EventSystem", typeof(EventSystem));
+            var es = Object.FindFirstObjectByType<EventSystem>();
+            if (es == null) es = new GameObject("EventSystem", typeof(EventSystem)).GetComponent<EventSystem>();
+            var go = es.gameObject;
 #if ENABLE_INPUT_SYSTEM
-            go.AddComponent<InputSystemUIInputModule>();
+            // Remove the legacy module: it throws/does nothing when only the new Input System is active.
+            var legacy = go.GetComponent<StandaloneInputModule>();
+            if (legacy != null) Object.Destroy(legacy);
+            var mod = go.GetComponent<InputSystemUIInputModule>();
+            if (mod == null) mod = go.AddComponent<InputSystemUIInputModule>();
+            // Components added at runtime have no actions assigned, so no pointer/click is ever read.
+            if (mod.actionsAsset == null || mod.point == null || mod.point.action == null)
+                mod.AssignDefaultActions();
 #else
-            go.AddComponent<StandaloneInputModule>();
+            if (go.GetComponent<BaseInputModule>() == null) go.AddComponent<StandaloneInputModule>();
 #endif
         }
 
