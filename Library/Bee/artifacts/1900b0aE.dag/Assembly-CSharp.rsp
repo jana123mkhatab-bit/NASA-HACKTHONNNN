@@ -469,6 +469,8 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
+"Assets/_Project/DesignMode/DataTable.cs"
+"Assets/_Project/DesignMode/DesignModeController.cs"
 "Assets/_Project/Missions/Final/FinalCallHome.cs"
 "Assets/_Project/Missions/M1/M1GroundMission.cs"
 "Assets/_Project/Missions/M1/M1Parts.cs"

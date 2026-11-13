@@ -449,6 +449,7 @@
 "Assets/_Project/Core/PipLineSet.cs"
 "Assets/_Project/Core/PlayerState.cs"
 "Assets/_Project/Core/RiskGaugeWidget.cs"
+"Assets/_Project/Core/RuntimePointerInput.cs"
 "Assets/_Project/Core/ScreenFader.cs"
 "Assets/_Project/Core/Sfx.cs"
 "Assets/_Project/Core/SharedTypes.cs"

@@ -1,0 +1,2 @@
+pl_name,host,radius_earth,insolation_earth,eq_temp_k,orbital_period_days,distance_pc,source_url,query,retrieved
+TRAPPIST-1 e,TRAPPIST-1,0.92,0.646,249.7,6.101013,12.42988881,https://exoplanetarchive.ipac.caltech.edu/TAP/sync,"select pl_name,hostname,pl_rade,pl_insol,pl_eqt,pl_orbper,sy_dist from pscomppars where pl_name='TRAPPIST-1 e' (table: Planetary Systems Composite Parameters)",2026-11-13
