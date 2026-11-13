@@ -1,0 +1,7 @@
+# M4 FALLBACK ONLY. Person 6 replaces this with Assets/_Project/Data/exoplanets.csv (auto-synced by M4CsvSync).
+# Values transcribed approximately from the NASA Exoplanet Archive (Planetary Systems table). PERSON 6 MUST VERIFY.
+# Columns use the Archive names: pl_name, hostname, pl_rade [Earth radii], pl_insol [Earth flux], pl_eqt [K], pl_orbper [days], sy_dist [pc], st_teff [K]
+pl_name,hostname,pl_rade,pl_insol,pl_eqt,pl_orbper,sy_dist,st_teff
+Kepler-442 b,Kepler-442,1.34,0.70,233,112.3053,370.5,4402
+TOI-700 d,TOI-700,1.07,0.86,269,37.426,31.1,3459
+Kepler-186 f,Kepler-186,1.17,0.29,188,129.944,177.6,3755

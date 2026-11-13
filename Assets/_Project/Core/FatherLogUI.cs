@@ -1,4 +1,5 @@
 using System.Text;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,7 @@ namespace LastSignal
     {
         Canvas _canvas;
         Text _body;
+        readonly List<string> _runtimeEntries = new List<string>();
 
         public void Build()
         {
@@ -52,7 +54,15 @@ namespace LastSignal
                 }
             }
             if (sb.Length == 0) sb.Append("(no entries yet)");
+            for (int i = 0; i < _runtimeEntries.Count; i++)
+                sb.Append("<color=#C9A24A><b>NEW SIGNAL</b></color>\n").AppendLine(_runtimeEntries[i]).AppendLine();
             _body.text = sb.ToString();
+        }
+
+        public void AddEntry(string text)
+        {
+            if (!string.IsNullOrEmpty(text)) _runtimeEntries.Add(text);
+            if (_canvas != null && _canvas.enabled) Refresh();
         }
     }
 }

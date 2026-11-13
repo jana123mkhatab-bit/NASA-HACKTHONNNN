@@ -1,0 +1,370 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 7624)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 10580)
+VBCSCompiler prewarm took 10.94 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah" at "2026-11-13T14:33:04.6507492Z"
+OS: 'Windows 11  (10.0.26300) Professional' Language: 'en' Physical Memory: 16108 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-13T14:33:04Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 20732, path: "C:/Program Files/Unity Hub/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.19.0'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-qlsah"
+[Licensing::IpcConnector] LicenseClient-qlsah channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-qlsah-1.19.0 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 32224)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0" at "2026-11-13T14:33:04.7291526Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 32224, path: "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              3d0551d001514692a8c97b7587f5f526
+  Correlation Id:          e457b99e481be075bcc507b228081b40
+  External correlation Id: 5479723485160308114
+  Machine Id:              zAjizhQoqrPGXmQ1fiso6ZI95cQ=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-qlsah-1.19.0" (connect: 0.04s, validation: 0.04s, handshake: 0.04s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-qlsah-1.19.0-notifications" at "2026-11-13T14:33:04.8122313Z"
+[Licensing::Module] Connected to LicensingClient (PId: 32224, launch time: 0.00, total connection time: 0.12s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 11270737928533-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.17s
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-batchmode
+-nographics
+-quit
+-projectPath
+D:\NASAProj\NASA-HACKTHONNNN
+-logFile
+D:\NASAProj\NASA-HACKTHONNNN\Logs\planner-final-validation.log
+Successfully changed project path to: D:\NASAProj\NASA-HACKTHONNNN
+D:/NASAProj/NASA-HACKTHONNNN
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [35052]  Target information:
+
+Player connection [35052]  * "[IP] 192.168.1.17 [Port] 55504 [Flags] 2 [Guid] 2302052547 [EditorId] 2302052547 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [35052]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 2302052547 [EditorId] 2302052547 [Version] 1048832 [Id] WindowsEditor(7,ahmed_M_pro) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [35052] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [35052] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-31968" after 0.2 seconds.
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: 050b68382223d11f73aba3a458c7858f
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = D:/NASAProj/NASA-HACKTHONNNNUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.9f1 (8c45277fb9c5)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=262144, entitiesPerBlock=1024, blocksPerSlotPage=0, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/NASAProj/NASA-HACKTHONNNN/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56968
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001653 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.708 seconds
+Domain Reload Profiling: 1186ms
+	BeginReloadAssembly (110ms)
+		CreateAndSetChildDomain (5ms)
+	RebuildCommonClasses (5ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (54ms)
+	LoadAllAssembliesAndSetupDomain (296ms)
+		LoadAssemblies (103ms)
+		TypeCache.Refresh (204ms)
+			TypeCache.ScanAssembly (192ms)
+		AnalyzeDomain (1ms)
+	FinalizeReload (709ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (101ms)
+			ProcessInitializeOnLoadAttributes (137ms)
+			ProcessInitializeOnLoadMethodAttributes (242ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 29 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.inputsystem@1.20.1 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.inputsystem@2436e68c60c4)
+    com.unity.searcher@4.9.5 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+    com.unity.nuget.mono-cecil@1.11.6 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.render-pipelines.universal@2a6014b851d8)
+    com.unity.test-framework@1.8.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.test-framework@01a8b42f9cf6)
+    com.unity.ugui@2.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.ugui@ff4f88904a57)
+    com.unity.modules.audio@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.imgui@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physicscore2d@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.tetgen@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.timelinefoundation@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.unitywebrequest@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.physics2d@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.ext.nunit@2.1.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.render-pipelines.core@77e675a23c5f)
+    com.unity.shadergraph@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.shadergraph@807b608040c3)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.modules.uielements@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.graph-authoring@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.collections@c70d71c1212e)
+    com.unity.modules.hierarchycore@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.modules.animation@1.0.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.modules.animation)
+    com.unity.test-framework.performance@6.6.0 (location: D:\NASAProj\NASA-HACKTHONNNN\Library\PackageCache\com.unity.test-framework.performance@816c370aad5b)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.01 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: D:/NASAProj/NASA-HACKTHONNNN
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 0s758ms
+[596/760    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[756/760    0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\_Project\UI\Planner\PlannerRuntimeBootstrap.cs(17,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Project\UI\Planner\PlannerRuntimeBootstrap.cs(19,49): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\_Project\Missions\M2\M2PreflightMission.cs(15,24): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\_Project\Missions\M1\M1GroundMission.cs(16,24): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+
+Assets\_Project\Missions\M1\M1GroundMission.cs(12,14): warning CS0414: The field 'M1GroundMission._serialFound' is assigned but its value is never used
+[757/760    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 149 defines and 310 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+[758/760    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[759/760    0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+*** Tundra build success (0.72 seconds), 5 items updated, 760 evaluated
+Assets\_Project\UI\Planner\PlannerRuntimeBootstrap.cs(17,46): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Project\UI\Planner\PlannerRuntimeBootstrap.cs(19,49): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\_Project\Missions\M2\M2PreflightMission.cs(15,24): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\_Project\Missions\M1\M1GroundMission.cs(16,24): warning CS0618: 'Object.FindObjectOfType<T>()' is obsolete: 'Object.FindObjectOfType has been deprecated. Use Object.FindAnyObjectByType instead.'
+Assets\_Project\Missions\M1\M1GroundMission.cs(12,14): warning CS0414: The field 'M1GroundMission._serialFound' is assigned but its value is never used
+Total cache size 76008696
+Total cache size after purge 76008696, took 00:00:00.0640278
+AssetDatabase: script compilation time: 1.220944s
+Begin MonoManager ReloadAssembly
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.719 seconds
+Domain Reload Profiling: 1436ms
+	BeginReloadAssembly (232ms)
+		DisableScriptedObjects (32ms)
+		CreateAndSetChildDomain (43ms)
+	RebuildCommonClasses (8ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (52ms)
+	LoadAllAssembliesAndSetupDomain (408ms)
+		LoadAssemblies (262ms)
+		TypeCache.Refresh (76ms)
+			TypeCache.ScanAssembly (68ms)
+		AnalyzeDomain (35ms)
+			BuildScriptInfoCaches (27ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (720ms)
+		SetupLoadedEditorAssemblies (0ms)
+			LogAssemblyErrors (4ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (111ms)
+			ProcessInitializeOnLoadAttributes (141ms)
+			ProcessInitializeOnLoadMethodAttributes (191ms)
+			AfterProcessingInitializeOnLoad (6ms)
+		AwakeInstancesAfterBackupRestoration (26ms)
+Starting new worker id: 0 with log in D:/NASAProj/NASA-HACKTHONNNN/Logs/AssetImportWorkerHW0.log
+
+Asset Pipeline Refresh (id=7b064cfa0769eb247a11b3b9e18ed44c): Total: 3.229 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=1056 ms
+		Asset DB Callback time: managed=143 ms, native=10 ms
+		Scripting: domain reloads=1, domain reload time=760 ms, compile time=1224 ms, other=34 ms
+		Project Asset Count: scripts=877, non-scripts=1680
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 10.507ms
+	ApplyChangesToAssetFolders: 0.503ms
+	Scan: 77.496ms
+	Collect global state as custom dependencies: 20.226ms
+	OnSourceAssetsModified: 0.617ms
+	CategorizeScriptCompilationAssets: 14.676ms
+	ProcessAssetsWithTransientArtifactChanges: 37.002ms
+	CategorizeAssets: 41.082ms
+	CompileScripts: 1223.949ms
+	ImportOutOfDateAssets: 735.193ms (722.452ms without children)
+		UnloadImportedAssets: 1.710ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.333ms
+		ImportSchedulerStart: 10.668ms
+	PostProcessAllAssets: 143.845ms
+		VCAutoAddAssetPostprocess 0.767ms
+		XRBuildSystem.XRAssetImported 0.056ms
+		MonoPostProcessAllAssets: 142.650ms
+			AssetPostprocessor.OnPostprocessAllAssets 77.541ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 20.794ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 13.335ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.895ms
+			AssetChangedListener.OnPostprocessAllAssets 1.757ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.722ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.518ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.405ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.342ms
+			SyncVS.PostprocessSyncProject 1.093ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.753ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.666ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.618ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.475ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.474ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.305ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.291ms
+			PostProcessor.OnPostprocessAllAssets 0.276ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.253ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.241ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.239ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.229ms
+			AssetEvents.OnPostprocessAllAssets 0.205ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.171ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.141ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.136ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.133ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.125ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.112ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.093ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.063ms
+	PostAssetChangesProfiler: 0.906ms
+	UnloadStreamsBegin: 1.481ms
+	PersistCurrentRevisions: 0.075ms
+	GenerateScriptTypeHashes: 1.950ms
+	GenerateScriptTypeSerializationHashes: 3.874ms
+	Untracked: 887.548ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 4.721ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-The Last Known Signal
+Unloading 27 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3652 unused Assets / (1.5 MB). Loaded Objects now: 4653.
+Memory consumption went from 332.3 MB to 330.7 MB.
+Total: 8.057200 ms (FindLiveObjects: 0.767200 ms CreateObjectMapping: 0.223800 ms MarkObjects: 6.042600 ms  DeleteObjects: 0.824400 ms)
+
+Batchmode quit successfully invoked - shutting down!
+Curl error 42: Callback aborted
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-qlsah-1.19.0-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-qlsah-1.19.0 channel disconnected successfully.
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Exiting batchmode successfully now!
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 0

@@ -75,6 +75,16 @@ namespace LastSignal
         {
             this.name = name; reliability = r; redundancy = n; this.massCost = massCost;
         }
+
+    }
+
+    public static class SubsystemNames
+    {
+        public const string Propulsion = "Propulsion";
+        public const string Power = "Power";
+        public const string LifeSupport = "Life support";
+        public const string Navigation = "Navigation";
+        public const string Comms = "Comms";
     }
 
     /// <summary>A mission plan: a list of subsystems.</summary>
@@ -82,6 +92,7 @@ namespace LastSignal
     public class PlanConfig
     {
         public List<Subsystem> subsystems = new List<Subsystem>();
+        public float massBudget = 100f;
 
         public float TotalMass()
         {

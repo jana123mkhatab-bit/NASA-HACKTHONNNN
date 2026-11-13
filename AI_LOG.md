@@ -19,4 +19,14 @@ Needed for the NASA Space Apps AI-use disclosure. Add a row whenever AI writes o
 
 Fonts: Rajdhani and Share Tech Mono (Google Fonts, SIL Open Font License 1.1); licence files sit next to the fonts in Core/Resources/LastSignal/Fonts.
 
+| 2026-11-13 | 1 (Core) | Assets/_Project/Core: MissionManager, MissionIds, MissionEvents, PlayerState, PlanConfig, RiskModel, Pip, FatherLog, HUD, Risk Gauge, Debrief/End/Fail/Title UI, StubMission | Claude | Wrote the code from the Prompt 1 brief | RiskModel tests, Unity play-through (pending) |
+| 2026-11-13 | 1 (Core) | Assets/_Project/Core/Editor: setup menus (folders, scenes, prefabs, URP, post-processing) | Claude | Wrote the editor setup scripts | Run menus 0 to 5 in Unity (pending) |
+| 2026-11-13 | 1 (Core) | Review pass: first-scene EventSystem, early OnMissionComplete, non-mission scenes, folder names, LFS rules | Claude | Fixed gaps found in review | Pending |
+| 2026-11-13 | 3 (Flight, M3) | Assets/_Project/Shared/Ship: ShipController (a = F / m, PlayerState drain, M4 landing hooks), ShipInput, ShipMassModel, LaunchSequence, ChaseCamera, ShipTelemetryHud, ShipFactory, prefab menu, tests | Claude | Wrote the code, SHIP_INTERFACE.md and the design doc from the person 3 brief | Compiled outside Unity (0 errors), 5/5 unit tests pass; Unity play-through pending |
+| 2026-11-13 | 3 (Flight, M3) | Assets/_Project/Missions/M3: M3Director, relay strike, unknown craft AI, tumble recovery, triage, scanner, reroute planner, Signal Path HUD + CSV parser, scene/debrief menus, tests, sample CSV | Claude | Wrote the code, wireframes and debrief draft text | Compiled outside Unity (0 errors), 14/14 unit tests pass; Unity play-through pending; person 6 to verify debrief sources |
+| (earlier) | Team | Mascot Pip (SourceArt/mascot_2.blend), space scene models and textures | Blender / scripts | See Art/CREDITS.md | Person 5 |
+
+| 2026-11-13 | 4 (M4/Final) | Missions/M4 (scanner + CSV loader, site picker, landing controller, procedural planet world, materials, FX, camera rig, walker, son's log, reveal fallback, survey packet), Missions/Final (call home, walk, story end card), M4_DESIGN.md | Claude Code | Wrote the code, diagram, wireframes and fallback exoplanet CSV from the Prompt brief | Terrain slopes and landing fuel/battery checked with a Python port; Unity compile and play-through (pending) |
+| 2026-11-13 | 4 (M4/Final) | Core/Resources/LastSignal/Debrief_M4 + Debrief_Final (text only) | Claude Code | Drafted the M4 and Final debrief text (Exoplanet Archive, Mars 2020 TRN, DSN) and the reveal/call-home dialogue | Person 6 must verify NASA sources; person 1 informed of the edit |
+
 Reliabilities and mass costs in PlanConfig are game-balance values, not NASA data.

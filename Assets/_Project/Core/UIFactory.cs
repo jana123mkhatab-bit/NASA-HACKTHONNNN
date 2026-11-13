@@ -23,6 +23,10 @@ namespace LastSignal
         public static readonly Color Warn = Palette.Warn;
         public static readonly Color Bad = Palette.Bad;
         public static readonly Color TextCol = Palette.Text;
+        public static readonly Color PanelColor = Palette.PanelBg;
+        public static readonly Color TextColor = Palette.Text;
+        public static readonly Color Muted = Palette.TextDim;
+        public static readonly Color BarBack = new Color(1f, 1f, 1f, 0.10f);
 
         public static Font Font => UISkin.Body;
         public static Font FontBold => UISkin.Bold;
@@ -45,6 +49,81 @@ namespace LastSignal
             s.referenceResolution = new Vector2(1920, 1080);
             s.matchWidthOrHeight = 0.5f;
             return c;
+        }
+
+        public static Canvas CreateCanvas(string name, int sortOrder, Transform parent)
+        {
+            var canvas = CreateCanvas(name, sortOrder);
+            if (parent != null) canvas.transform.SetParent(parent, false);
+            return canvas;
+        }
+
+        public static Image CreatePanel(string name, Transform parent, Color color)
+        {
+            var panel = Box(name, parent, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, color);
+            return panel.GetComponent<Image>();
+        }
+
+        public static RectTransform CreateRect(string name, Transform parent)
+        {
+            return Rect(name, parent, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero);
+        }
+
+        public static Button CreateButton(string name, Transform parent, string text, UnityEngine.Events.UnityAction onClick)
+        {
+            return Button(name, parent, text, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, onClick);
+        }
+
+        public static Image CreateBar(string name, Transform parent, Color fill, out Image back)
+        {
+            var background = Round(name, parent, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, BarBack, 4);
+            background.raycastTarget = false;
+            back = background;
+            var fillRect = Box("Fill", background.rectTransform, Vector2.zero, Vector2.one, new Vector2(3f, 3f), new Vector2(-3f, -3f), fill);
+            var image = fillRect.GetComponent<Image>();
+            image.type = Image.Type.Filled;
+            image.fillMethod = Image.FillMethod.Horizontal;
+            image.fillOrigin = 0;
+            image.fillAmount = 1f;
+            image.sprite = WhiteSprite();
+            image.raycastTarget = false;
+            return image;
+        }
+
+        public static void SetStretch(RectTransform rect, float left, float bottom, float right, float top)
+        {
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = new Vector2(left, bottom);
+            rect.offsetMax = new Vector2(-right, -top);
+        }
+
+        public static void SetFill(Image image, float value)
+        {
+            if (image != null) image.fillAmount = Mathf.Clamp01(value);
+        }
+
+        public static Text CreateText(string name, Transform parent, string text, int size, Color color, TextAnchor anchor)
+        {
+            return Label(name, parent, text, size, anchor, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, color);
+        }
+
+        public static void SetTopLeft(RectTransform rect, float left, float top, float width, float height)
+        {
+            rect.anchorMin = new Vector2(0f, 1f);
+            rect.anchorMax = new Vector2(0f, 1f);
+            rect.pivot = new Vector2(0f, 1f);
+            rect.anchoredPosition = new Vector2(left, -top);
+            rect.sizeDelta = new Vector2(width, height);
+        }
+
+        public static void SetCenter(RectTransform rect, float x, float y, float width, float height)
+        {
+            rect.anchorMin = new Vector2(0.5f, 0.5f);
+            rect.anchorMax = new Vector2(0.5f, 0.5f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.anchoredPosition = new Vector2(x, y);
+            rect.sizeDelta = new Vector2(width, height);
         }
 
         public static void EnsureEventSystem()

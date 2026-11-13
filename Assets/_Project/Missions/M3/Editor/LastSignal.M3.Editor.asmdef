@@ -1,0 +1,21 @@
+{
+    "name": "LastSignal.M3.Editor",
+    "rootNamespace": "LastSignal.M3.EditorTools",
+    "references": [
+        "LastSignal.Core",
+        "LastSignal.Ship",
+        "LastSignal.Ship.Editor",
+        "LastSignal.M3"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

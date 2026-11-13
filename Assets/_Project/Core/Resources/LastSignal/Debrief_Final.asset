@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
   m_Name: Debrief_Final
   m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
-  title: Call Home
-  concept: Deep-space communications
-  nasaSource: NASA Deep Space Network (JPL)
-  body: Signals take time to travel, and large antennas on Earth must point exactly
-    at the spacecraft to hear it.
+  title: "Call Home"
+  concept: "Deep-space communications and light-time delay"
+  nasaSource: "NASA Deep Space Network (JPL, Space Communications and Navigation program)"
+  body: "The Deep Space Network's large dishes at Goldstone, Madrid and Canberra keep in touch with every deep-space mission, and between them one site can always see a spacecraft. Radio travels at the speed of light: a message from Mars takes about 3 to 22 minutes, and one from Voyager 1 takes about a day. A spacecraft's high-gain antenna must point precisely at Earth to be heard."

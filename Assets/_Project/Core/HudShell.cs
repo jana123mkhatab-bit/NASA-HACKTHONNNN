@@ -9,11 +9,24 @@ namespace LastSignal
     /// </summary>
     public class HudShell : MonoBehaviour
     {
+        public static HudShell Instance { get; private set; }
+        public RiskGaugeWidget Gauge => _gauge;
+
         Image _supplies, _hull, _power;
         Text _supT, _hullT, _powT, _mission, _kicker;
         RiskGaugeWidget _gauge;
         Canvas _canvas;
         bool _visible = true;
+
+        void Awake()
+        {
+            Instance = this;
+        }
+
+        void OnDestroy()
+        {
+            if (Instance == this) Instance = null;
+        }
 
         public void Build()
         {
@@ -115,5 +128,10 @@ namespace LastSignal
         }
 
         public void SetVisible(bool on) { _visible = on; if (_canvas != null) _canvas.enabled = on; }
+
+        public void ShowGauge(bool show)
+        {
+            if (_gauge != null) _gauge.gameObject.SetActive(show);
+        }
     }
 }
