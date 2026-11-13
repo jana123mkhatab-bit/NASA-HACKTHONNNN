@@ -63,11 +63,15 @@ namespace LastSignal.EditorTools
                 "If every subsystem must work, their chances multiply: five parts at 63% give about 10%. A backup unit raises one subsystem from r to 1 - (1 - r)^n, " +
                 "at the cost of mass. Real programs also make sure the crew sees the risk number. Reliabilities in this game are game-balance values, not NASA data.");
             Card("M3", "Single points of failure in deep-space communication", "Relay networks and light delay",
-                "NASA Deep Space Network; JPL Horizons [persons 3 and 6: fill in]",
-                "(Placeholder for person 3.) One relay between a ship and Earth is a single point of failure. Light delay = distance / speed of light.");
+                "NASA Deep Space Network (deepspace.jpl.nasa.gov/dsn); JPL Horizons, retrieved 2026-11-13",
+                "A signal from Mars takes about 11 minutes to reach Earth, and about 44 minutes from Jupiter. You cannot ask Earth what to do, so the ship must decide alone. " +
+                "NASA's Deep Space Network uses three sites, in California, Spain and Australia, so one of them can always hear the ship as Earth turns. " +
+                "If your ship has only one radio, that radio is a single point of failure. A backup unit is what keeps the link alive.");
             Card("M4", "How scientists judge habitability from a few numbers", "Habitability from radius, insolation and temperature",
-                "NASA Exoplanet Archive [persons 4 and 6: fill in]",
-                "(Placeholder for person 4.) Radius, insolation, equilibrium temperature and orbital period hint at whether liquid water could exist.");
+                "NASA Exoplanet Archive, table pscomppars, planet TRAPPIST-1 e, retrieved 2026-11-13",
+                "Four numbers give a first guess about a planet. TRAPPIST-1 e has a radius of 0.92 Earths and gets 0.646 times Earth's sunlight. " +
+                "Its equilibrium temperature is 249.7 K, and it orbits every 6.1 days. Those values are in the range where liquid water could exist, " +
+                "but they are not proof. It depends on the atmosphere. Scientists call this habitable-zone reasoning, not a promise of life.");
             Card("Final", "Call Home", "Deep-space communications",
                 "NASA Deep Space Network (JPL)",
                 "Signals take time to travel, and large antennas on Earth must point exactly at the spacecraft to hear it.");
