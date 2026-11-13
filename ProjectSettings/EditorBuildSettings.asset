@@ -6,7 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main.unity
-    guid: 4ce42eb91c25b2042b09be0fb2a48237
+    path: Assets/_Project/Scenes/M1_Ground.unity
+    guid: a8a0dfb5215ab994a8610f9e94a1b38f
+  - enabled: 1
+    path: Assets/_Project/Scenes/M2_Preflight.unity
+    guid: c0d68e0719bbd814ba43a87e98443f33
+  - enabled: 1
+    path: Assets/_Project/Scenes/M3_DeepSpace.unity
+    guid: 279b450ea067ad34a9953a9eff87d903
+  - enabled: 1
+    path: Assets/_Project/Scenes/M4_Planet.unity
+    guid: 30c418f7b54782d4fac8c1efe1b9da47
+  - enabled: 1
+    path: Assets/_Project/Scenes/DesignMode.unity
+    guid: 2a7a43b295b11144c8a6905a70c0bebd
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

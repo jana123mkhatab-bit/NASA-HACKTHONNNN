@@ -1,0 +1,12 @@
+id,part,kind,value,unit,kg_or_n_derived,note,source_url,retrieved
+sls_b1_liftoff_mass,SLS Block 1 fueled,vehicle,5750000,lb,2608156,"kg derived: lb x 0.45359237 (Artemis I config, 322 ft tall)",https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+sls_b1_thrust,SLS Block 1 max thrust,vehicle,8800000,lbf,39144350,N derived: lb x 0.45359237 x 9.80665,https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+sls_b1_payload_moon,SLS Block 1 payload to the Moon,vehicle,27,metric tons,27000,"'more than 27 t (59,500 lb)'",https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+sls_b1b_payload,SLS Block 1B payload to deep space,vehicle,38,metric tons,38000,"'38 t (84,000 lb)'",https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+sls_b2_thrust,SLS Block 2 launch thrust,vehicle,9400000,lbf,41813283,N derived,https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+sls_b2_payload,SLS Block 2 payload to deep space,vehicle,46,metric tons,46000,"'up to 46 t (101,000 lb)'",https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+rs25_thrust_max,RS-25 engine max thrust (SLS),engine,512000,lbf,2277489,N derived; four engines per core stage,https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+rs25_x4_thrust,Four RS-25 engines combined,engine,2000000,lbf,8896443,'about 2 million lbs',https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+rl10_icps_thrust,RL10 engine on ICPS,engine,24750,lbf,110093,N derived,https://www.nasa.gov/reference/space-launch-system/,2026-11-13
+v1_mass,Voyager 1 spacecraft mass,spacecraft,721.9,kg,721.9,"NASA: 1,592 lb (721.9 kg)",https://science.nasa.gov/mission/voyager/voyager-1/,2026-11-13
+v1_rtg_power,"Voyager 1 power, each of 3 RTGs at launch",spacecraft,158,W electric,158,3 MHW-RTGs,https://science.nasa.gov/mission/voyager/voyager-1/,2026-11-13

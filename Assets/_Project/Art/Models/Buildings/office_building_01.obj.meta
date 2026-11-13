@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e2a12320596256240a0c580ab2eac994
+guid: a164ebb7ea670894ca1e407b90f88e31
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
@@ -41,9 +41,9 @@ ModelImporter:
     sortHierarchyByName: 1
     importPhysicalCameras: 1
     importVisibility: 1
-    importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -61,7 +61,7 @@ ModelImporter:
     meshLodGenerationFlags: 0
     maximumMeshLod: -1
     meshOptimizationFlags: -1
-    indexFormat: 0
+    indexFormat: 2
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

@@ -1,89 +1,58 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
-    /// <summary>
-    /// Shared player state (part of the contract). Everyone reads and writes it through PlayerState.Current.
-    /// PlayerState.Current is a runtime copy, so playing never changes the asset on disk.
-    /// </summary>
-    [CreateAssetMenu(menuName = "Last Signal/Player State", fileName = "PlayerState")]
+    /// <summary>Shared run state. Create via Assets/Create/LastSignal/PlayerState or let MissionManager make one.</summary>
+    [CreateAssetMenu(menuName = "LastSignal/PlayerState", fileName = "PlayerState")]
     public class PlayerState : ScriptableObject
     {
-        [Range(0f, 100f)] public float supplies = 100f;
-        [Range(0f, 100f)] public float hull = 100f;
-        [Range(0f, 100f)] public float power = 100f;
-        [Range(0f, 100f)] public float fuel = 100f;
-        public Vector3 heading = Vector3.forward;
-        public bool signalPathUp = true;
-        [Range(0f, 1f)] public float plannedSuccess = 0f;
-
-        /// <summary>Raised whenever a value changes through the helper methods or NotifyChanged().</summary>
+        public static PlayerState Current { get; private set; }
         public event Action Changed;
 
-        public void NotifyChanged()
-        {
-            if (Changed != null) Changed();
-        }
+        public float supplies = 100f, hull = 100f, power = 100f, fuel = 100f;
+        public Vector3 heading;
+        public bool signalPathUp;
+        [Range(0f, 1f)] public float plannedSuccess;
 
-        public void SetSupplies(float value) { supplies = Mathf.Clamp(value, 0f, 100f); NotifyChanged(); }
-        public void SetHull(float value) { hull = Mathf.Clamp(value, 0f, 100f); NotifyChanged(); }
-        public void SetPower(float value) { power = Mathf.Clamp(value, 0f, 100f); NotifyChanged(); }
-        public void SetFuel(float value) { fuel = Mathf.Clamp(value, 0f, 100f); NotifyChanged(); }
-        public void SetSignalPath(bool up) { signalPathUp = up; NotifyChanged(); }
-
-        public void SetPlannedSuccess(float value01)
+        [Serializable]
+        public struct Snapshot
         {
-            plannedSuccess = Mathf.Clamp01(value01);
-            NotifyChanged();
+            public float supplies, hull, power, fuel;
+            public Vector3 heading;
+            public bool signalPathUp;
+            public float plannedSuccess;
         }
 
         public void ResetToDefaults()
         {
-            supplies = 100f;
-            hull = 100f;
-            power = 100f;
-            fuel = 100f;
-            heading = Vector3.forward;
-            signalPathUp = true;
+            supplies = hull = power = fuel = 100f;
+            heading = Vector3.zero;
+            signalPathUp = false;
             plannedSuccess = 0f;
-            NotifyChanged();
         }
 
-        public string ToSnapshot()
-        {
-            return JsonUtility.ToJson(this);
-        }
+        public void SetHull(float value) => hull = Mathf.Clamp(value, 0f, 100f);
+        public void SetFuel(float value) => fuel = Mathf.Clamp(value, 0f, 100f);
+        public void SetSupplies(float value) => supplies = Mathf.Clamp(value, 0f, 100f);
+        public void SetPower(float value) => power = Mathf.Clamp(value, 0f, 100f);
+        public void SetSignalPath(bool value) => signalPathUp = value;
+        public void SetPlannedSuccess(float value) { plannedSuccess = Mathf.Clamp01(value); NotifyChanged(); }
+        public void NotifyChanged() { Changed?.Invoke(); }
 
-        public void RestoreSnapshot(string json)
-        {
-            if (string.IsNullOrEmpty(json)) return;
-            JsonUtility.FromJsonOverwrite(json, this);
-            NotifyChanged();
-        }
+        public static void SetCurrent(PlayerState state) { Current = state; }
 
-        static PlayerState _current;
-
-        /// <summary>The live player state for this play session.</summary>
-        public static PlayerState Current
+        public Snapshot Capture() => new Snapshot
         {
-            get
-            {
-                if (_current == null)
-                {
-                    PlayerState template = Resources.Load<PlayerState>("PlayerState");
-                    _current = template != null ? Instantiate(template) : CreateInstance<PlayerState>();
-                    _current.name = "PlayerState (runtime)";
-                    _current.hideFlags = HideFlags.DontSave;
-                }
-                return _current;
-            }
-        }
+            supplies = supplies, hull = hull, power = power, fuel = fuel,
+            heading = heading, signalPathUp = signalPathUp, plannedSuccess = plannedSuccess
+        };
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics()
+        public void Restore(Snapshot s)
         {
-            _current = null;
+            supplies = s.supplies; hull = s.hull; power = s.power; fuel = s.fuel;
+            heading = s.heading; signalPathUp = s.signalPathUp; plannedSuccess = s.plannedSuccess;
         }
     }
 }

@@ -1,0 +1,25 @@
+{
+    "name": "LastSignal.Ship.Tests",
+    "rootNamespace": "LastSignal.Ship.Tests",
+    "references": [
+        "LastSignal.Core",
+        "LastSignal.Ship",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

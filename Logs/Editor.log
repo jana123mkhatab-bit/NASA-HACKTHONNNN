@@ -1,0 +1,127 @@
+VBCSCompilerPreWarmer: WARNING: Expected Unity analyzer DLL not found at 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers/Unity.Analyzers.Common.dll' but it wasn't
+VBCSCompilerPreWarmer: WARNING: Expected Unity analyzer DLL not found at 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.Analyzers/Unity.Analyzers.LongLiving.dll' but it wasn't
+VBCSCompilerPreWarmer: WARNING: Expected Unity analyzer DLL not found at 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll' but it wasn't
+VBCSCompilerPreWarmer: WARNING: Expected Unity analyzer DLL not found at 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.SourceGenerators.dll' but it wasn't
+VBCSCompilerPreWarmer: WARNING: Expected Unity analyzer DLL not found at 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll' but it wasn't
+VBCSCompilerPreWarmer: WARNING: No VBCSCompiler watchdog at "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/UnityAutoQuitter.exe"
+VBCSCompilerPreWarmer: skipping the pre-warm, nothing would be watching the server
+VBCSCompiler prewarm took 4.64 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Jana" at "2026-11-13T17:21:32.5633996Z"
+Built from '6000.6/staging' branch; Version is '6000.6.9f1 (8c45277fb9c5) revision 9192743'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) CoreSingleLanguage' Language: 'en' Physical Memory: 15991 MB
+BatchMode: 0, IsHumanControllingUs: 1, StartBugReporterOnCrash: 1, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-11-13T17:21:32Z
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 26092, path: "C:/Program Files/WindowsApps/UnityTechnologies.UnityHub_3.22.6.65535_x64__2vrhnee42bhxm/app/UnityLicensingClient_V1/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.19.0'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Jana"
+[Licensing::IpcConnector] LicenseClient-Jana channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-Jana-1.19.0 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 4816)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Jana-1.19.0" at "2026-11-13T17:21:32.7144598Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 4816, path: "C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+Error creating external process 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager.exe' : The system cannot find the path specified.
+Error cleaning up external process: The handle is invalid.
+[Package Manager] Cannot start server process [path: `C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager.exe`]
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.9f1\Editor\Unity.exe
+-projectpath
+C:\Users\Jana\Downloads\LastHorizon_Unity\proj
+-acceptSoftwareTermsForThisRunOnly
+-useHub
+-hubIPC
+-cloudEnvironment
+production
+-licensingIpc
+LicenseClient-Jana
+-hubSessionId
+e60c20d8-f8bf-409e-8a35-36d6fdc65c13
+-accessToken
+GTm9rUeKT_dTb30OivJyUFcvjMAkyIvCnyojIkU_aoY00af
+Successfully changed project path to: C:\Users\Jana\Downloads\LastHorizon_Unity\proj
+C:/Users/Jana/Downloads/LastHorizon_Unity/proj
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.19.0+4cc3dda
+  Session Id:              6582f35550224a8ea10a8baefa88f980
+  Correlation Id:          884d552390a667d6281aa3fd6f54ed29
+  External correlation Id: 5515950612809233695
+  Machine Id:              aoYXSey1pL5diD8J7ZmBzjt9IQM=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Jana-1.19.0" (connect: 0.07s, validation: 0.07s, handshake: 0.06s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Jana-1.19.0-notifications" at "2026-11-13T17:21:32.8450315Z"
+[Licensing::Module] Connected to LicensingClient (PId: 4816, launch time: 0.02, total connection time: 0.20s)
+Player connection [2240]  Target information:
+
+Player connection [2240]  * "[IP] 192.168.56.1 [Port] 55504 [Flags] 2 [Guid] 2216551919 [EditorId] 2216551919 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FCA6DQS7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+[Licensing::Client] Successfully updated the access token
+Player connection [2240]  * "[IP] 10.231.203.18 [Port] 55504 [Flags] 2 [Guid] 2216551919 [EditorId] 2216551919 [Version] 1048832 [Id] WindowsEditor(7,LAPTOP-FCA6DQS7) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+[Licensing::Module] Successfully updated the access token GTm9rUeKT_...
+Player connection [2240] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [2240] Host joined alternative multi-casting on [225.0.0.222:34997]...
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 11270738010372-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.00
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.29s
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Failed to load ASTC compressor library from astcenc-avx2
+[Package Manager] Server process restart attempt #2
+
+Error creating external process 'C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager.exe' : The system cannot find the path specified.
+Error cleaning up external process: The handle is invalid.
+[Package Manager] Cannot start server process [path: `C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager.exe`]
+[Package Manager] Could not find Unity Package Manager local server application at [C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager.exe]. Missing files could be the result of an antivirus action or a corrupt Unity installation.
+[Package Manager] Successfully launched diagnostics process
+[Package Manager] Diagnostics process finished after 2.00 seconds with exit code -1073741510
+[ExitDontLaunchBugReporter] Exiting without the bug reporter. Application will exit with return code 1

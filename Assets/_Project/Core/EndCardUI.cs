@@ -1,73 +1,46 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
-    /// <summary>End card: planned success vs retries for each mission, then a button into Design Mode.</summary>
+    /// <summary>End card comparing the success probability you planned with how the run actually went.</summary>
     public class EndCardUI : MonoBehaviour
     {
-        GameObject _root;
-        Text _summary;
-        Action _onContinue;
+        Canvas _canvas;
+        RiskGaugeWidget _planned, _actual;
+        Text _verdict;
 
-        public static EndCardUI Create(Transform parent)
+        public void Build()
         {
-            GameObject go = new GameObject("EndCardUI");
-            go.transform.SetParent(parent, false);
-            EndCardUI ui = go.AddComponent<EndCardUI>();
-            ui.Build();
-            return ui;
+            _canvas = ScreenKit.Overlay(transform, "EndCard", 60, out var p, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                "THE LAST KNOWN SIGNAL", "MISSION RECORD");
+            p.offsetMin = new Vector2(-520, -330); p.offsetMax = new Vector2(520, 330);
+            _planned = RiskGaugeWidget.Create(p, new Vector2(150, -84), new Vector2(300, 320));
+            _planned.showBackground = false; _planned.caption = "WHAT YOU PLANNED"; _planned.Build();
+            _actual = RiskGaugeWidget.Create(p, new Vector2(590, -84), new Vector2(300, 320));
+            _actual.showBackground = false; _actual.caption = "WHAT HAPPENED"; _actual.Build();
+            _verdict = UIFactory.Label("Verdict", p, "", 26, TextAnchor.UpperLeft,
+                new Vector2(0, 0), new Vector2(1, 0), new Vector2(40, 112), new Vector2(-40, 232));
+            UIFactory.Label("Note", p, "\"What happened\" is a game-balance score from hull, power, supplies and retries.", 15, TextAnchor.MiddleLeft,
+                new Vector2(0, 0), new Vector2(1, 0), new Vector2(40, 34), new Vector2(-500, 96), Palette.TextDim).Mono();
+            UIFactory.Button("Design", p, "ENTER MISSION DESIGN MODE", new Vector2(1, 0), new Vector2(1, 0), new Vector2(-470, 34), new Vector2(-40, 96), OnDesign);
         }
 
-        void Build()
+        public void Show(float planned, float actual, int retries)
         {
-            Canvas canvas = UIFactory.CreateCanvas("EndCard", 90, transform);
-            _root = canvas.gameObject;
-            Image dim = UIFactory.CreatePanel("Dim", canvas.transform, UIFactory.Dim);
-            UIFactory.SetStretch(dim.rectTransform, 0f, 0f, 0f, 0f);
-
-            Image panel = UIFactory.CreatePanel("Panel", canvas.transform, UIFactory.PanelColor);
-            UIFactory.SetCenter(panel.rectTransform, 0f, 0f, 1200f, 760f);
-
-            Text title = UIFactory.CreateText("Title", panel.transform, "THE LAST KNOWN SIGNAL", 44, UIFactory.Accent, TextAnchor.UpperLeft);
-            UIFactory.SetTopLeft(title.rectTransform, 40f, 30f, 1120f, 60f);
-
-            _summary = UIFactory.CreateText("Summary", panel.transform, "", 28, UIFactory.TextColor, TextAnchor.UpperLeft);
-            UIFactory.SetTopLeft(_summary.rectTransform, 40f, 110f, 1120f, 480f);
-
-            Button go = UIFactory.CreateButton("DesignMode", panel.transform, "Open Design Mode", OnContinue);
-            UIFactory.SetTopRight(go.GetComponent<RectTransform>(), 40f, 660f, 300f, 56f);
-
-            _root.SetActive(false);
+            _planned.SnapTo(0f); _actual.SnapTo(0f);
+            _planned.SetValue(planned); _actual.SetValue(actual);
+            _verdict.text = actual >= planned
+                ? "You beat the odds. Good planning plus good flying. Retries: " + retries
+                : "The plan said " + (planned * 100f).ToString("0") + "%, the flight delivered " + (actual * 100f).ToString("0") + "%. Retries: " + retries;
+            Sfx.Play(Sfx.Id.Success);
+            _canvas.enabled = true;
         }
 
-        public void Show(IList<MissionRecord> records, Action onContinue)
+        void OnDesign()
         {
-            _onContinue = onContinue;
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Planned success vs. retries\n\n");
-            for (int i = 0; i < records.Count; i++)
-            {
-                MissionRecord r = records[i];
-                sb.Append(MissionIds.Title(r.missionId)).Append(":  ");
-                sb.Append(r.hasPlan ? "planned " + Mathf.RoundToInt(r.plannedSuccess * 100f) + "%" : "no plan");
-                sb.Append("  |  retries " + r.retries).Append("\n");
-            }
-            _summary.text = sb.ToString();
-            _root.SetActive(true);
-        }
-
-        public void Hide() { _root.SetActive(false); }
-
-        void OnContinue()
-        {
-            Hide();
-            Action cb = _onContinue;
-            _onContinue = null;
-            if (cb != null) cb();
+            _canvas.enabled = false;
+            MissionManager.Instance.GoTo(MissionIds.DesignMode);
         }
     }
 }

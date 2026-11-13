@@ -1,53 +1,59 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
-    public enum MissionState { Idle, Running, Debrief, Failed, Finished }
-
-    /// <summary>What the End card shows for one mission.</summary>
-    public class MissionRecord
-    {
-        public string missionId;
-        public bool hasPlan;
-        public float plannedSuccess;
-        public int retries;
-        public bool completed;
-    }
-
     /// <summary>
-    /// Owns the game flow: Boot -> M1 -> M2 -> M3 -> M4 -> Final -> DesignMode.
-    /// Created automatically (GameBootstrap) so any scene can be played on its own.
-    /// Missions talk to it only through MissionEvents and MissionManager.Checkpoint(...).
+    /// State machine: Boot -> M1 -> M2 -> M3 -> M4 -> Final -> DesignMode.
+    /// Missions only raise MissionEvents. This class is the only one that loads scenes.
     /// </summary>
     public class MissionManager : MonoBehaviour
     {
         public static MissionManager Instance { get; private set; }
 
-        public string CurrentMissionId { get; private set; }
-        public MissionState State { get; private set; }
+        public PlayerState state;
+        public PipLineSet pipLines;
+        public FatherLogBook fatherLog;
+
+        public string Current { get; private set; } = MissionIds.Boot;
+        public string CurrentMissionId => Current;
         public string LastCheckpointName { get; private set; }
-        public IList<MissionRecord> Records { get { return _records; } }
+        public int Retries { get; private set; }
+        public float PlannedSuccess => state != null ? state.plannedSuccess : 0f;
 
-        readonly List<MissionRecord> _records = new List<MissionRecord>();
-        string _startSnapshot;
-        string _checkpointSnapshot;
-        string _pendingRestore;
-        bool _isRetry;
+        /// <summary>Game-balance estimate of how the run really went (0..1).</summary>
+        public float ActualSuccess
+        {
+            get
+            {
+                if (state == null) return 0f;
+                float a = state.hull / 100f * 0.4f + state.power / 100f * 0.3f + state.supplies / 100f * 0.3f;
+                return Mathf.Clamp01(a - 0.03f * Retries);
+            }
+        }
 
-        HudShell _hud;
-        FatherLogUI _log;
-        DebriefCardUI _debrief;
-        FailPanelUI _fail;
-        EndCardUI _end;
-        TitleScreenUI _title;
+        public bool Busy { get; private set; }
 
-        public static MissionManager EnsureExists()
+        PlayerState.Snapshot _checkpoint;
+        string _checkpointMission = MissionIds.Boot;
+        readonly HashSet<string> _completed = new HashSet<string>();
+
+        public bool IsCompleted(string id) => _completed.Contains(id);
+
+        // UI hooks (set by GameBootstrap)
+        public DebriefCardUI debriefUI;
+        public FailPanelUI failUI;
+        public EndCardUI endUI;
+        public PipDialogueUI pipUI;
+        public HudShell hud;
+        public ScreenFader fader;
+
+        public static MissionManager Ensure()
         {
             if (Instance != null) return Instance;
-            GameObject go = new GameObject("MissionManager");
-            DontDestroyOnLoad(go);
+            var go = new GameObject("MissionManager");
             return go.AddComponent<MissionManager>();
         }
 
@@ -56,217 +62,193 @@ namespace LastSignal.Core
             if (Instance != null && Instance != this) { Destroy(gameObject); return; }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            if (state == null) state = Resources.Load<PlayerState>("LastSignal/PlayerState");
+            if (state == null) state = ScriptableObject.CreateInstance<PlayerState>();
+            if (pipLines == null) pipLines = Resources.Load<PipLineSet>("LastSignal/PipLines");
+            if (fatherLog == null) fatherLog = Resources.Load<FatherLogBook>("LastSignal/FatherLog");
+            // Work on a runtime copy so play mode never edits the asset on disk.
+            state = Instantiate(state);
+            PlayerState.SetCurrent(state);
+            if (state.plannedSuccess <= 0f) state.plannedSuccess = RiskModel.ComputeSuccess(PlanConfig.SonsOriginalPlan());
+        }
 
-            _hud = new GameObject("HudShell").AddComponent<HudShell>();
-            _hud.transform.SetParent(transform, false);
-            new GameObject("PipDialogueUI").AddComponent<PipDialogueUI>().transform.SetParent(transform, false);
-            _log = new GameObject("FatherLogUI").AddComponent<FatherLogUI>();
-            _log.transform.SetParent(transform, false);
-            _debrief = DebriefCardUI.Create(transform);
-            _fail = FailPanelUI.Create(transform);
-            _end = EndCardUI.Create(transform);
-            _title = TitleScreenUI.Create(transform, NewGame, JumpTo);
+        void OnEnable()
+        {
+            MissionEvents.OnMissionComplete += HandleComplete;
+            MissionEvents.OnMissionFail += HandleFail;
+        }
 
-            MissionEvents.MissionCompleted += OnComplete;
-            MissionEvents.MissionFailed += OnFail;
-            SceneManager.sceneLoaded += OnSceneLoaded;
+        void OnDisable()
+        {
+            MissionEvents.OnMissionComplete -= HandleComplete;
+            MissionEvents.OnMissionFail -= HandleFail;
         }
 
         void Start()
         {
-            // Play-from-any-scene: the scene that is already open becomes the current mission.
-            // (The first scene was loaded before this manager existed, so OnSceneLoaded never ran for it.)
-            UIFactory.EnsureEventSystem();
-            BeginMission(MissionIds.IdForScene(SceneManager.GetActiveScene().name));
+            // A scene opened directly in the Editor adopts its own mission id.
+            // M1_Ground is the first scene: it shows the title screen and waits for Begin.
+            string sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName == MissionIds.SceneFor(MissionIds.M1)) return;
+            foreach (var id in MissionIds.Order)
+                if (id != MissionIds.Boot && MissionIds.SceneFor(id) == sceneName && Current == MissionIds.Boot)
+                {
+                    AdoptMission(id);
+                    break;
+                }
         }
 
-        void OnDestroy()
+        void AdoptMission(string id)
         {
-            if (Instance != this) return;
-            MissionEvents.MissionCompleted -= OnComplete;
-            MissionEvents.MissionFailed -= OnFail;
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-            Instance = null;
+            Current = id;
+            SaveCheckpoint();
+            MissionEvents.RaiseStart(id);
+            pipUI?.Play(id);
         }
 
-        // ---------------------------------------------------------------- public API
+        // ---------- public API ----------
 
-        /// <summary>Resets progress and starts at Mission 1.</summary>
-        public void NewGame()
+        /// <summary>Start a new run from the title screen.</summary>
+        public void BeginRun()
         {
-            PlayerState.Current.ResetToDefaults();
-            FatherLog.Clear();
-            _records.Clear();
-            for (int i = 0; i < MissionIds.Order.Length - 1; i++)
-            {
-                _records.Add(new MissionRecord { missionId = MissionIds.Order[i] });
-            }
-            StartMission(MissionIds.M1);
+            state.ResetToDefaults();
+            state.plannedSuccess = RiskModel.ComputeSuccess(PlanConfig.SonsOriginalPlan());
+            Retries = 0;
+            _completed.Clear();
+            GoTo(MissionIds.M1);
         }
 
-        /// <summary>Loads a mission scene (and keeps current player state).</summary>
-        public void StartMission(string id)
+        public void SetPlannedSuccess(float p) { state.plannedSuccess = Mathf.Clamp01(p); hud?.Refresh(); }
+
+        /// <summary>Save the state to reload from if the mission is failed.</summary>
+        public void SaveCheckpoint()
         {
+            _checkpoint = state.Capture();
+            _checkpointMission = Current;
+        }
+
+        public static void Checkpoint(string name)
+        {
+            if (Instance == null) return;
+            Instance.LastCheckpointName = name;
+            Instance.SaveCheckpoint();
+        }
+
+        public void RecordPlan(string missionId, PlanConfig plan)
+        {
+            if (plan != null) SetPlannedSuccess(RiskModel.ComputeSuccess(plan));
+        }
+
+        public void GoTo(string id)
+        {
+            if (Busy) return;
+            StartCoroutine(GoToRoutine(id));
+        }
+
+        IEnumerator GoToRoutine(string id)
+        {
+            Busy = true;
+            if (fader != null) yield return fader.FadeOut();
+            Current = id;
+            SaveCheckpoint();
+            pipUI?.SetBottom(40f);
             string scene = MissionIds.SceneFor(id);
-            if (scene == null) { Debug.LogError("LastSignal: unknown mission id " + id); return; }
-            if (!Application.CanStreamedLevelBeLoaded(scene))
+            if (SceneManager.GetActiveScene().name != scene)
             {
-                Debug.LogError("LastSignal: scene '" + scene + "' is not in Build Settings. Run the menu Last Signal > 1 - Create folders, scenes and core assets.");
-                Pip.Say("I can't find the scene " + scene + ". Ask the team to run the setup menu.");
-                return;
+                var op = SceneManager.LoadSceneAsync(scene);
+                if (op == null)
+                {
+                    Debug.LogError($"[MissionManager] Scene '{scene}' is not in Build Settings. Run LastSignal > Setup > Run All.");
+                    Busy = false;
+                    if (fader != null) yield return fader.FadeIn();
+                    yield break;
+                }
+                while (!op.isDone) yield return null;
             }
-            HideAllPanels();
-            SceneManager.LoadScene(scene);
+            Busy = false;
+            MissionEvents.RaiseStart(id);
+            hud?.Refresh();
+            if (fader != null) yield return fader.FadeIn(KickerFor(id), MissionIds.TitleFor(id).ToUpperInvariant());
+            pipUI?.Play(id);
         }
 
-        void JumpTo(string id) { StartMission(id); }
-
-        /// <summary>Saves a checkpoint of the player state. Retry restores it.</summary>
-        public void SetCheckpoint(string checkpointName)
+        /// <summary>Reload the current mission scene from the last checkpoint.</summary>
+        public void RetryFromCheckpoint()
         {
-            LastCheckpointName = checkpointName;
-            _checkpointSnapshot = PlayerState.Current.ToSnapshot();
+            if (Busy) return;
+            Retries++;
+            state.Restore(_checkpoint);
+            Current = _checkpointMission;
+            StartCoroutine(RetryRoutine());
         }
 
-        /// <summary>Static shortcut: MissionManager.Checkpoint("after_launch").</summary>
-        public static void Checkpoint(string checkpointName)
+        IEnumerator RetryRoutine()
         {
-            if (Instance != null) Instance.SetCheckpoint(checkpointName);
+            Busy = true;
+            if (fader != null) yield return fader.FadeOut();
+            var op = SceneManager.LoadSceneAsync(MissionIds.SceneFor(Current));
+            while (op != null && !op.isDone) yield return null;
+            Busy = false;
+            MissionEvents.RaiseStart(Current);
+            hud?.Refresh();
+            if (fader != null) yield return fader.FadeIn();
+            pipUI?.Play(Current);
         }
 
-        /// <summary>Restores the last checkpoint (or the mission start) and reloads the scene.</summary>
-        public void Retry()
+        static string KickerFor(string id)
         {
-            if (CurrentMissionId == null) return;
-            MissionRecord r = GetRecord(CurrentMissionId);
-            r.retries++;
-            _pendingRestore = _checkpointSnapshot != null ? _checkpointSnapshot : _startSnapshot;
-            _isRetry = true;
-            StartMission(CurrentMissionId);
-        }
-
-        /// <summary>Called by the Mission Planner so the End card can show planned success.</summary>
-        public void RecordPlan(string id, PlanConfig plan)
-        {
-            MissionRecord r = GetRecord(id);
-            r.hasPlan = true;
-            r.plannedSuccess = RiskModel.ComputeSuccess(plan);
-        }
-
-        public MissionRecord GetRecord(string id)
-        {
-            for (int i = 0; i < _records.Count; i++)
+            switch (id)
             {
-                if (_records[i].missionId == id) return _records[i];
+                case MissionIds.M1: return "MISSION 1";
+                case MissionIds.M2: return "MISSION 2";
+                case MissionIds.M3: return "MISSION 3";
+                case MissionIds.M4: return "MISSION 4";
+                case MissionIds.Final: return "FINALE";
+                default: return "FREE PLAY";
             }
-            MissionRecord r = new MissionRecord { missionId = id };
-            _records.Add(r);
-            return r;
         }
 
-        // ---------------------------------------------------------------- flow
-
-        void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        public void ContinueAfterDebrief()
         {
-            UIFactory.EnsureEventSystem();
-            BeginMission(MissionIds.IdForScene(scene.name));
+            string next = MissionIds.Next(Current);
+            if (next == null) return;
+            GoTo(next);
         }
 
-        void BeginMission(string id)
+        // ---------- event handlers ----------
+
+        void HandleComplete(string id)
         {
-            if (id == null)
-            {
-                // A scene outside the mission flow (for example the old sandbox): keep our UI out of the way.
-                State = MissionState.Idle;
-                CurrentMissionId = null;
-                _title.SetVisible(false);
-                _hud.SetVisible(false);
-                _log.SetVisible(false);
-                HideAllPanels();
-                return;
-            }
-            if (State == MissionState.Running && CurrentMissionId == id && !_isRetry) return; // already started
-
-            CurrentMissionId = id;
-            State = MissionState.Running;
-
-            if (_isRetry && _pendingRestore != null)
-            {
-                PlayerState.Current.RestoreSnapshot(_pendingRestore);
-            }
-            else
-            {
-                _startSnapshot = PlayerState.Current.ToSnapshot();
-                _checkpointSnapshot = null;
-                LastCheckpointName = null;
-            }
-            _pendingRestore = null;
-            _isRetry = false;
-
-            bool isBoot = id == MissionIds.Boot;
-            _title.SetVisible(isBoot);
-            _hud.SetVisible(!isBoot);
-            _hud.SetTitle(MissionIds.Title(id));
-            _hud.ShowGauge(id == MissionIds.DesignMode);
-            _log.SetVisible(!isBoot);
-
-            if (isBoot) Pip.SayKey("welcome"); else Pip.Hint(id);
-            MissionEvents.OnMissionStart(id);
-        }
-
-        /// <summary>
-        /// A mission may report before the manager's own Start has run (for example from its Awake).
-        /// Accept it by beginning that mission first, so MissionEvents.OnMissionComplete always works.
-        /// </summary>
-        bool Accept(string id)
-        {
-            if (State == MissionState.Idle && MissionIds.SceneFor(id) != null) BeginMission(id);
-            return State == MissionState.Running && id == CurrentMissionId;
-        }
-
-        void OnComplete(string id)
-        {
-            if (!Accept(id)) return;
-            GetRecord(id).completed = true;
-            FatherLog.AddForMission(id);
-
+            // Any scene can call this directly: adopt the id if we were not tracking it yet.
+            if (Current != id) Current = id;
+            _completed.Add(id);
             if (id == MissionIds.Final)
             {
-                State = MissionState.Debrief;
-                _end.Show(_records, delegate { StartMission(MissionIds.DesignMode); });
+                if (endUI != null) endUI.Show(PlannedSuccess, ActualSuccess, Retries);
+                else GoTo(MissionIds.DesignMode);
                 return;
             }
-            if (id == MissionIds.DesignMode)
-            {
-                State = MissionState.Finished;
-                StartMission(MissionIds.Boot);
-                return;
-            }
-
-            State = MissionState.Debrief;
-            string next = MissionIds.Next(id);
-            _debrief.Show(DebriefCard.For(id), delegate { StartMission(next); });
+            var card = Resources.Load<DebriefCard>("LastSignal/Debrief_" + id);
+            if (debriefUI != null) debriefUI.Show(card != null ? card : FallbackCard(id));
+            else ContinueAfterDebrief();
         }
 
-        void OnFail(string id, string reason)
+        void HandleFail(string id, string reason)
         {
-            if (!Accept(id)) return;
-            State = MissionState.Failed;
-            Pip.Hint(id);
-            _fail.Show(reason, Retry);
+            if (Current != id) Current = id;
+            string hint = pipLines != null ? pipLines.Find(id)?.failHint : null;
+            if (failUI != null) failUI.Show(id, reason, string.IsNullOrEmpty(hint) ? "Try again. Check the plan first." : hint);
+            else RetryFromCheckpoint();
         }
 
-        void HideAllPanels()
+        static DebriefCard FallbackCard(string id)
         {
-            _debrief.Hide();
-            _fail.Hide();
-            _end.Hide();
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics()
-        {
-            Instance = null;
+            var c = ScriptableObject.CreateInstance<DebriefCard>();
+            c.title = MissionIds.TitleFor(id);
+            c.concept = "(placeholder concept)";
+            c.nasaSource = "(placeholder NASA source)";
+            c.body = "Debrief for " + id + " has not been written yet.";
+            return c;
         }
     }
 }

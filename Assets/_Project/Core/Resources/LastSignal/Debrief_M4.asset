@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
+  m_Name: Debrief_M4
+  m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
+  title: "Someone's Been Living Here"
+  concept: "Landing-site selection and exoplanet characterisation"
+  nasaSource: "NASA Exoplanet Archive (radius, insolation, equilibrium temperature, orbital period); NASA/JPL Mars 2020 landing-site selection and Terrain-Relative Navigation"
+  body: "Mission planners rank landing sites by slope, boulders, sunlight for power and science value such as water. Perseverance used Terrain-Relative Navigation to steer away from hazards while landing in Jezero Crater. The planet you scanned is built from real measurements in the NASA Exoplanet Archive: its radius hints at a rocky world, and the starlight it receives sets its equilibrium temperature. Landing limits, fuel and power in this mission are game-balance values."

@@ -1,48 +1,44 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
     /// <summary>
-    /// Placeholder mission used by the generated scenes until a team member replaces it.
-    /// Shows buttons to set a checkpoint, fail and complete, so the flow can be tested end to end.
-    /// Delete this component from your scene when you add the real mission.
+    /// Placeholder mission: two buttons that raise Complete or Fail for whatever mission is current.
+    /// Owners delete this component from their scene once the real mission exists.
     /// </summary>
     public class StubMission : MonoBehaviour
     {
-        public string missionId;
-        int _checkpointCount;
+        Canvas _canvas;
+        Text _label;
 
         void Start()
         {
-            if (string.IsNullOrEmpty(missionId)) missionId = MissionIds.IdForScene(gameObject.scene.name);
-            Canvas canvas = UIFactory.CreateCanvas("StubMission", 20, transform);
+            _canvas = UIFactory.CreateCanvas("StubMission", 5);
+            _canvas.transform.SetParent(transform, false);
+            var root = (RectTransform)_canvas.transform;
+            var p = UIFactory.Window("Panel", root, new Vector2(1, 1), new Vector2(1, 1), new Vector2(-476, -316), new Vector2(-24, -92));
+            _label = UIFactory.Label("Label", p, "", 24, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(14, -80), new Vector2(-14, -10));
+            UIFactory.Button("Complete", p, "Complete mission", new Vector2(0, 0), new Vector2(0.5f, 0), new Vector2(10, 12), new Vector2(-5, 70),
+                () => MissionEvents.RaiseComplete(CurrentId()));
+            UIFactory.Button("Fail", p, "Fail mission", new Vector2(0.5f, 0), new Vector2(1, 0), new Vector2(5, 12), new Vector2(-10, 70),
+                () => MissionEvents.RaiseFail(CurrentId(), "Stub failure for testing the retry flow."));
+        }
 
-            Text title = UIFactory.CreateText("Title", canvas.transform, "PLACEHOLDER: " + MissionIds.Title(missionId), 48, UIFactory.TextColor, TextAnchor.MiddleCenter);
-            UIFactory.SetCenter(title.rectTransform, 0f, 160f, 1500f, 80f);
+        string CurrentId()
+        {
+            var m = MissionManager.Instance;
+            return m != null && m.Current != MissionIds.Boot ? m.Current : MissionIds.M1;
+        }
 
-            Text note = UIFactory.CreateText("Note", canvas.transform, "The real mission replaces this scene content.", 28, UIFactory.Muted, TextAnchor.MiddleCenter);
-            UIFactory.SetCenter(note.rectTransform, 0f, 90f, 1500f, 50f);
-
-            Button cp = UIFactory.CreateButton("Checkpoint", canvas.transform, "Set checkpoint", delegate
-            {
-                _checkpointCount++;
-                PlayerState.Current.SetFuel(PlayerState.Current.fuel - 10f);
-                MissionManager.Checkpoint("stub_" + _checkpointCount);
-            });
-            UIFactory.SetCenter(cp.GetComponent<RectTransform>(), -330f, -20f, 300f, 64f);
-
-            Button fail = UIFactory.CreateButton("Fail", canvas.transform, "Fail mission", delegate
-            {
-                MissionEvents.OnMissionFail(missionId, "Stub failure: pressed the Fail button.");
-            });
-            UIFactory.SetCenter(fail.GetComponent<RectTransform>(), 0f, -20f, 300f, 64f);
-
-            Button done = UIFactory.CreateButton("Complete", canvas.transform, "Complete mission", delegate
-            {
-                MissionEvents.OnMissionComplete(missionId);
-            });
-            UIFactory.SetCenter(done.GetComponent<RectTransform>(), 330f, -20f, 300f, 64f);
+        void Update()
+        {
+            if (_label == null) return;
+            var m = MissionManager.Instance;
+            bool title = m == null || m.Current == MissionIds.Boot && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == MissionIds.SceneFor(MissionIds.M1);
+            _canvas.enabled = !title;
+            _label.text = "STUB MISSION  " + CurrentId() + "\n" + MissionIds.TitleFor(CurrentId());
         }
     }
 }

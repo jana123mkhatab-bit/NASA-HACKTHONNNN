@@ -1,82 +1,68 @@
 using System.Text;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
-    /// <summary>
-    /// "Father's log" panel. A Log button opens a list of entries added through FatherLog.Add(...)
-    /// and automatically when missions complete.
-    /// </summary>
+    /// <summary>Father's log. Press L to open or close. Entries unlock as missions are completed.</summary>
     public class FatherLogUI : MonoBehaviour
     {
-        public static FatherLogUI Instance { get; private set; }
-
-        GameObject _root;
-        GameObject _button;
-        GameObject _panel;
+        Canvas _canvas;
         Text _body;
+        readonly List<string> _runtimeEntries = new List<string>();
 
-        void Awake()
+        public void Build()
         {
-            Instance = this;
-            Canvas canvas = UIFactory.CreateCanvas("FatherLog", 55, transform);
-            _root = canvas.gameObject;
-
-            Button open = UIFactory.CreateButton("LogButton", canvas.transform, "Log", Toggle);
-            UIFactory.SetTopLeft(open.GetComponent<RectTransform>(), 24f, 110f, 140f, 48f);
-            _button = open.gameObject;
-
-            _panel = UIFactory.CreatePanel("Panel", canvas.transform, UIFactory.PanelColor).gameObject;
-            UIFactory.SetCenter(_panel.GetComponent<RectTransform>(), 0f, 0f, 1000f, 640f);
-
-            Text title = UIFactory.CreateText("Title", _panel.transform, "FATHER'S LOG", 28, UIFactory.Accent, TextAnchor.UpperLeft);
-            UIFactory.SetTopLeft(title.rectTransform, 30f, 22f, 600f, 40f);
-
-            _body = UIFactory.CreateText("Body", _panel.transform, "", 28, UIFactory.TextColor, TextAnchor.UpperLeft);
-            UIFactory.SetStretch(_body.rectTransform, 30f, 76f, 30f, 90f);
-
-            Button close = UIFactory.CreateButton("Close", _panel.transform, "Close", Toggle);
-            UIFactory.SetTopRight(close.GetComponent<RectTransform>(), 30f, 20f, 160f, 48f);
-
-            _panel.SetActive(false);
-            FatherLog.Changed += Refresh;
-            Refresh();
-            SetVisible(false);
+            _canvas = ScreenKit.Overlay(transform, "FatherLog", 35, out var panel, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                "FATHER'S LOG", "PRIVATE");
+            panel.offsetMin = new Vector2(-460, -380); panel.offsetMax = new Vector2(460, 380);
+            var bar = panel.Find("AccentBar");
+            if (bar != null) bar.GetComponent<Image>().color = Palette.Foil;
+            _body = UIFactory.Label("Body", panel, "", 25, TextAnchor.UpperLeft,
+                new Vector2(0, 0), new Vector2(1, 1), new Vector2(40, 110), new Vector2(-40, -80), Palette.Text);
+            _body.lineSpacing = 1.12f;
+            UIFactory.Button("Close", panel, "CLOSE  [L]", new Vector2(1, 0), new Vector2(1, 0), new Vector2(-240, 34), new Vector2(-40, 90), Toggle, ButtonStyle.Ghost);
         }
 
-        void OnDestroy()
+        void Update()
         {
-            FatherLog.Changed -= Refresh;
-            if (Instance == this) Instance = null;
+            if (_canvas != null && Inp.LogKeyDown()) Toggle();
         }
 
-        public void SetVisible(bool visible)
+        public void Toggle()
         {
-            if (_root != null) _root.SetActive(visible);
+            if (_canvas == null) return;
+            var m = MissionManager.Instance;
+            if (!_canvas.enabled && m != null && m.Current == MissionIds.Boot) return; // not on the title screen
+            _canvas.enabled = !_canvas.enabled;
+            if (_canvas.enabled) Refresh();
         }
 
-        void Toggle()
+        public void Refresh()
         {
-            _panel.SetActive(!_panel.activeSelf);
-        }
-
-        void Refresh()
-        {
-            if (_body == null) return;
-            StringBuilder sb = new StringBuilder();
-            if (FatherLog.Entries.Count == 0) sb.Append("No entries yet.");
-            for (int i = 0; i < FatherLog.Entries.Count; i++)
+            var m = MissionManager.Instance;
+            var sb = new StringBuilder();
+            if (m != null && m.fatherLog != null)
             {
-                sb.Append("- ").Append(FatherLog.Entries[i]).Append("\n\n");
+                foreach (var e in m.fatherLog.entries)
+                {
+                    bool open = string.IsNullOrEmpty(e.unlockedAfter) || m.IsCompleted(e.unlockedAfter);
+                    if (!open) continue;
+                    sb.Append("<color=#C9A24A><b>").Append(e.heading.ToUpperInvariant()).AppendLine("</b></color>");
+                    sb.AppendLine(e.text).AppendLine();
+                }
             }
+            if (sb.Length == 0) sb.Append("(no entries yet)");
+            for (int i = 0; i < _runtimeEntries.Count; i++)
+                sb.Append("<color=#C9A24A><b>NEW SIGNAL</b></color>\n").AppendLine(_runtimeEntries[i]).AppendLine();
             _body.text = sb.ToString();
         }
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        static void ResetStatics()
+        public void AddEntry(string text)
         {
-            Instance = null;
+            if (!string.IsNullOrEmpty(text)) _runtimeEntries.Add(text);
+            if (_canvas != null && _canvas.enabled) Refresh();
         }
     }
 }

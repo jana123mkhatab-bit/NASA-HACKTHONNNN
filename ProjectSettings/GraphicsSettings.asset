@@ -34,19 +34,10 @@ GraphicsSettings:
   - {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10783, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 4800000, guid: 11302890f7938e4489a2025ddefdf373, type: 3}
-  - {fileID: 4800000, guid: 3471d94f35d430a4c885371c550bff7a, type: 3}
-  - {fileID: 4800000, guid: 304209888f2932c4aacf816c80a6c2c2, type: 3}
-  - {fileID: 4800000, guid: 0a3e807aaa9fac445a5d8221598fc160, type: 3}
-  - {fileID: 4800000, guid: f6c157a08b6b23640b27cdb86edbd649, type: 3}
-  - {fileID: 4800000, guid: c5a690d499dbfa645a9566ee2c9db0ed, type: 3}
-  - {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  - {fileID: 4800000, guid: 650dd9526735d5b46b79224bc6e94025, type: 3}
   m_PreloadedShaders: []
   m_PreloadShadersBatchTimeLimit: -1
   m_SpritesDefaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_CustomRenderPipeline: {fileID: 11400000, guid: 0c3cc89f6d8506340b6cececb7d4f552, type: 2}
+  m_CustomRenderPipeline: {fileID: 11400000, guid: dafc9c5e19f4f4448b3fe2aebff366cd, type: 2}
   m_TransparencySortMode: 0
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
   m_DefaultRenderingPath: 1
@@ -67,7 +58,7 @@ GraphicsSettings:
   m_FogKeepExp2: 1
   m_AlbedoSwatchInfos: []
   m_RenderPipelineGlobalSettingsMap:
-    UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: cbb5314ab8043ae48b2d06639caeba00, type: 2}
+    UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: bfff4a2ebd7240f41a29ab88ff8a87f2, type: 2}
   m_ShaderBuildSettings:
     keywordDeclarationOverrides: []
   m_LightsUseLinearIntensity: 1

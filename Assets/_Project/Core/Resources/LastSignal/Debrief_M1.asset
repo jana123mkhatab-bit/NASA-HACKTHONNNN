@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
+  m_Name: Debrief_M1
+  m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
+  title: Why mass is the enemy of every mission
+  concept: 'Newton''s second law: acceleration = thrust / mass'
+  nasaSource: 'NASA Glenn Research Center, Beginner''s Guide to Rockets (Newton''s
+    laws of motion) [person 6: confirm exact page]'
+  body: The same engine pushes a heavier frame more slowly. Every kilogram you add
+    needs more thrust, and on a real rocket more propellant, which is more mass again
+    (the rocket equation). Engineers fight for every kilogram. Part masses and thrusts
+    in M1 are game-balance values.

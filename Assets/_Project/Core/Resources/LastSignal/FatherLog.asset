@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c10133b5f021b4d88c1aace03f048b, type: 3}
+  m_Name: FatherLog
+  m_EditorClassIdentifier: LastSignal.Core::LastSignal.FatherLogBook
+  entries:
+  - unlockedAfter: 
+    heading: Day 1
+    text: They found the capsule. I keep thinking he is alive.
+  - unlockedAfter: M1
+    heading: Day 9
+    text: The serial number matched. It was his ship. The last heading points past
+      Mars.
+  - unlockedAfter: M2
+    heading: Day 20
+    text: I fixed his plan. Ten percent became seventy. He would have laughed.
+  - unlockedAfter: M3
+    heading: Day 41
+    text: A ship came out of nowhere and took half my supplies. It did not answer
+      my hails.
+  - unlockedAfter: M4
+    heading: Day 63
+    text: The water collector is his. The footprints are fresh.

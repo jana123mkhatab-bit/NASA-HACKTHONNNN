@@ -1,62 +1,46 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
-    /// <summary>Shown when a mission fails: the reason, and a Retry button that restores the last checkpoint.</summary>
+    /// <summary>Shown when a mission fails: the reason, Pip's hint, and a retry button.</summary>
     public class FailPanelUI : MonoBehaviour
     {
-        GameObject _root;
-        Text _reason;
-        Action _onRetry;
+        Canvas _canvas;
+        Text _reason, _hint;
 
-        public static FailPanelUI Create(Transform parent)
+        public bool IsOpen => _canvas != null && _canvas.enabled;
+
+        public void Build()
         {
-            GameObject go = new GameObject("FailPanelUI");
-            go.transform.SetParent(parent, false);
-            FailPanelUI ui = go.AddComponent<FailPanelUI>();
-            ui.Build();
-            return ui;
+            _canvas = ScreenKit.Overlay(transform, "FailPanel", 50, out var p, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
+                "MISSION FAILED", "RETURN TO CHECKPOINT");
+            p.offsetMin = new Vector2(-470, -230); p.offsetMax = new Vector2(470, 230);
+            var bar = p.Find("AccentBar");
+            if (bar != null) bar.GetComponent<Image>().color = Palette.Bad;
+            _reason = UIFactory.Label("Reason", p, "", 30, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -200), new Vector2(-40, -80)).Bold();
+            var box = UIFactory.Round("HintBox", p, new Vector2(0, 0), new Vector2(1, 1), new Vector2(40, 116), new Vector2(-40, -212), Palette.Inset, 8);
+            box.raycastTarget = false;
+            UIFactory.Label("HintL", box.rectTransform, "PIP SAYS", 15, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(18, -32), new Vector2(-18, -10), Palette.Accent).Mono();
+            _hint = UIFactory.Label("Hint", box.rectTransform, "", 25, TextAnchor.UpperLeft,
+                new Vector2(0, 0), new Vector2(1, 1), new Vector2(18, 10), new Vector2(-18, -36));
+            UIFactory.Button("Retry", p, "RETRY FROM CHECKPOINT", new Vector2(1, 0), new Vector2(1, 0), new Vector2(-400, 34), new Vector2(-40, 96), OnRetry);
         }
 
-        void Build()
+        public void Show(string id, string reason, string hint)
         {
-            Canvas canvas = UIFactory.CreateCanvas("FailPanel", 85, transform);
-            _root = canvas.gameObject;
-            Image dim = UIFactory.CreatePanel("Dim", canvas.transform, UIFactory.Dim);
-            UIFactory.SetStretch(dim.rectTransform, 0f, 0f, 0f, 0f);
-
-            Image panel = UIFactory.CreatePanel("Panel", canvas.transform, UIFactory.PanelColor);
-            UIFactory.SetCenter(panel.rectTransform, 0f, 0f, 900f, 420f);
-
-            Text title = UIFactory.CreateText("Title", panel.transform, "MISSION FAILED", 40, UIFactory.Bad, TextAnchor.UpperLeft);
-            UIFactory.SetTopLeft(title.rectTransform, 40f, 30f, 820f, 56f);
-
-            _reason = UIFactory.CreateText("Reason", panel.transform, "", 28, UIFactory.TextColor, TextAnchor.UpperLeft);
-            UIFactory.SetTopLeft(_reason.rectTransform, 40f, 110f, 820f, 190f);
-
-            Button retry = UIFactory.CreateButton("Retry", panel.transform, "Retry from checkpoint", OnRetry);
-            UIFactory.SetTopRight(retry.GetComponent<RectTransform>(), 40f, 330f, 360f, 56f);
-
-            _root.SetActive(false);
+            _reason.text = reason;
+            _hint.text = hint;
+            Sfx.Play(Sfx.Id.Fail);
+            _canvas.enabled = true;
         }
-
-        public void Show(string reason, Action onRetry)
-        {
-            _onRetry = onRetry;
-            _reason.text = string.IsNullOrEmpty(reason) ? "The mission did not succeed." : reason;
-            _root.SetActive(true);
-        }
-
-        public void Hide() { _root.SetActive(false); }
 
         void OnRetry()
         {
-            Hide();
-            Action cb = _onRetry;
-            _onRetry = null;
-            if (cb != null) cb();
+            _canvas.enabled = false;
+            MissionManager.Instance.RetryFromCheckpoint();
         }
     }
 }

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c11ca93ae4c81441b331ed9be64868a, type: 3}
+  m_Name: Debrief_M2
+  m_EditorClassIdentifier: LastSignal.Core::LastSignal.DebriefCard
+  title: Redundancy, and why risk numbers must reach the crew
+  concept: Reliability of series systems and redundancy
+  nasaSource: 'NASA Systems Engineering Handbook, NASA/SP-2016-6105 Rev2 [person
+    6: confirm section]'
+  body: 'If every subsystem must work, their chances multiply: five parts at 63%
+    give about 10%. A backup unit raises one subsystem from r to 1 - (1 - r)^n, at
+    the cost of mass. Real programs also make sure the crew sees the risk number.
+    Reliabilities in this game are game-balance values, not NASA data.'

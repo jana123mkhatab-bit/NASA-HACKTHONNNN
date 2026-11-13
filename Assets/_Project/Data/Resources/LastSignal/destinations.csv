@@ -1,0 +1,5 @@
+id,name,target,distance_from_earth_km,one_way_light_time_s,mass_budget_t,mission_days,distance_source_row,source_url,retrieved,balance_note
+moon,The Moon,Moon,405339,1.4,12.0,8,horizons_positions_2026-11-13.csv#Moon,https://ssd.jpl.nasa.gov/horizons/,2026-11-13,"distance and light time = NASA data; mass_budget_t and mission_days = GAME-BALANCE values, not NASA data"
+mars,Mars,Mars,199402324,665.1,10.0,30,horizons_positions_2026-11-13.csv#Mars,https://ssd.jpl.nasa.gov/horizons/,2026-11-13,"distance and light time = NASA data; mass_budget_t and mission_days = GAME-BALANCE values, not NASA data"
+jupiter,Jupiter,Jupiter,795044920,2652.0,8.5,60,horizons_positions_2026-11-13.csv#Jupiter,https://ssd.jpl.nasa.gov/horizons/,2026-11-13,"distance and light time = NASA data; mass_budget_t and mission_days = GAME-BALANCE values, not NASA data"
+trappist1e,TRAPPIST-1 e,TRAPPIST-1,383546292414474,1279371238,7.0,90,exoplanet_trappist1e.csv (sy_dist 12.43 pc; km and s derived),https://exoplanetarchive.ipac.caltech.edu/,2026-11-13,"distance and light time = NASA data; mass_budget_t and mission_days = GAME-BALANCE values, not NASA data"

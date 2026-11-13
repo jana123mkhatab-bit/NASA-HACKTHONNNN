@@ -1,16 +1,13 @@
 {
-    "name": "LastSignal.Core",
-    "rootNamespace": "LastSignal.Core",
-    "references": [
-        "UnityEngine.UI"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "LastSignal.Core",
+  "rootNamespace": "LastSignal",
+  "references": [
+    "Unity.InputSystem",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Core.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true
 }

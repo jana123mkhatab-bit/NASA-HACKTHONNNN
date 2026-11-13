@@ -1,52 +1,92 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LastSignal.Core
+namespace LastSignal
 {
-    /// <summary>Title screen in the Boot scene: Start button, plus debug jump buttons in editor/debug builds.</summary>
+    /// <summary>
+    /// Title screen shown over the first scene. It carries the hook of the whole game: the son's launch
+    /// panel, where the Success Probability reads "??%" because the number never reached him.
+    /// Begin starts a new run at M1.
+    /// </summary>
     public class TitleScreenUI : MonoBehaviour
     {
-        GameObject _root;
+        Canvas _canvas;
+        CanvasGroup _group;
+        float _fade = -1f;
 
-        public static TitleScreenUI Create(Transform parent, Action onStart, Action<string> onJump)
+        public void Build()
         {
-            GameObject go = new GameObject("TitleScreenUI");
-            go.transform.SetParent(parent, false);
-            TitleScreenUI ui = go.AddComponent<TitleScreenUI>();
-            ui.Build(onStart, onJump);
-            return ui;
+            _canvas = UIFactory.CreateCanvas("Title", 70);
+            _canvas.transform.SetParent(transform, false);
+            var root = (RectTransform)_canvas.transform;
+            _group = UIFactory.Group(_canvas);
+
+            // Darken the scene behind: heavy on the left where the text sits, open on the right.
+            UIFactory.Box("Shade", root, Vector2.zero, Vector2.one, Vector2.zero, Vector2.zero, Palette.A(Palette.Shadow, 0.42f));
+            var left = UIFactory.Rect("ShadeLeft", root, Vector2.zero, new Vector2(0.75f, 1), Vector2.zero, Vector2.zero);
+            var li = left.gameObject.AddComponent<Image>();
+            li.sprite = UISkin.FadeRight(); li.color = Palette.A(Palette.Ink, 0.92f); li.raycastTarget = false;
+
+            UIFactory.Label("Kicker", root, "NASA SPACE APPS CHALLENGE  ·  CAIRO 2026  ·  SPACE MISSION DESIGN GAME", 17, TextAnchor.LowerLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, 252), new Vector2(1100, 280), Palette.Accent).Mono();
+            UIFactory.Label("Name1", root, "THE LAST", 124, TextAnchor.LowerLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(114, 126), new Vector2(1100, 256)).Bold();
+            UIFactory.Label("Name2", root, "KNOWN SIGNAL", 124, TextAnchor.LowerLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(114, 16), new Vector2(1200, 146), Palette.Accent).Bold();
+            var rule = UIFactory.Box("Rule", root, new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, 2), new Vector2(520, 5), Palette.Warn);
+            rule.GetComponent<Image>().raycastTarget = false;
+            UIFactory.Label("Sub", root,
+                "Year 2590. A survey pilot vanished on a flight nobody should have approved.\nHis father joins the build team of the next ship.", 28, TextAnchor.UpperLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -96), new Vector2(980, -14), Palette.Text);
+            UIFactory.Label("Pitch", root, "Design the mission. See its true odds. Live with the consequences.", 22, TextAnchor.UpperLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -146), new Vector2(980, -108), Palette.TextDim);
+
+            UIFactory.Button("Begin", root, "BEGIN MISSION 1", new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -262), new Vector2(470, -192), OnBegin);
+            UIFactory.Label("Keys", root, "Mouse to play  ·  SPACE advances Pip  ·  L opens the father's log", 16, TextAnchor.UpperLeft,
+                new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -306), new Vector2(980, -278), Palette.TextDim).Mono();
+
+            // The son's launch panel.
+            var card = UIFactory.Window("LaunchPanel", root, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-560, -250), new Vector2(-120, 250),
+                "LAUNCH PANEL", "SURVEY FLIGHT 041");
+            var gauge = RiskGaugeWidget.Create(card, new Vector2(70, -78), new Vector2(300, 300));
+            gauge.showBackground = false;
+            gauge.Build();
+            gauge.SetUnknown();
+            UIFactory.Label("Quote", card, "\"Dad, I'll call you when I get there.\"", 25, TextAnchor.MiddleCenter,
+                new Vector2(0, 0), new Vector2(1, 0), new Vector2(24, 64), new Vector2(-24, 112), Palette.Text);
+            UIFactory.Label("Note", card, "The pilot never saw this number.", 17, TextAnchor.MiddleCenter,
+                new Vector2(0, 0), new Vector2(1, 0), new Vector2(24, 26), new Vector2(-24, 58), Palette.Warn).Mono();
+
+            UIFactory.Label("Credit", root,
+                "Uses NASA open data. Reliability and mass values are game-balance values, not NASA data.", 16, TextAnchor.LowerLeft,
+                new Vector2(0, 0), new Vector2(1, 0), new Vector2(120, 34), new Vector2(-120, 60), Palette.A(Palette.TextDim, 0.85f)).Mono();
         }
 
-        void Build(Action onStart, Action<string> onJump)
+        void OnBegin()
         {
-            Canvas canvas = UIFactory.CreateCanvas("Title", 70, transform);
-            _root = canvas.gameObject;
-
-            Image back = UIFactory.CreatePanel("Back", canvas.transform, new Color(0.02f, 0.03f, 0.07f, 0.55f));
-            UIFactory.SetStretch(back.rectTransform, 0f, 0f, 0f, 0f);
-
-            Text title = UIFactory.CreateText("Title", canvas.transform, "THE LAST KNOWN SIGNAL", 84, UIFactory.TextColor, TextAnchor.MiddleCenter);
-            UIFactory.SetCenter(title.rectTransform, 0f, 220f, 1600f, 120f);
-
-            Text sub = UIFactory.CreateText("Sub", canvas.transform, "Your father's last signal is still out there.", 32, UIFactory.Muted, TextAnchor.MiddleCenter);
-            UIFactory.SetCenter(sub.rectTransform, 0f, 130f, 1400f, 50f);
-
-            Button start = UIFactory.CreateButton("Start", canvas.transform, "Start", delegate { if (onStart != null) onStart(); });
-            UIFactory.SetCenter(start.GetComponent<RectTransform>(), 0f, 0f, 320f, 70f);
-
-            if (Application.isEditor || Debug.isDebugBuild)
-            {
-                string[] ids = { MissionIds.M1, MissionIds.M2, MissionIds.M3, MissionIds.M4, MissionIds.Final, MissionIds.DesignMode };
-                for (int i = 0; i < ids.Length; i++)
-                {
-                    string id = ids[i];
-                    Button b = UIFactory.CreateButton("Jump_" + id, canvas.transform, "DEV: " + id, delegate { if (onJump != null) onJump(id); });
-                    UIFactory.SetCenter(b.GetComponent<RectTransform>(), -500f + i * 200f, -300f, 180f, 50f);
-                }
-            }
+            if (_fade >= 0f) return;
+            Sfx.Play(Sfx.Id.Confirm);
+            _group.interactable = false;
+            _fade = 0f;
+            MissionManager.Instance.BeginRun();
         }
 
-        public void SetVisible(bool v) { if (_root != null) _root.SetActive(v); }
+        void Update()
+        {
+            // However the run was started, the title never covers a mission.
+            var mm = MissionManager.Instance;
+            if (_fade < 0f && _canvas != null && _canvas.enabled && mm != null && mm.Current != MissionIds.Boot) _fade = 0f;
+            if (_fade < 0f || _canvas == null || !_canvas.enabled) return;
+            _fade += Time.unscaledDeltaTime / 0.35f;
+            _group.alpha = 1f - Mathf.Clamp01(_fade);
+            if (_fade >= 1f) { _canvas.enabled = false; _fade = -1f; }
+        }
+
+        public void Show()
+        {
+            _fade = -1f;
+            _group.alpha = 1f; _group.interactable = true;
+            _canvas.enabled = true;
+        }
     }
 }

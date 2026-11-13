@@ -1,18 +1,13 @@
 {
-    "name": "LastSignal.Editor",
-    "rootNamespace": "LastSignal.EditorTools",
-    "references": [
-        "LastSignal.Core"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": false,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "LastSignal.Editor",
+  "rootNamespace": "LastSignal.EditorTools",
+  "references": [
+    "LastSignal.Core",
+    "Unity.RenderPipelines.Universal.Runtime",
+    "Unity.RenderPipelines.Universal.Editor",
+    "Unity.RenderPipelines.Core.Runtime"
+  ],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "autoReferenced": true
 }
