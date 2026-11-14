@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 
 namespace LastSignal
 {
@@ -19,25 +18,33 @@ namespace LastSignal
 
         void Update()
         {
-            Mouse mouse = Mouse.current;
-            if (mouse == null) return;
+            Vector2 position = Input.mousePosition;
+            bool pressed = Input.GetMouseButtonDown(0);
+            bool released = Input.GetMouseButtonUp(0);
+            _data.position = position;
 
-            _data.position = mouse.position.ReadValue();
-            if (mouse.leftButton.wasPressedThisFrame)
+            if (pressed)
             {
                 _pressed = RaycastTarget();
-                if (_pressed != null) ExecuteEvents.Execute(_pressed, _data, ExecuteEvents.pointerDownHandler);
+                if (_pressed != null)
+                {
+                    _data.pointerPress = _pressed;
+                    _data.rawPointerPress = _pressed;
+                    ExecuteEvents.ExecuteHierarchy(_pressed, _data, ExecuteEvents.pointerDownHandler);
+                }
             }
 
-            if (!mouse.leftButton.wasReleasedThisFrame) return;
+            if (!released) return;
 
-            GameObject released = RaycastTarget();
+            GameObject releasedTarget = RaycastTarget();
             if (_pressed != null)
             {
-                ExecuteEvents.Execute(_pressed, _data, ExecuteEvents.pointerUpHandler);
-                if (_pressed == released)
-                    ExecuteEvents.Execute(_pressed, _data, ExecuteEvents.pointerClickHandler);
+                ExecuteEvents.ExecuteHierarchy(_pressed, _data, ExecuteEvents.pointerUpHandler);
+                if (_pressed == releasedTarget)
+                    ExecuteEvents.ExecuteHierarchy(_pressed, _data, ExecuteEvents.pointerClickHandler);
             }
+            _data.pointerPress = null;
+            _data.rawPointerPress = null;
             _pressed = null;
         }
 
