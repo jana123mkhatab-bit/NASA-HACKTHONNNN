@@ -6,12 +6,13 @@ A Unity game that teaches how real space missions are designed. A relay satellit
 
 ## How to open the working prototype
 
-The game is a ready-to-run Windows build. It is **not** stored in this repository (Unity build output is excluded from Git), so download it here:
+The game is a ready-to-run Windows build, included in this repository in the [`TheLastKnownSignal_Windows/`](TheLastKnownSignal_Windows/) folder (about 128 MB). Get it either way:
 
-**Download the playable build: [ADD PUBLIC DOWNLOAD LINK]**
+- **Zip download (easiest):** [ADD PUBLIC DOWNLOAD LINK]
+- **From this repository:** click **Code > Download ZIP** on GitHub, or `git clone` the repository, then open the `TheLastKnownSignal_Windows` folder.
 
-1. Download the zip and **unzip the whole folder** (do not run the .exe from inside the zip).
-2. Open the unzipped folder and double-click **`The Last Known Signal.exe`** (Windows PC, no install, no login, no account).
+1. **Unzip the whole download first** (do not run the .exe from inside the zip).
+2. Open the `TheLastKnownSignal_Windows` folder and double-click **`The Last Known Signal.exe`** (Windows PC, no install, no login, no account).
 3. Press any key to skip the opening scene. Start with the title screen; **DATA & SOURCES** lists every NASA dataset used.
 
 Do not delete the other files and folders next to the .exe (`The Last Known Signal_Data`, `MonoBleedingEdge`, `UnityPlayer.dll`, and so on); the game needs them.

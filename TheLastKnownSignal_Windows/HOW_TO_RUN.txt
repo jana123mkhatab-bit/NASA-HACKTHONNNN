@@ -1,0 +1,6 @@
+The Last Known Signal - Windows build (Team Elly, NASA Space Apps Cairo 2026)
+
+1. Download this whole folder (or the zip) to a Windows PC.
+2. Keep all files together. Do not move the .exe out of the folder.
+3. Double-click "The Last Known Signal.exe". No install, no login.
+4. Press any key to skip the opening scene.
