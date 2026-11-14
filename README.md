@@ -8,7 +8,6 @@ A Unity game that teaches how real space missions are designed. A relay satellit
 
 The game is a ready-to-run Windows build, included in this repository in the [`TheLastKnownSignal_Windows/`](TheLastKnownSignal_Windows/) folder (about 128 MB). Get it either way:
 
-- **Zip download (easiest):** [ADD PUBLIC DOWNLOAD LINK]
 - **From this repository:** click **Code > Download ZIP** on GitHub, or `git clone` the repository, then open the `TheLastKnownSignal_Windows` folder.
 
 1. **Unzip the whole download first** (do not run the .exe from inside the zip).
