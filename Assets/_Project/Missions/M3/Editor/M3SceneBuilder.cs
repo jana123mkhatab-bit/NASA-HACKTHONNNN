@@ -17,7 +17,7 @@ namespace LastSignal.M3.EditorTools
     /// </summary>
     public static class M3SceneBuilder
     {
-        const string ScenePath = "Assets/_Project/Core/Scenes/M3_DeepSpace.unity";
+        const string ScenePath = "Assets/_Project/Scenes/M3_DeepSpace.unity";
         const string DataCsvPath = "Assets/_Project/Data/M3_SignalPath.csv";
         const string SampleCsvPath = "Assets/_Project/Missions/M3/Resources/M3_SignalPath_Sample.csv";
         const string CardPath = "Assets/_Project/Missions/M3/Debrief_M3.asset";

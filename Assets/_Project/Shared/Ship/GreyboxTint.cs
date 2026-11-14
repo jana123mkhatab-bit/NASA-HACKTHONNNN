@@ -12,6 +12,7 @@ namespace LastSignal.Ship
         public float emissionBoost = 2.5f;
 
         bool _applied;
+        static Shader _lit;
 
         void Awake() { Apply(); }
 
@@ -19,7 +20,10 @@ namespace LastSignal.Ship
         {
             Renderer r = GetComponent<Renderer>();
             if (r == null) return;
-            Material m = _applied ? r.material : new Material(r.sharedMaterial);
+            // Primitives ship with the built-in Standard material, which renders magenta under URP in a player build.
+            // Start from URP Lit instead (it is always in the build because Resources/M3Fx materials use it).
+            if (!_applied && _lit == null) _lit = Shader.Find("Universal Render Pipeline/Lit");
+            Material m = _applied ? r.material : (_lit != null ? new Material(_lit) : new Material(r.sharedMaterial));
             r.material = m;
             _applied = true;
             m.color = color;

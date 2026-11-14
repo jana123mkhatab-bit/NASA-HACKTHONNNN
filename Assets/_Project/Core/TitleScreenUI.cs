@@ -42,7 +42,12 @@ namespace LastSignal
                 new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -146), new Vector2(980, -108), Palette.TextDim);
 
             UIFactory.Button("Begin", root, "BEGIN MISSION 1", new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -262), new Vector2(470, -192), OnBegin);
-            UIFactory.Label("Keys", root, "Mouse to play  ·  SPACE advances Pip  ·  L opens the father's log", 16, TextAnchor.UpperLeft,
+            UIFactory.Button("DataSources", root, "DATA & SOURCES", new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(490, -262), new Vector2(790, -192), OnData, ButtonStyle.Ghost);
+            var voice = UIFactory.Button("Voice", root, VoiceText(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(810, -262), new Vector2(1060, -192), OnVoice, ButtonStyle.Ghost);
+            _voiceText = voice.GetComponentInChildren<Text>();
+            var intro = UIFactory.Button("Intro", root, IntroText(), new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(1080, -262), new Vector2(1300, -192), OnIntro, ButtonStyle.Ghost);
+            _introText = intro.GetComponentInChildren<Text>();
+            UIFactory.Label("Keys", root, "Mouse to play  ·  SPACE advances Pip  ·  L opens the father's log  ·  F11 fullscreen", 16, TextAnchor.UpperLeft,
                 new Vector2(0, 0.5f), new Vector2(0, 0.5f), new Vector2(120, -306), new Vector2(980, -278), Palette.TextDim).Mono();
 
             // The son's launch panel.
@@ -58,8 +63,59 @@ namespace LastSignal
                 new Vector2(0, 0), new Vector2(1, 0), new Vector2(24, 26), new Vector2(-24, 58), Palette.Warn).Mono();
 
             UIFactory.Label("Credit", root,
-                "Uses NASA open data. Reliability and mass values are game-balance values, not NASA data.", 16, TextAnchor.LowerLeft,
+                "Uses NASA open data (a snapshot, not live): see DATA & SOURCES. Reliability and mass values are game-balance values, not NASA data.", 16, TextAnchor.LowerLeft,
                 new Vector2(0, 0), new Vector2(1, 0), new Vector2(120, 34), new Vector2(-120, 60), Palette.A(Palette.TextDim, 0.85f)).Mono();
+        }
+
+        DataSourcesScreen _data;
+        Text _voiceText;
+
+        static string VoiceText() => NarrationPlayer.Volume <= 0.001f ? "VOICE: OFF (subtitles)" : "VOICE: " + Mathf.RoundToInt(NarrationPlayer.Volume * 100f) + "%";
+
+        // Cycle narration volume: 100, 75, 50, 25, off. Subtitles always stay on.
+        void OnVoice()
+        {
+            float v = NarrationPlayer.Volume;
+            NarrationPlayer.Volume = v <= 0.001f ? 1f : Mathf.Max(0f, Mathf.Round(v * 4f) / 4f - 0.25f);
+            if (_voiceText != null) _voiceText.text = VoiceText();
+            Sfx.Play(Sfx.Id.Click);
+        }
+
+        Text _introText;
+
+        static string IntroText() => OpeningIntro.SkipSetting ? "INTRO: OFF" : "INTRO: ON";
+
+        // "Skip intro" setting: OFF means the opening is not shown next time the game starts.
+        void OnIntro()
+        {
+            OpeningIntro.SkipSetting = !OpeningIntro.SkipSetting;
+            if (_introText != null) _introText.text = IntroText();
+            Sfx.Play(Sfx.Id.Click);
+        }
+
+        // The opening plays once, before the title is first shown. Any key skips it.
+        void Start()
+        {
+            NarrationPlayer.MarkOpeningPlayed();
+            if (!OpeningIntro.ShouldPlay() || _canvas == null || !_canvas.enabled) return;
+            _canvas.enabled = false;
+            OpeningIntro.Begin(transform, () =>
+            {
+                var mm = MissionManager.Instance;
+                if (mm == null || mm.Current == MissionIds.Boot) Show();
+            });
+        }
+
+        void OnData()
+        {
+            if (_data == null)
+            {
+                _data = new GameObject("DataSources").AddComponent<DataSourcesScreen>();
+                _data.transform.SetParent(transform, false);
+                _data.Build();
+            }
+            Sfx.Play(Sfx.Id.Confirm);
+            _data.Show();
         }
 
         void OnBegin()

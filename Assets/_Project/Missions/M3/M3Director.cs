@@ -26,7 +26,7 @@ namespace LastSignal.M3
         public GameObject plannerPrefab;
 
         [Header("Layout (metres, compressed for play)")]
-        public Vector3 relayPosition = new Vector3(0f, 25f, 700f);
+        public Vector3 relayPosition = new Vector3(0f, 25f, 2600f);
         public float targetingRange = 400f;
         public float warningDelay = 4f;
         public float warningDuration = 5f;
@@ -56,6 +56,9 @@ namespace LastSignal.M3
         TriageMinigame _triage;
         ScannerSweep _scanner;
         ReroutePlanner _reroute;
+        FreeFlight _free;
+        ChallengeSiteSet _challenges;
+        FloatingOrigin _origin;
         TriageResult _triageResult;
         bool _ended;
 
@@ -86,6 +89,18 @@ namespace LastSignal.M3
             _relay = RelaySatellite.Build(relayPosition, transform);
             _stranger = StrangerCraft.Build(transform);
 
+            // Large distances: keep the ship near (0,0,0) so nothing jitters far from the dock.
+            _origin = gameObject.AddComponent<FloatingOrigin>();
+            _origin.focus = _ship.transform;
+            // Open 3D flight in the sector (on during FlyToRelay): bounds, nav HUD, radar, NASA sites, rescue/retry.
+            _free = gameObject.AddComponent<FreeFlight>();
+            _free.Setup(_ship, _hud, _world, _relay.transform, Fail);
+            // Four NASA challenge sites (solar storm, asteroid, comms blackout, power) in seeded random order.
+            _challenges = gameObject.AddComponent<ChallengeSiteSet>();
+            _challenges.Setup(_ship.transform, _hud, _world.transform, Environment.TickCount);
+            // Visual layer: textured planets, flare/storm, asteroid rocks, comms pulse, eclipse, thruster, speed lines.
+            M3Fx.Create(transform, _world, _ship, _challenges, _free);
+
             _targeting = gameObject.AddComponent<TargetingSequence>();
             _tumble = gameObject.AddComponent<TumbleRecovery>();
             _triage = gameObject.AddComponent<TriageMinigame>();
@@ -110,13 +125,31 @@ namespace LastSignal.M3
             }
         }
 
+        const string RealSignalFile = "m3_signal_path_2026-11-13.csv";
+
         SignalPathData LoadSignalData()
         {
-            TextAsset csv = signalPathCsv;
+            // Real NASA-derived rows first; the scene field and the sample file are only fallbacks.
+            TextAsset csv = Resources.Load<TextAsset>("LastSignal/m3_signal_path_2026-11-13");
+            if (csv == null) csv = signalPathCsv;
             if (csv == null) csv = Resources.Load<TextAsset>("M3_SignalPath");
             if (csv == null) csv = Resources.Load<TextAsset>("M3_SignalPath_Sample");
-            if (csv == null) return SignalPathData.Parse("", "none");
-            return SignalPathData.Parse(csv.text, csv.name + ".csv");
+            if (csv == null)
+            {
+                NasaData.ReportFallback(RealSignalFile, "no signal path CSV found at all");
+                return SignalPathData.Parse("", "none");
+            }
+            SignalPathData d = SignalPathData.Parse(csv.text, csv.name + ".csv");
+            if (d.isSample || !d.IsValid || csv.name != "m3_signal_path_2026-11-13")
+                NasaData.ReportFallback(RealSignalFile, "M3 is showing " + csv.name + ".csv, not the real Horizons rows");
+            else
+            {
+                SignalLink a = d.Get(SignalPathData.ShipRelay), b = d.Get(SignalPathData.RelayEarth);
+                NasaData.Mark(RealSignalFile, MissionIds.M3, "Relay to Earth " + b.distanceKm.ToString("N0") + " km, one-way " + SignalPathData.FormatDelay(b.oneWaySeconds) +
+                    "; ship to relay " + a.distanceKm.ToString("N0") + " km, one-way " + SignalPathData.FormatDelay(a.oneWaySeconds));
+                NasaData.Mark("horizons_positions_2026-11-13.csv", MissionIds.M3);
+            }
+            return d;
         }
 
         ShipController SpawnShip()
@@ -139,6 +172,8 @@ namespace LastSignal.M3
         void SetPhase(Phase p)
         {
             Current = p;
+            if (_free != null) _free.SetActive(p == Phase.FlyToRelay);
+            if (_challenges != null) _challenges.SetActive(p == Phase.FlyToRelay);
             if (PhaseChanged != null) PhaseChanged(p);
         }
 
@@ -162,7 +197,7 @@ namespace LastSignal.M3
         void StartFromImpact()
         {
             _relay.Explode(false);
-            _ship.Teleport(M3Checkpoint.impactPosition, M3Checkpoint.impactRotation, M3Checkpoint.impactVelocity, M3Checkpoint.impactSpin);
+            _ship.Teleport(FloatingOrigin.ToWorld(M3Checkpoint.impactPosition), M3Checkpoint.impactRotation, M3Checkpoint.impactVelocity, M3Checkpoint.impactSpin);
             if (ChaseCamera.Instance != null) ChaseCamera.Instance.SnapNow();
             _stranger.HoldAt(_ship, M3Checkpoint.strangerOffset);
             _hud.AddMarker(_stranger.transform, "UNKNOWN");
@@ -173,7 +208,7 @@ namespace LastSignal.M3
         void StartFromTriage()
         {
             _relay.Explode(false);
-            _ship.Teleport(M3Checkpoint.triagePosition, M3Checkpoint.triageRotation, Vector3.zero, Vector3.zero);
+            _ship.Teleport(FloatingOrigin.ToWorld(M3Checkpoint.triagePosition), M3Checkpoint.triageRotation, Vector3.zero, Vector3.zero);
             if (ChaseCamera.Instance != null) ChaseCamera.Instance.SnapNow();
             HideSupplyPod();
             _hud.Comm(M3Lines.Ship, "Restarted at damage triage.", 3f);
@@ -198,7 +233,7 @@ namespace LastSignal.M3
                 case Phase.FlyToRelay:
                 {
                     float d = Vector3.Distance(_ship.transform.position, _relay.transform.position);
-                    _hud.SetObjective(M3Lines.ObjFlyToRelay + ": " + M3Ui.Distance(d));
+                    _hud.SetObjective(M3Lines.ObjFlyToRelay + ": " + M3Ui.Distance(d) + "   (optional: 4 NASA data sites)");
                     if (d <= targetingRange) BeginTargeting();
                     break;
                 }
@@ -272,7 +307,7 @@ namespace LastSignal.M3
             _stranger.HoldAt(_ship, strangerOffset);
 
             // Checkpoint after the damage, so Retry restarts in the tumble with the same state.
-            M3Checkpoint.SaveImpact(t.position, t.rotation, velocityAfter, spinWorld, strangerOffset);
+            M3Checkpoint.SaveImpact(FloatingOrigin.ToSector(t.position), t.rotation, velocityAfter, spinWorld, strangerOffset);
             MissionManager.Checkpoint(M3Checkpoint.Impact);
             StartTumble();
         }
@@ -315,12 +350,12 @@ namespace LastSignal.M3
             Pip.Say(M3Lines.PipLeaving);
 
             bool gone = false;
-            _stranger.Leave(M3World.PlanetPosition - _ship.transform.position, delegate { gone = true; });
+            _stranger.Leave(_world.Planet.position - _ship.transform.position, delegate { gone = true; });
             _hud.SetObjective("The unknown craft is leaving");
             while (!gone) yield return null;
             _hud.RemoveMarker(_stranger.transform);
 
-            M3Checkpoint.SaveTriage(_ship.transform.position, _ship.transform.rotation);
+            M3Checkpoint.SaveTriage(FloatingOrigin.ToSector(_ship.transform.position), _ship.transform.rotation);
             MissionManager.Checkpoint(M3Checkpoint.Triage);
             StartTriage();
         }
@@ -363,7 +398,7 @@ namespace LastSignal.M3
             if (_ended) return;
             _world.RevealPlanet();
             PlayerState s = PlayerState.Current;
-            s.heading = (M3World.PlanetPosition - _ship.transform.position).normalized;
+            s.heading = (_world.Planet.position - _ship.transform.position).normalized;
             s.NotifyChanged();
             _hud.AddMarker(_world.Planet, "UNCHARTED PLANET");
             Pip.Say(M3Lines.PipPlanet);
@@ -386,8 +421,8 @@ namespace LastSignal.M3
             s.SetPlannedSuccess(RiskModel.ComputeSuccess(plan));
             if (MissionManager.Instance != null) MissionManager.Instance.RecordPlan(MissionIds.M3, plan);
 
-            Vector3 target = d.isPlanet ? M3World.PlanetPosition
-                : (d.id == RerouteModel.Earth ? M3World.EarthPosition : new Vector3(-25000f, 3000f, 9000f));
+            Vector3 target = d.isPlanet ? _world.Planet.position
+                : (d.id == RerouteModel.Earth ? _world.Earth.position : FloatingOrigin.ToWorld(new Vector3(-25000f, 3000f, 9000f)));
             float shortBy = _reroute.CostOf(d) - s.supplies;
             SetPhase(Phase.Departing);
             _hud.SetObjective(M3Lines.ObjDepart + ": " + d.name);
@@ -433,7 +468,8 @@ namespace LastSignal.M3
 
         void OnFuelEmpty()
         {
-            if (Current == Phase.Launch || Current == Phase.FlyToRelay || Current == Phase.Targeting) Fail(M3Lines.FailFuel);
+            // FlyToRelay is open flight: FreeFlight shows the rescue / retry choice instead of failing at once.
+            if (Current == Phase.Launch || Current == Phase.Targeting) Fail(M3Lines.FailFuel);
         }
 
         void Complete()

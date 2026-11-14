@@ -26,7 +26,9 @@ namespace LastSignal
         int _supplies = 30;
         readonly List<string> _log = new List<string>();
         bool _ok;
-        Text _supText, _planText;
+        Text _supText, _planText, _vehText;
+        List<LaunchCheck.Vehicle> _vehicles = new List<LaunchCheck.Vehicle>();
+        int _veh;
         Button _launch;
 
         void Start()
@@ -50,7 +52,7 @@ namespace LastSignal
         {
             if (_win != null) Destroy(_win.gameObject);
             _win = UIFactory.Window("Win", _canvas.transform, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
-                new Vector2(-560, -400), new Vector2(560, 380), title, kicker);
+                new Vector2(-560, -470), new Vector2(560, 470), title, kicker);
             return _win;
         }
 
@@ -83,18 +85,20 @@ namespace LastSignal
         {
             var w = NewWindow("MISSION DESIGN MODE", "STEP 1 OF 3  ·  CHOOSE A DESTINATION");
             L(w, "Pick where to send your ship. Distance and signal delay are NASA data; mass budget and mission days are game-balance values.",
-                20, 28, 70, 1090, 125, Palette.TextDim);
-            float y = 140;
+                20, 28, 62, 1090, 114, Palette.TextDim);
+            float y = 118;
             foreach (var d in _dest.Rows)
             {
                 var row = d;
-                var bg = Panel(w, 24, y, 1096, y + 112);
-                L(bg.transform, row["name"], 30, 18, 8, 330, 50).Bold();
-                L(bg.transform, "Distance " + Dist(DataTable.F(row, "distance_from_earth_km")) + "\nOne-way signal " + Light(DataTable.F(row, "one_way_light_time_s")) +
-                    "\n<color=#8FA6BA>[" + row["distance_source_row"] + "]</color>", 17, 18, 48, 700, 108).Mono();
-                L(bg.transform, "Mass budget " + Budget(row).ToString("0.0") + " t\nMission " + Days(row).ToString("0") + " days\n<color=#8FA6BA>[game balance]</color>", 17, 720, 8, 900, 108).Mono();
-                B(bg.transform, "SELECT", 910, 30, 1070, 82, () => { _pick = row; _plan = null; ShowBuild(); });
-                y += 124;
+                string file = NasaData.FileFromRef(row["distance_source_row"]);
+                if (Resources.Load<TextAsset>("LastSignal/" + file.Replace(".csv", "")) == null) NasaData.ReportFallback(file, "Design Mode destination file missing");
+                var bg = Panel(w, 24, y, 1096, y + 196);
+                L(bg.transform, row["name"], 30, 18, 6, 330, 44).Bold();
+                L(bg.transform, "Distance " + Dist(DataTable.F(row, "distance_from_earth_km")) + "\nSignal delay (one way) " + Light(DataTable.F(row, "one_way_light_time_s")), 17, 18, 44, 700, 90).Mono();
+                L(bg.transform, NasaData.Card(file), 14, 18, 88, 880, 194);
+                L(bg.transform, "Mass budget " + Budget(row).ToString("0.0") + " t\nMission " + Days(row).ToString("0") + " days\n<color=#8FA6BA>[game balance]</color>", 17, 720, 6, 900, 90).Mono();
+                B(bg.transform, "SELECT", 910, 60, 1070, 112, () => { _pick = row; _plan = null; ShowBuild(); });
+                y += 202;
             }
         }
 
@@ -102,18 +106,26 @@ namespace LastSignal
         void ShowBuild()
         {
             var w = NewWindow("BUILD YOUR SHIP", "STEP 2 OF 3  ·  " + _pick["name"].ToUpper());
+            NasaData.Mark(NasaData.FileFromRef(_pick["distance_source_row"]), MissionIds.DesignMode,
+                _pick["name"] + ": " + Dist(DataTable.F(_pick, "distance_from_earth_km")) + ", one-way signal " + Light(DataTable.F(_pick, "one_way_light_time_s")));
             _planner.massBudgetTonnes = Budget(_pick);
             _planner.LoadSonsPlan();
             float days = Days(_pick);
             if (_supplies < days) _supplies = Mathf.CeilToInt(days / SupplyStep) * SupplyStep;
+            _vehicles = LaunchCheck.VehiclesFor(_pick["id"], _parts);
+            _veh = 0;
+            _planner.destinationName = _pick["name"];
+            _planner.missionDays = days;
             L(w, "Destination: <b>" + _pick["name"] + "</b>  ·  " + Dist(DataTable.F(_pick, "distance_from_earth_km")) + "  ·  signal delay " +
                 Light(DataTable.F(_pick, "one_way_light_time_s")) + " one way  <color=#8FA6BA>[" + _pick["distance_source_row"] + "]</color>", 20, 28, 70, 1090, 110);
+            L(w, NasaData.Tag(NasaData.FileFromRef(_pick["distance_source_row"])) + "  <color=#8FA6BA>Signal delay and distance are real; mass budget and days are [game balance].</color>", 14, 28, 112, 1090, 150);
             if (_pick["id"] == "trappist1e")
             {
                 var e = _exo.Rows.Count > 0 ? _exo.Rows[0] : null;
                 L(w, "Target (NASA Exoplanet Archive): radius " + DataTable.F(e, "radius_earth").ToString("0.00") + " Earth, insolation " +
                     DataTable.F(e, "insolation_earth").ToString("0.000") + " Earth, equilibrium temperature " + DataTable.F(e, "eq_temp_k").ToString("0.0") +
-                    " K, orbit " + DataTable.F(e, "orbital_period_days").ToString("0.00") + " days.", 18, 28, 112, 1090, 170, Palette.Accent);
+                    " K, orbit " + DataTable.F(e, "orbital_period_days").ToString("0.00") + " days.", 18, 28, 152, 1090, 196, Palette.Accent);
+                NasaData.Mark("exoplanet_trappist1e.csv", MissionIds.DesignMode);
             }
             var box = Panel(w, 24, 200, 1096, 330);
             L(box.transform, "A. Planner: pick equipment grade and redundant units for five subsystems, inside the mass budget of " + Budget(_pick).ToString("0.0") +
@@ -126,9 +138,11 @@ namespace LastSignal
             B(box2.transform, "-", 18, 66, 78, 110, () => { _supplies = Mathf.Max(0, _supplies - SupplyStep); RefreshBuild(); }, ButtonStyle.Ghost);
             _supText = L(box2.transform, "", 26, 88, 66, 360, 110, null, TextAnchor.MiddleCenter).Bold();
             B(box2.transform, "+", 370, 66, 430, 110, () => { _supplies = Mathf.Min(SupplyMax, _supplies + SupplyStep); RefreshBuild(); }, ButtonStyle.Ghost);
-            L(w, "Parts library for reference (NASA fact sheet values, not used for the odds): SLS Block 1 thrust " + PartVal("sls_b1_thrust") + " lbf; RS-25 max thrust " +
-                PartVal("rs25_thrust_max") + " lbf; Voyager 1 mass " + PartVal("v1_mass") + " kg  [parts_library.csv].", 16, 28, 490, 1090, 560, Palette.TextDim);
-            _launch = B(w, "LAUNCH", 840, 690, 1096, 752, () => StartCoroutine(Fly()), ButtonStyle.Confirm);
+            var vb = Panel(w, 24, 484, 1096, 600);
+            _vehText = L(vb.transform, "", 18, 18, 8, 760, 108);
+            B(vb.transform, "NEXT VEHICLE", 780, 30, 1056, 80, () => { _veh = (_veh + 1) % Mathf.Max(1, _vehicles.Count); RefreshBuild(); }, ButtonStyle.Ghost).gameObject.SetActive(_vehicles.Count > 1);
+            L(w, NasaData.Card("parts_library.csv") + "  <color=#8FA6BA>Payload values are NASA; ship mass is [game balance].</color>", 14, 28, 606, 1090, 680, Palette.TextDim);
+            _launch = B(w, "LAUNCH", 840, 690, 1096, 752, TryLaunch, ButtonStyle.Confirm);
             B(w, "BACK", 24, 690, 200, 752, ShowDestinations, ButtonStyle.Ghost);
             RefreshBuild();
         }
@@ -144,10 +158,26 @@ namespace LastSignal
             if (_supText == null) return;
             _supText.text = _supplies + " days";
             bool ready = _plan != null;
+            var vehicle = _vehicles.Count > 0 ? _vehicles[Mathf.Clamp(_veh, 0, _vehicles.Count - 1)] : null;
+            var check = LaunchCheck.Check(_plan, vehicle, _pick != null ? _pick["name"] : "");
+            _planner.vehicle = vehicle;
+            _planner.suppliesDays = _supplies;
+            _planner.RefreshResources();
+            if (_vehText != null)
+                _vehText.text = "<b>LAUNCH VEHICLE</b>  " + (vehicle != null ? vehicle.name + "  ·  payload " + vehicle.payloadTonnes.ToString("0.0") + " t to " + vehicle.reach : "none") + "\n" +
+                    (!ready ? "<color=#FFB938>Apply a plan to check the lift.</color>" : check.ok ? "<color=#4DE38A>" + check.reason + "</color>" : "<color=#FF5A4D>" + check.reason + "</color>");
             if (_planText != null)
                 _planText.text = ready ? "Plan applied: success probability <b>" + (RiskModel.ComputeSuccess(_plan) * 100f).ToString("0.0") + "%</b>  ·  mass " +
                     _plan.TotalMass().ToString("0.0") + " t" : "<color=#FFB938>No plan applied yet. Open the Planner and press APPLY PLAN.</color>";
-            if (_launch != null) _launch.interactable = ready;
+            if (_launch != null) _launch.interactable = ready && check.ok;
+        }
+
+        void TryLaunch()
+        {
+            var vehicle = _vehicles.Count > 0 ? _vehicles[Mathf.Clamp(_veh, 0, _vehicles.Count - 1)] : null;
+            var check = LaunchCheck.Check(_plan, vehicle, _pick["name"]);
+            if (!check.ok) { Sfx.Play(Sfx.Id.Deny); RefreshBuild(); return; } // blocked: reason is on screen
+            StartCoroutine(Fly());
         }
 
         // ---------------------------------------------------------------- 3. flight
@@ -194,15 +224,17 @@ namespace LastSignal
             L(w, "Planned success " + (planned * 100f).ToString("0.0") + "%  ·  Result: " + (_ok ? "<color=#4DE38A>arrived</color>" : "<color=#FF5A4D>lost</color>") +
                 ".  A plan at " + (planned * 100f).ToString("0") + "% still fails about " + (100f - planned * 100f).ToString("0") + " times in 100. One run is not the odds.", 20, 28, 70, 1090, 130);
             L(w, string.Join("\n", _log), 16, 28, 135, 1090, 330).Mono();
+            NasaData.Mark("dsn_notes.csv", MissionIds.DesignMode);
             float lt = DataTable.F(_pick, "one_way_light_time_s");
             var sb = new StringBuilder();
             sb.Append("<b>Redundancy.</b> Systems that must all work multiply their chances, so a backup unit raises one link to 1 - (1 - r)^n at the cost of mass. [NASA Systems Engineering Handbook, NASA/SP-2016-6105 Rev2]\n\n");
             sb.Append("<b>Signal delay.</b> Light from " + _pick["name"] + " takes " + Light(lt) + " one way, so a question and its answer take " + Light(lt * 2f) +
                 ". Crews must decide alone. [NASA JPL Horizons, retrieved 2026-11-13]\n\n");
             sb.Append("<b>Deep Space Network.</b> Three complexes (Goldstone, Madrid, Canberra), each with a 70 m dish, keep contact as Earth rotates. [NASA Deep Space Network]");
-            L(w, sb.ToString(), 18, 28, 345, 1090, 640, Palette.TextDim);
-            L(w, "Game-balance values (not NASA data): reliabilities, part masses, mass budgets, mission days.", 15, 28, 650, 1090, 680, Palette.TextDim);
-            B(w, "DESIGN ANOTHER MISSION", 780, 700, 1096, 756, () => { _plan = null; ShowDestinations(); });
+            L(w, sb.ToString(), 18, 28, 345, 1090, 620, Palette.TextDim);
+            L(w, NasaData.Card(NasaData.FileFromRef(_pick["distance_source_row"])), 14, 28, 628, 1090, 700);
+            L(w, "Game-balance values (not NASA data): reliabilities, part masses, mass budgets, mission days.", 15, 28, 704, 1090, 730, Palette.TextDim);
+            B(w, "DESIGN ANOTHER MISSION", 780, 740, 1096, 796, () => { _plan = null; ShowDestinations(); });
         }
     }
 }

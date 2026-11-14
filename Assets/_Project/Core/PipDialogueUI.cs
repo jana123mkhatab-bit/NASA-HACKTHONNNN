@@ -110,6 +110,7 @@ namespace LastSignal
                 _text.text = "";
                 _skip = false;
                 _typing = true;
+                NarrationPlayer.PlayMatching(line);
                 float t = 0f;
                 int last = 0;
                 while (_text.text.Length < line.Length)

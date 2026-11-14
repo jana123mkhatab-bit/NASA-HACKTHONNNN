@@ -1,0 +1,4 @@
+body,volumetric_mean_radius_km,source_url,retrieved
+Earth,6371.000,https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html,2026-11-14
+Moon,1737.4,https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html,2026-11-14
+Sun,695700,https://nssdc.gsfc.nasa.gov/planetary/factsheet/sunfact.html,2026-11-14

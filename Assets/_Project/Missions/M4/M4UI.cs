@@ -21,7 +21,7 @@ namespace LastSignal.M4
 
         Canvas _hud, _modal, _cine;
         RectTransform _scanner, _picker, _landing, _objective, _prompt, _info, _log, _survey;
-        Text _scanText, _pickDetails, _landText, _warn, _objText, _promptText, _infoTitle, _infoBody, _logCount, _logLines;
+        Text _scanText, _scanNasa, _pickDetails, _landText, _warn, _objText, _promptText, _infoTitle, _infoBody, _logCount, _logLines;
         Image _fuel, _power, _throttle;
         Button _beginBtn, _infoBtn, _logBtn, _transmitBtn;
         readonly List<Image> _cards = new List<Image>();
@@ -69,9 +69,11 @@ namespace LastSignal.M4
 
         void BuildScanner()
         {
-            _scanner = UIFactory.Box("Scanner", _hud.transform, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-660, -330), new Vector2(-40, 360), UIFactory.Panel);
+            _scanner = UIFactory.Box("Scanner", _hud.transform, new Vector2(1, 0.5f), new Vector2(1, 0.5f), new Vector2(-660, -420), new Vector2(-40, 420), UIFactory.Panel);
             UIFactory.Label("Title", _scanner, "PLANET SCANNER", 30, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(1, 1), new Vector2(28, -62), new Vector2(-28, -18), UIFactory.Accent);
-            _scanText = UIFactory.Label("Body", _scanner, "", 25, TextAnchor.UpperLeft, new Vector2(0, 0), new Vector2(1, 1), new Vector2(28, 110), new Vector2(-28, -70));
+            _scanText = UIFactory.Label("Body", _scanner, "", 22, TextAnchor.UpperLeft, new Vector2(0, 0), new Vector2(1, 1), new Vector2(28, 300), new Vector2(-28, -70));
+            _scanNasa = UIFactory.Label("NasaData", _scanner, "", 16, TextAnchor.UpperLeft, new Vector2(0, 0), new Vector2(1, 0), new Vector2(28, 104), new Vector2(-28, 296));
+            _scanNasa.resizeTextForBestFit = true; _scanNasa.resizeTextMinSize = 11; _scanNasa.resizeTextMaxSize = 16;
             UIFactory.Button("Choose", _scanner, "Choose landing site", new Vector2(0, 0), new Vector2(1, 0), new Vector2(28, 26), new Vector2(-28, 92), () => _onBegin?.Invoke());
         }
 
@@ -94,6 +96,14 @@ namespace LastSignal.M4
             sb.Append("Source: ").Append(source).Append("</color>\n\n");
             sb.Append("Water signal detected in a valley near a faint repeating beacon.");
             _scanText.text = sb.ToString();
+            if (ExoplanetCsv.LastWasFallback)
+                _scanNasa.text = "<color=#FFB938><b>FALLBACK DATA, not the verified NASA row.</b> The real file exoplanet_trappist1e.csv could not be read, so these numbers are approximate.</color>";
+            else
+            {
+                NasaData.Mark(ExoplanetCsv.RealFile, MissionIds.M4, p.name + ": radius " + ExoplanetCsv.Fmt(p.radiusEarth, "0.00", " Earth") + ", insolation " +
+                    ExoplanetCsv.Fmt(p.insolation, "0.000", " Earth") + ", equilibrium temp. " + ExoplanetCsv.Fmt(p.eqTempK, "0.0", " K"));
+                _scanNasa.text = NasaData.Card(ExoplanetCsv.RealFile);
+            }
             _scanner.gameObject.SetActive(true);
         }
 
@@ -505,6 +515,7 @@ namespace LastSignal.M4
 
         public void Subtitle(string speaker, string line)
         {
+            NarrationPlayer.PlayMatching(line);
             _subtitle.text = string.IsNullOrEmpty(speaker) ? $"<i>{line}</i>" : $"<color=#FFD24D><b>{speaker}</b></color>   {line}";
         }
 

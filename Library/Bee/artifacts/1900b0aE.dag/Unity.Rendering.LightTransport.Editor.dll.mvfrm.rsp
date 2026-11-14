@@ -160,6 +160,10 @@ Library\Bee\artifacts\mvdfrm\UnityEngine.VirtualTexturingModule.dll_55068F892DF9
 Library\Bee\artifacts\mvdfrm\UnityEngine.WindModule.dll_8D48CB3DD58DDFC1.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.XRModule.dll_F840170E9F751963.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.dll_E8C14E5B2E6688BD.mvfrm
-Library\Bee\artifacts\mvdfrm\UnityEditor.WebGL.Extensions.dll_5ED505B6E73EFBD3.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEditor.WindowsStandalone.Extensions.dll_C82B60F4D7FE2343.mvfrm
 Library\Bee\artifacts\mvdfrm\Unity.Collections.LowLevel.ILSupport.dll_24BE6ECA541168F8.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityPipeline.Microsoft.CodeAnalysis.CSharp.dll_D855FE0A7855381E.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityPipeline.Microsoft.CodeAnalysis.dll_4863FC1AD4A49A03.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityPipeline.System.Collections.Immutable.dll_F8E13735D0CD26C4.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityPipeline.System.Reflection.Metadata.dll_E29C5E8B771EC34D.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityPipeline.System.Runtime.CompilerServices.Unsafe.dll_AB736757404DCDFC.mvfrm

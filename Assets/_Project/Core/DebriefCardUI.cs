@@ -7,7 +7,7 @@ namespace LastSignal
     public class DebriefCardUI : MonoBehaviour
     {
         Canvas _canvas;
-        Text _title, _concept, _source, _body, _planned;
+        Text _title, _concept, _source, _body, _planned, _nasa;
 
         public bool IsOpen => _canvas != null && _canvas.enabled;
 
@@ -15,7 +15,7 @@ namespace LastSignal
         {
             _canvas = ScreenKit.Overlay(transform, "Debrief", 40, out var p, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
                 "MISSION DEBRIEF", "WHAT NASA REALLY DOES");
-            p.offsetMin = new Vector2(-560, -330); p.offsetMax = new Vector2(560, 330);
+            p.offsetMin = new Vector2(-560, -480); p.offsetMax = new Vector2(560, 480);
 
             _title = UIFactory.Label("Title", p, "", 50, TextAnchor.UpperLeft,
                 new Vector2(0, 1), new Vector2(1, 1), new Vector2(40, -150), new Vector2(-40, -78)).Bold();
@@ -35,15 +35,20 @@ namespace LastSignal
                 new Vector2(0, 0), new Vector2(1, 1), new Vector2(18, 10), new Vector2(-18, -30));
 
             _body = UIFactory.Label("Body", p, "", 25, TextAnchor.UpperLeft,
-                new Vector2(0, 0), new Vector2(1, 1), new Vector2(40, 112), new Vector2(-40, -372));
+                new Vector2(0, 0), new Vector2(1, 1), new Vector2(40, 366), new Vector2(-40, -372));
             _body.lineSpacing = 1.1f;
+            var nb = UIFactory.Round("NasaBox", p, new Vector2(0, 0), new Vector2(1, 0), new Vector2(40, 112), new Vector2(-40, 358), Palette.Inset, 8);
+            nb.raycastTarget = false;
+            _nasa = UIFactory.Label("Nasa", nb.rectTransform, "", 16, TextAnchor.UpperLeft, new Vector2(0, 0), new Vector2(1, 1), new Vector2(14, 6), new Vector2(-14, -6));
+            _nasa.resizeTextForBestFit = true; _nasa.resizeTextMinSize = 11; _nasa.resizeTextMaxSize = 16;
             _planned = UIFactory.Label("Planned", p, "", 17, TextAnchor.MiddleLeft,
                 new Vector2(0, 0), new Vector2(1, 0), new Vector2(40, 34), new Vector2(-340, 96), Palette.TextDim).Mono();
             UIFactory.Button("Continue", p, "CONTINUE", new Vector2(1, 0), new Vector2(1, 0), new Vector2(-300, 34), new Vector2(-40, 96), OnContinue);
         }
 
-        public void Show(DebriefCard card)
+        public void Show(DebriefCard card, string missionId = null)
         {
+            _nasa.text = NasaData.DebriefBlock(missionId);
             _title.text = card.title;
             _concept.text = card.concept;
             _source.text = card.nasaSource;

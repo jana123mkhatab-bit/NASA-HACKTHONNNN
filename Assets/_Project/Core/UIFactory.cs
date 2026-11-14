@@ -128,18 +128,23 @@ namespace LastSignal
 
         public static void EnsureEventSystem()
         {
-            var es = Object.FindFirstObjectByType<EventSystem>();
+            var es = Object.FindAnyObjectByType<EventSystem>();
             if (es == null) es = new GameObject("EventSystem", typeof(EventSystem)).GetComponent<EventSystem>();
             var go = es.gameObject;
             es.enabled = true;
             es.sendNavigationEvents = true;
 
+            // ProjectSettings uses Both input backends: the standard legacy module is the reliable
+            // mouse path for runtime-created canvases and needs no action asset.
             var inputSystemModule = go.GetComponent<InputSystemUIInputModule>();
             if (inputSystemModule != null) inputSystemModule.enabled = false;
+            // The hand-written click script would double-fire every click next to the module.
+            var manual = go.GetComponent<RuntimePointerInput>();
+            if (manual != null) Object.Destroy(manual);
             var legacy = go.GetComponent<StandaloneInputModule>();
-            if (legacy != null) legacy.enabled = false;
-            if (go.GetComponent<RuntimePointerInput>() == null)
-                go.AddComponent<RuntimePointerInput>();
+            if (legacy == null) legacy = go.AddComponent<StandaloneInputModule>();
+            legacy.enabled = true;
+            if (go.GetComponent<ClickDebug>() == null) go.AddComponent<ClickDebug>();
         }
         public static RectTransform Rect(string name, Transform parent, Vector2 aMin, Vector2 aMax, Vector2 offMin, Vector2 offMax)
         {

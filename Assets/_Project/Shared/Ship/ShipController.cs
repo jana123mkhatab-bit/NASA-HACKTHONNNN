@@ -54,6 +54,14 @@ namespace LastSignal.Ship
         [Tooltip("Supplies points per second eaten by the crew.")]
         public float suppliesPerSecond = 0.08f;
 
+        [Header("Free flight (GAME-BALANCE values, 0 = off; M3 sets these)")]
+        [Tooltip("Power points per second drained while boosting. 0 = boost is free (M4).")]
+        public float powerPerSecondBoost = 0f;
+        [Tooltip("Cruise speed cap, m/s (boost raises it by boostMultiplier). 0 = no cap (M4).")]
+        public float maxSpeed = 0f;
+        [Tooltip("How fast speed above the cap bleeds off, per second.")]
+        public float overSpeedBleed = 0.8f;
+
         [Header("Flight assist")]
         [Tooltip("Linear damping applied when assist is on and there is no thrust input (arcade feel).")]
         public float assistLinearDamping = 0.15f;
@@ -244,7 +252,8 @@ namespace LastSignal.Ship
             bool hasFuel = state.fuel > 0f;
 
             // ---- main engine and lift thrusters: a = F / m
-            float boost = input.boost ? boostMultiplier : 1f;
+            bool boosting = input.boost && (powerPerSecondBoost <= 0f || state.power > 0f);
+            float boost = boosting ? boostMultiplier : 1f;
             float main = 0f;
             if (MainEngineOnline && hasFuel)
             {
@@ -258,6 +267,23 @@ namespace LastSignal.Ship
             Vector3 acceleration = thrustForce / CurrentMass;           // a = F / m
             LastAcceleration = acceleration.magnitude;
             Body.AddForce(acceleration, ForceMode.Acceleration);
+
+            // ---- brake: the engines fire against the velocity (reverse thrust limit), never past a full stop
+            float brakeThrottle = 0f;
+            if (input.brake && MainEngineOnline && hasFuel && !Body.isKinematic)
+            {
+                float maxBrake = maxThrust * reverseFraction * ThrustMultiplier / CurrentMass;   // a = F / m
+                Vector3 brakeAcc = FlightModel.BrakeAcceleration(Body.linearVelocity, maxBrake, dt);
+                Body.AddForce(brakeAcc, ForceMode.Acceleration);
+                brakeThrottle = brakeAcc.magnitude * CurrentMass / maxThrust;
+                LastAcceleration = Mathf.Max(LastAcceleration, brakeAcc.magnitude);
+            }
+
+            // ---- soft speed cap (free flight only)
+            if (maxSpeed > 0f && !Body.isKinematic)
+            {
+                Body.linearVelocity = FlightModel.SoftCapSpeed(Body.linearVelocity, maxSpeed * boost, overSpeedBleed, dt);
+            }
 
             // ---- gravity (atmosphere / landed only; deep space has none)
             if (Mode != ShipMode.Space)
@@ -282,7 +308,11 @@ namespace LastSignal.Ship
             Body.angularDamping = angDamp;
 
             // ---- consumption through PlayerState
-            float burn = ShipMassModel.FuelBurn(Mathf.Abs(main) / maxThrust + Mathf.Abs(lift) / maxThrust, fuelPerSecondAtFullThrust, dt);
+            float burn = ShipMassModel.FuelBurn(Mathf.Abs(main) / maxThrust + Mathf.Abs(lift) / maxThrust + brakeThrottle, fuelPerSecondAtFullThrust, dt);
+            if (boosting && powerPerSecondBoost > 0f && (Mathf.Abs(main) > 0f || Mathf.Abs(lift) > 0f))
+            {
+                state.SetPower(state.power - FlightModel.PowerDrain(true, powerPerSecondBoost, dt));
+            }
             if (stabilizing) burn += stabilizerFuelPerSecond * dt;
             if (burn > 0f && hasFuel)
             {

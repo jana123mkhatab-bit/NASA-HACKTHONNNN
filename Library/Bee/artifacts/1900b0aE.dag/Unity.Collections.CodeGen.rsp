@@ -317,7 +317,6 @@
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
--r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.AppContext.dll"
@@ -468,7 +467,7 @@
 /debug:portable
 /nologo
 /RuntimeMetadataVersion:v4.0.30319
--ruleset:"D:/NASAProj/NASA-HACKTHONNNN/Library/ImmutablePackage.ruleset"
+-ruleset:"C:/Users/Jana/Downloads/LastHorizon_Unity/proj/Library/ImmutablePackage.ruleset"
 /nowarn:0169
 /nowarn:0649
 /nowarn:0282

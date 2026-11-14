@@ -1,0 +1,3 @@
+link,from,to,epoch_utc,distance_km,one_way_light_time_s,source,source_url,retrieved
+ship_relay,Ship (proxy: Mars),Relay (proxy: Moon),2026-11-13 00:00,199648559,665.96,"JPL Horizons vectors, DERIVED: distance between the Mars and Moon rows of horizons_positions_2026-11-13.csv; light time = km / 299792.458",https://ssd.jpl.nasa.gov/horizons/,2026-11-14
+relay_earth,Relay (proxy: Moon),Earth,2026-11-13 00:00,405339,1.4,"JPL Horizons: Moon row of horizons_positions_2026-11-13.csv (dist_from_earth_km, light_time_from_earth_s)",https://ssd.jpl.nasa.gov/horizons/,2026-11-13

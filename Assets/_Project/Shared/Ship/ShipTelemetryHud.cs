@@ -18,7 +18,7 @@ namespace LastSignal.Ship
         GameObject _root;
 
         public const string ControlsText =
-            "W/S thrust   A/D yaw   Up/Down pitch   Q/E roll\nSpace/Ctrl up/down   X stabilize   Shift boost   F fire";
+            "W/S thrust   A/D yaw   Up/Down pitch   Q/E roll\nSpace/Ctrl up/down   X stabilize   B brake   Shift boost   F fire";
 
         public static ShipTelemetryHud Create(ShipController ship)
         {

@@ -56,7 +56,7 @@ namespace LastSignal.Finale
             {
                 _m.UI.Subtitle(lines[i, 0], lines[i, 1]);
                 if (i == 0 && _m.Lander != null && _m.Lander.Dish != null) StartCoroutine(SwingDish(_m.Lander.Dish));
-                yield return new WaitForSeconds(lines[i, 1].Length < 30 ? 2.8f : 3.8f);
+                yield return new WaitForSeconds(Mathf.Max(lines[i, 1].Length < 30 ? 2.8f : 3.8f, NarrationPlayer.ClipLength(lines[i, 1]) + 0.3f));
             }
             _m.UI.Subtitle("", "");
             _m.PostFx.Cinematic(false);

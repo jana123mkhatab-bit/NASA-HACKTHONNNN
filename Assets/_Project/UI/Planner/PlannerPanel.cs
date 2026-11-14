@@ -19,6 +19,10 @@ namespace LastSignal
         public const float UntestedR = 0.63f, TestedR = 0.90f, UntestedMassFactor = 0.7f;
         public const int MaxUnits = 3;
         public float massBudgetTonnes = 9.5f;
+        // Optional context from Design Mode (0 / null = hide that line). Set, then call RefreshResources().
+        public float missionDays, suppliesDays;
+        public LaunchCheck.Vehicle vehicle;
+        public string destinationName = "";
 
         class Def { public string name, role; public float testedMass; }
         static readonly Def[] Defs =
@@ -49,7 +53,8 @@ namespace LastSignal
         Canvas _canvas;
         readonly List<Row> _rows = new List<Row>();
         RiskGaugeWidget _gauge;
-        Text _massText, _formula, _briefing;
+        Text _massText, _formula, _briefing, _resources;
+        PlannerTutorial _tutorial;
         Image _massFill;
         Button _apply;
         bool _built;
@@ -65,7 +70,7 @@ namespace LastSignal
             var win = UIFactory.Window("Planner", root, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f),
                 new Vector2(-690, -420), new Vector2(690, 380), "MISSION PLANNER", "GAME-BALANCE VALUES, NOT NASA DATA");
             var kicker = win.Find("Kicker") as RectTransform;
-            if (kicker != null) kicker.offsetMax = new Vector2(-80, kicker.offsetMax.y);
+            if (kicker != null) kicker.offsetMax = new Vector2(-136, kicker.offsetMax.y);
 
             Header(win, "SUBSYSTEM", 24, 220);
             Header(win, "EQUIPMENT  (r per unit)", 236, 500);
@@ -91,24 +96,63 @@ namespace LastSignal
             _massText = UIFactory.Label("Mass", win, "", 19, TextAnchor.LowerLeft, new Vector2(0, 1), new Vector2(0, 1),
                 new Vector2(900, -410), new Vector2(1356, -380)).Mono();
             _massFill = UIFactory.Bar("MassBar", win, new Vector2(0, 1), new Vector2(0, 1), new Vector2(900, -432), new Vector2(1356, -416), Palette.Accent);
-            var f = UIFactory.Round("FormulaBox", win, new Vector2(0, 1), new Vector2(0, 1), new Vector2(900, -548), new Vector2(1356, -446), Palette.Inset, 8);
+            var f = UIFactory.Round("FormulaBox", win, new Vector2(0, 1), new Vector2(0, 1), new Vector2(900, -516), new Vector2(1356, -446), Palette.Inset, 8);
             f.raycastTarget = false;
             UIFactory.Label("FormulaL", f.rectTransform, "P = PRODUCT OF [ 1 - (1 - r)^n ]", 14, TextAnchor.UpperLeft,
                 new Vector2(0, 1), new Vector2(1, 1), new Vector2(14, -28), new Vector2(-14, -8), Palette.Accent).Mono();
             _formula = UIFactory.Label("Formula", f.rectTransform, "", 17, TextAnchor.LowerLeft, Vector2.zero, Vector2.one,
                 new Vector2(14, 8), new Vector2(-14, -30)).Mono();
-            _briefing = UIFactory.Label("RiskBriefing", win, "", 19, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(0, 1),
-                new Vector2(900, -660), new Vector2(1356, -560));
+            var rb = UIFactory.Round("ResourceBox", win, new Vector2(0, 1), new Vector2(0, 1), new Vector2(900, -614), new Vector2(1356, -524), Palette.Inset, 8);
+            rb.raycastTarget = false;
+            UIFactory.Label("ResL", rb.rectTransform, "LIVE RESOURCES", 14, TextAnchor.UpperLeft,
+                new Vector2(0, 1), new Vector2(1, 1), new Vector2(14, -26), new Vector2(-14, -6), Palette.Accent).Mono();
+            _resources = UIFactory.Label("Res", rb.rectTransform, "", 15, TextAnchor.UpperLeft, Vector2.zero, Vector2.one,
+                new Vector2(14, 4), new Vector2(-14, -26)).Mono();
+            _briefing = UIFactory.Label("RiskBriefing", win, "", 17, TextAnchor.UpperLeft, new Vector2(0, 1), new Vector2(0, 1),
+                new Vector2(900, -712), new Vector2(1356, -620));
 
             UIFactory.Button("LoadSonsPlan", win, "LOAD SON'S PLAN", new Vector2(0, 0), new Vector2(0, 0),
                 new Vector2(900, 24), new Vector2(1120, 84), () => { LoadSonsPlan(); Sfx.Play(Sfx.Id.Whoosh, 0.5f); }, ButtonStyle.Ghost);
             _apply = UIFactory.Button("Apply", win, "APPLY PLAN", new Vector2(0, 0), new Vector2(0, 0),
                 new Vector2(1132, 24), new Vector2(1356, 84), Apply);
+            UIFactory.Button("Replay", win, "?", new Vector2(1, 1), new Vector2(1, 1), new Vector2(-114, -50), new Vector2(-70, -14),
+                () => StartTutorial(true), ButtonStyle.Ghost);
             UIFactory.Button("Close", win, "X", new Vector2(1, 1), new Vector2(1, 1), new Vector2(-62, -50), new Vector2(-18, -14),
                 () => SetVisible(false), ButtonStyle.Ghost);
 
             LoadSonsPlan();
             _gauge.SnapTo(Probability);
+        }
+
+        // ---- first-time tutorial (never allowed to break the planner)
+        /// <summary>Start Pip's tutorial. force = replay even if already seen.</summary>
+        public void StartTutorial(bool force)
+        {
+            try
+            {
+                if (_canvas == null) return;
+                if (_tutorial == null)
+                {
+                    var go = new GameObject("PlannerTutorial");
+                    go.transform.SetParent(transform, false);
+                    _tutorial = go.AddComponent<PlannerTutorial>();
+                }
+                _tutorial.Begin(this, force);
+            }
+            catch (Exception e) { Debug.LogWarning("[PlannerTutorial] " + e.Message); }
+        }
+
+        /// <summary>UI pieces Pip highlights on each tutorial step.</summary>
+        internal RectTransform[] TutorialTargets(int step)
+        {
+            switch (step)
+            {
+                case 0: return new[] { _massText.rectTransform, _massFill.rectTransform };
+                case 1: return new[] { _rows[0].gradeLo.rectTransform, _rows[0].gradeHi.rectTransform };
+                case 2: return new[] { _rows[0].unitsText.rectTransform.parent.Find("Minus") as RectTransform, _rows[0].unitsText.rectTransform, _rows[0].unitsText.rectTransform.parent.Find("Plus") as RectTransform };
+                case 3: return new[] { (RectTransform)_gauge.transform };
+                default: return new[] { (RectTransform)_apply.transform };
+            }
         }
 
         static void Header(RectTransform win, string text, float x0, float x1)
@@ -198,6 +242,7 @@ namespace LastSignal
             if (_canvas == null) return;
             if (visible && !_canvas.enabled) Sfx.Play(Sfx.Id.Whoosh, 0.5f);
             _canvas.enabled = visible;
+            if (visible) StartTutorial(false);
         }
 
         void Update()
@@ -244,6 +289,7 @@ namespace LastSignal
             _formula.text = factors + "\n= " + (prob * 100f).ToString("0.0") + "%";
             _gauge.SetValue(prob);
             _apply.interactable = !over;
+            RefreshResources();
 
             string weak = weakest == null ? "" : "<b>" + weakest.name + "</b> works " + (weakestP * 100f).ToString("0.0") + "% of the time (" +
                 weakest.redundancy + (weakest.redundancy == 1 ? " unit, " : " units, ") + (weakest.reliability > 0.8f ? "tested" : "untested") + ").";
@@ -253,6 +299,30 @@ namespace LastSignal
                 _briefing.text = "<color=#4DE38A>Clears the 70% preflight line.</color> Weakest link: " + weak;
             else
                 _briefing.text = "<color=#FFB938>Risk briefing:</color> weakest link is " + weak + " Test the equipment or add a backup unit there first.";
+        }
+
+        /// <summary>Redraw the live resource box (power, days, launch vehicle). Called on every grade or unit change.</summary>
+        public void RefreshResources()
+        {
+            if (_resources == null || CurrentPlan == null) return;
+            float used = LaunchCheck.PowerUsed(CurrentPlan), avail = LaunchCheck.PowerAvailable(CurrentPlan);
+            bool pOk = used <= avail + 1e-3f;
+            var sb = new StringBuilder();
+            sb.Append("POWER  ").Append(used.ToString("0")).Append(" / ").Append(avail.ToString("0")).Append(" W ")
+              .Append(pOk ? "<color=#4DE38A>OK</color>" : "<color=#FFB938>SHORT: add a Power unit</color>").Append(" <color=#8FA6BA>[game balance]</color>\n");
+            if (missionDays > 0f)
+            {
+                bool dOk = suppliesDays >= missionDays;
+                sb.Append("DAYS   trip ").Append(missionDays.ToString("0")).Append(" d, supplies ").Append(suppliesDays.ToString("0")).Append(" d ")
+                  .Append(dOk ? "<color=#4DE38A>OK</color>" : "<color=#FFB938>TOO FEW</color>").Append("\n");
+            }
+            if (vehicle != null)
+            {
+                var r = LaunchCheck.Check(CurrentPlan, vehicle, destinationName);
+                sb.Append("LIFT   ").Append(CurrentPlan.TotalMass().ToString("0.0")).Append(" / ").Append(vehicle.payloadTonnes.ToString("0.0")).Append(" t ")
+                  .Append(r.ok ? "<color=#4DE38A>FITS " : "<color=#FF5A4D>TOO HEAVY ").Append(vehicle.name).Append("</color>");
+            }
+            _resources.text = sb.ToString();
         }
 
         static void Paint(Image img, bool on)

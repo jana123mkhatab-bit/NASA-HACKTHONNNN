@@ -31,11 +31,27 @@ namespace LastSignal
             if (mm.failUI == null) mm.failUI = Add<FailPanelUI>(root, "FailPanel", f => f.Build());
             if (mm.endUI == null) mm.endUI = Add<EndCardUI>(root, "EndCard", e => e.Build());
             if (mm.fader == null) mm.fader = Add<ScreenFader>(root, "Fader", f => f.Build());
+            NarrationPlayer.Ensure();
             Sfx.Ambience(true);
 
             if (scene.name == MissionIds.SceneFor(MissionIds.M1) &&
                 mm.Current == MissionIds.Boot && root.GetComponentInChildren<TitleScreenUI>() == null)
                 Add<TitleScreenUI>(root, "Title", t => t.Build());
+        }
+
+        static bool _hooked;
+
+        // The EventSystem lives in the scene, so it is destroyed on every scene change. Without
+        // this, UI clicks work in the first scene and die in all later ones (M2 onward).
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        static void ResetHook() { _hooked = false; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void HookSceneLoads()
+        {
+            if (_hooked) return;
+            _hooked = true;
+            SceneManager.sceneLoaded += (s, m) => UIFactory.EnsureEventSystem();
         }
 
         static T Add<T>(GameObject parent, string name, System.Action<T> build) where T : Component

@@ -20,7 +20,7 @@ namespace LastSignal.M3
             go.transform.SetParent(parent, false);
             go.transform.position = position;
             RelaySatellite r = go.AddComponent<RelaySatellite>();
-            r._anchor = position;
+            r._anchor = go.transform.localPosition;   // local, so the floating origin can move the parent
             r.BuildParts();
             return r;
         }
@@ -45,7 +45,7 @@ namespace LastSignal.M3
         {
             if (IsDestroyed) return;
             _t += Time.deltaTime;
-            transform.position = _anchor + new Vector3(Mathf.Sin(_t * 0.35f) * driftAmplitude, Mathf.Sin(_t * 0.5f) * driftAmplitude * 0.5f, 0f);
+            transform.localPosition = _anchor + new Vector3(Mathf.Sin(_t * 0.35f) * driftAmplitude, Mathf.Sin(_t * 0.5f) * driftAmplitude * 0.5f, 0f);
             _body.Rotate(0f, 0f, 6f * Time.deltaTime, Space.Self);
             if (_beacon != null) _beacon.gameObject.SetActive(Mathf.Repeat(_t, 1.2f) < 0.3f);
         }

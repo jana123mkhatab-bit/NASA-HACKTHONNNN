@@ -49,18 +49,27 @@ namespace LastSignal.M4
         public const string SyncedResource = "LastSignal/M4/exoplanets";
         public const string FallbackResource = "LastSignal/M4/exoplanets_fallback";
         public const string PreferredPlanet = "Kepler-442 b";
+        /// <summary>The real NASA row (data_sources.csv name). The synced exoplanets.csv is a copy of it.</summary>
+        public const string RealFile = "exoplanet_trappist1e.csv";
+        /// <summary>True if the last Load used the fallback CSV or found nothing. Shown on the planet card and in Data and Sources.</summary>
+        public static bool LastWasFallback;
 
         public static ExoplanetRecord Load(out string sourceLabel)
         {
             var ta = Resources.Load<TextAsset>(SyncedResource);
+            LastWasFallback = false;
             sourceLabel = "Data/exoplanets.csv (NASA Exoplanet Archive)";
             if (ta == null)
             {
                 ta = Resources.Load<TextAsset>(FallbackResource);
-                sourceLabel = "M4 fallback CSV (waiting for person 6's Data CSV)";
+                sourceLabel = "M4 FALLBACK CSV (approximate values, not the NASA row)";
+                LastWasFallback = true;
+                NasaData.ReportFallback(RealFile, "M4 used exoplanets_fallback.csv because the real exoplanets.csv is missing");
             }
             if (ta == null)
             {
+                LastWasFallback = true;
+                NasaData.ReportFallback(RealFile, "M4 found no exoplanet CSV at all");
                 sourceLabel = "no CSV found";
                 Debug.LogWarning("[M4] No exoplanet CSV found. Add Assets/_Project/Data/exoplanets.csv.");
                 return new ExoplanetRecord();

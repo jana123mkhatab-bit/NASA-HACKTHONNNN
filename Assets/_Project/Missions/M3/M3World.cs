@@ -4,16 +4,27 @@ using UnityEngine;
 namespace LastSignal.M3
 {
     /// <summary>
-    /// Greybox deep-space backdrop for M3: stars, dust (to feel speed), Earth far behind, the departure dock,
-    /// and the uncharted planet (hidden until the scanner finds it). Distances are compressed for play.
+    /// Greybox deep-space backdrop for M3: stars, dust (to feel speed), Earth, the Moon, the Sun, the departure dock,
+    /// and the uncharted planet (hidden until the scanner finds it). Earth, the Moon and the distance between them use one
+    /// scale (SectorLayout.KmPerUnit, game balance) with JPL Horizons directions and NSSDC radii; the Sun is drawn in its
+    /// real direction as a backdrop, not at its real distance.
     /// </summary>
     public class M3World : MonoBehaviour
     {
         public Transform Earth { get; private set; }
         public Transform Planet { get; private set; }
         public Transform Dock { get; private set; }
+        public Transform Moon { get; private set; }
+        public Transform Sun { get; private set; }
+        /// <summary>Unit vector toward the Sun (Horizons snapshot).</summary>
+        public Vector3 SunDirection { get; private set; }
+        /// <summary>False if a NASA CSV was missing and fallback layout values were used.</summary>
+        public bool LayoutFromCsv { get; private set; }
 
-        public static readonly Vector3 EarthPosition = new Vector3(-9000f, 2500f, -20000f);
+        /// <summary>Earth's place in the sector (sector coordinates, game layout). The Moon is placed from Horizons data.</summary>
+        public static readonly Vector3 EarthPosition = new Vector3(-6000f, 1500f, -8000f);
+        const float SunBackdropDistance = 60000f;
+        const float SunSizeBoost = 4f;   // [game balance] Sun drawn 4x its real angular size so it reads on screen
         public static readonly Vector3 PlanetPosition = new Vector3(14000f, -2500f, 26000f);
 
         Transform _stars;
@@ -32,9 +43,42 @@ namespace LastSignal.M3
             _stars = PointCloud("Stars", 2500, 40000f, 40000f, true, new Color(0.9f, 0.95f, 1f)).transform;
             PointCloud("Dust", 1500, 1800f, 0f, false, new Color(0.55f, 0.6f, 0.7f)).transform.localPosition = new Vector3(0f, 0f, 400f);
 
-            Earth = GreyboxKit.Part(PrimitiveType.Sphere, "Earth", transform, EarthPosition, Vector3.one * 4000f, new Color(0.15f, 0.40f, 0.85f), true).transform;
-            GreyboxKit.Part(PrimitiveType.Sphere, "Moon", transform, EarthPosition + new Vector3(3800f, 600f, 1500f), Vector3.one * 1000f, new Color(0.6f, 0.6f, 0.62f));
-            GreyboxKit.Part(PrimitiveType.Sphere, "Sun", transform, new Vector3(30000f, 12000f, -15000f), Vector3.one * 2500f, new Color(1f, 0.85f, 0.55f), true);
+            CsvTable horizons = CsvTable.Load(SectorLayout.HorizonsCsv);
+            CsvTable radii = CsvTable.Load(SectorLayout.RadiiCsv);
+            Vector3 moonOffset;
+            Vector3 sunDir;
+            double earthSunKm, earthR, moonR, sunR;
+            bool ok = SectorLayout.TryMoonOffset(horizons, out moonOffset);
+            ok &= SectorLayout.TrySunDirection(horizons, out sunDir, out earthSunKm);
+            ok &= SectorLayout.TryRadiusKm(radii, "Earth", out earthR);
+            ok &= SectorLayout.TryRadiusKm(radii, "Moon", out moonR);
+            ok &= SectorLayout.TryRadiusKm(radii, "Sun", out sunR);
+            LayoutFromCsv = ok;
+            if (ok)
+            {
+                NasaData.Mark("horizons_positions_2026-11-13.csv", MissionIds.M3);
+                NasaData.Mark("body_radii.csv", MissionIds.M3);
+            }
+            else
+            {
+                NasaData.ReportFallback("horizons_positions_2026-11-13.csv", "M3 sector layout CSV unreadable, built-in layout used");
+                NasaData.ReportFallback("body_radii.csv", "M3 body radii CSV unreadable, built-in radii used");
+            }
+            if (!ok)
+            {
+                // Fallback only if the CSVs are missing from the build; same numbers the CSVs give today.
+                Debug.LogWarning("[M3] Sector CSVs missing; using fallback layout.");
+                moonOffset = new Vector3(386f, -1141f, -16169f);
+                sunDir = new Vector3(-0.64f, 0f, -0.77f).normalized;
+                earthSunKm = 1.4806e8; earthR = 6371.0; moonR = 1737.4; sunR = 695700.0;
+            }
+            SunDirection = sunDir;
+
+            Earth = GreyboxKit.Part(PrimitiveType.Sphere, "Earth", transform, EarthPosition, Vector3.one * SectorLayout.KmToUnits(earthR) * 2f, new Color(0.15f, 0.40f, 0.85f), true).transform;
+            Moon = GreyboxKit.Part(PrimitiveType.Sphere, "Moon", transform, EarthPosition + moonOffset, Vector3.one * SectorLayout.KmToUnits(moonR) * 2f, new Color(0.6f, 0.6f, 0.62f), true).transform;
+            float sunDeg = SectorLayout.AngularDiameterDeg(sunR, earthSunKm) * SunSizeBoost;
+            float sunSize = 2f * SunBackdropDistance * Mathf.Tan(sunDeg * 0.5f * Mathf.Deg2Rad);
+            Sun = GreyboxKit.Part(PrimitiveType.Sphere, "Sun", transform, sunDir * SunBackdropDistance, Vector3.one * sunSize, new Color(1f, 0.85f, 0.55f), true).transform;
 
             Planet = GreyboxKit.Part(PrimitiveType.Sphere, "UnchartedPlanet", transform, PlanetPosition, Vector3.one * 6000f, new Color(0.70f, 0.42f, 0.28f), true).transform;
             GreyboxKit.Part(PrimitiveType.Sphere, "PlanetCloudBand", Planet, Vector3.zero, Vector3.one * 1.015f, new Color(0.85f, 0.75f, 0.65f));
@@ -69,7 +113,7 @@ namespace LastSignal.M3
             Light sun = FindDirectionalLight();
             if (sun != null)
             {
-                sun.transform.rotation = Quaternion.LookRotation(-(new Vector3(30000f, 12000f, -15000f)).normalized);
+                sun.transform.rotation = Quaternion.LookRotation(-SunDirection);
                 sun.intensity = 1.3f;
                 sun.color = new Color(1f, 0.95f, 0.88f);
             }
@@ -97,6 +141,7 @@ namespace LastSignal.M3
             // Stars stay around the camera so they always look infinitely far away.
             Camera cam = Camera.main;
             if (cam != null && _stars != null) _stars.position = cam.transform.position;
+            if (cam != null && Sun != null) Sun.position = cam.transform.position + SunDirection * SunBackdropDistance;
         }
 
         /// <summary>A mesh of single-pixel points. shell = true puts them on a sphere of the given radius.</summary>

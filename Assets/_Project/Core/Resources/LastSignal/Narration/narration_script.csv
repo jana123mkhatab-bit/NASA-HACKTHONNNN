@@ -1,0 +1,44 @@
+id,speaker,text,seconds
+open_01,NARRATOR,"Somewhere past Mars, a ship stopped answering.",4
+open_02,NARRATOR,"Then a capsule fell back to Earth.",4
+open_03,FATHER,"They found the capsule. I keep thinking he is alive.",5
+open_04,NARRATOR,"The ship was his son's. So was the plan.",5
+open_05,NARRATOR,"Nobody checked it. Ten percent. That was his chance.",5
+open_06,PIP,"I am Pip. I keep the count so you do not have to.",5
+open_07,NARRATOR,"One last known signal. One father with a second chance.",5
+open_08,NARRATOR,"Fix the plan. Fly the ship. Bring him home.",5
+m1_intro_01,PIP,"Build a test frame on the sled. Pick an engine and only the payload this test needs, lock the clamps, then fire. Watch a = F / m.",9
+m1_outro_01,PIP,"Heavier frame, slower push: acceleration is thrust over mass. NASA Glenn, Beginner's Guide to Rockets.",7
+m2_intro_01,PIP,"Your son's flight assessment is in the records. It was never in his briefing.",6
+m2_intro_02,PIP,"Open it, then fix the plan in the Mission Planner. Every check runs against the plan you apply.",7
+m2_outro_01,PIP,"In this game, five 63% parts give 10%. Backups raise odds, cost mass. NASA Systems Engineering Handbook.",8
+m2_outro_02,FATHER,"I fixed his plan. Ten percent became seventy. He would have laughed.",5
+m3_intro_01,PIP,"A relay satellite is in your path. It will be destroyed.",4
+m3_intro_02,PIP,"Something is coming up behind us. It is not on any chart.",5
+m3_pip_launch,PIP,"Departure burn done. W and S for thrust, A and D to turn. The relay is ahead.",6
+m3_pip_target,PIP,"Keep the relay inside the circle until the lock bar fills.",5
+m3_pip_relaydown,PIP,"That relay was our only link to Earth. Nothing we send will get home now.",6
+m3_pip_intercept,PIP,"It's much faster than us. Brace!",3
+m3_pip_leaving,PIP,"They took half our supplies. The ship is lighter now, so it will accelerate faster.",7
+m3_pip_tumble,PIP,"Look at the bars and push against the spin!",4
+m3_pip_planet,PIP,"Scanner found a planet nobody has charted. It's close enough... maybe.",6
+m3_outro_01,PIP,"One relay is a single point of failure. Moon radio takes 1.4 seconds one way. NASA JPL Horizons.",8
+m3_outro_02,FATHER,"A ship came out of nowhere and took half my supplies. It did not answer.",6
+m4_intro_01,PIP,"The scanner found a planet with water.",3
+m4_intro_02,PIP,"Pick your landing site with care. Slope, rocks and ice all matter.",5
+m4_outro_01,PIP,"The planet uses NASA Exoplanet Archive values: radius, starlight and temperature.",6
+m4_outro_02,FATHER,"The water collector is his. The footprints are fresh.",5
+site_a_solar,PIP,"Solar storm. NASA's DONKI database logs flares and CMEs so crews get warning. Shield or divert?",7
+site_b_asteroid,PIP,"Asteroid close pass. JPL close-approach data lets NASA track near-Earth objects. Dodge or hold?",7
+site_c_blackout,PIP,"Comms blackout. Radio travels at light speed; JPL Horizons gives the delay. Wait, or act alone?",7
+site_d_power,PIP,"Power shortfall. Sunlight fades with distance squared. NASA's Earth fact sheet: 1361 watts per square metre.",8
+final_01,PIP,"The survey is ready. Home is listening.",3
+final_02,MISSION CONTROL,"Deep Space Network. Link established.",3
+final_03,MISSION CONTROL,"Survey received. Every byte of it.",3
+final_04,MISSION CONTROL,"Coordinates, water readings... and a second flight log.",4
+final_05,FATHER,"He's here. He's alive.",3
+final_06,MISSION CONTROL,"...Copy that. Two to bring home.",3
+final_07,SON,"Tell Mom I kept the water running.",3
+final_08,MISSION CONTROL,"The next ship is already on the build schedule. Your plan is in it.",4
+final_09,NARRATOR,"Three NASA Deep Space Network sites keep contact as Earth turns. Source: NASA DSN, JPL.",6
+final_10,PIP,"Now it is your turn. Design any mission you like.",4

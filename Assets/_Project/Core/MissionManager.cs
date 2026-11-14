@@ -112,6 +112,7 @@ namespace LastSignal
         public void BeginRun()
         {
             state.ResetToDefaults();
+            NasaData.ResetRun();
             state.plannedSuccess = RiskModel.ComputeSuccess(PlanConfig.SonsOriginalPlan());
             Retries = 0;
             _completed.Clear();
@@ -229,7 +230,7 @@ namespace LastSignal
                 return;
             }
             var card = Resources.Load<DebriefCard>("LastSignal/Debrief_" + id);
-            if (debriefUI != null) debriefUI.Show(card != null ? card : FallbackCard(id));
+            if (debriefUI != null) debriefUI.Show(card != null ? card : FallbackCard(id), id);
             else ContinueAfterDebrief();
         }
 

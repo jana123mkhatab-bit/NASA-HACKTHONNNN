@@ -316,7 +316,6 @@
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
--r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/Microsoft.Win32.Primitives.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/UnityReferenceAssemblies/unity-4.8-api/Facades/System.AppContext.dll"
@@ -458,6 +457,10 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/_Project/Core/Tests/CaptureFlowTests.cs"
 "Assets/_Project/Core/Tests/FlowTests.cs"
+"Assets/_Project/Core/Tests/LaunchCheckTests.cs"
+"Assets/_Project/Core/Tests/NarrationPlayerTests.cs"
+"Assets/_Project/Core/Tests/NasaDataTests.cs"
+"Assets/_Project/Core/Tests/OpeningIntroTests.cs"
 "Assets/_Project/Core/Tests/RiskModelTests.cs"
 -langversion:9.0
 /deterministic

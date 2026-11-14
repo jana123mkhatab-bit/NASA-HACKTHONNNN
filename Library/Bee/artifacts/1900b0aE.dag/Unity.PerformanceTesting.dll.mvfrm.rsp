@@ -89,6 +89,7 @@ Library\Bee\artifacts\mvdfrm\UnityEngine.HierarchyCoreModule.dll_735651E6B0ED063
 Library\Bee\artifacts\mvdfrm\UnityEngine.HotReloadModule.dll_0AC1567C3661AD31.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.IMGUIModule.dll_2246DEEAE79302C2.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.IdentifiersModule.dll_A8C125DC0CEC12D5.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityEngine.ImageConversionModule.dll_1D93AEDF16FA4F9C.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.InputForUIModule.dll_95D22B0A9F2104CC.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.InputLegacyModule.dll_617CB904E264FAAE.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.InputModule.dll_505D073497999385.mvfrm
@@ -108,6 +109,7 @@ Library\Bee\artifacts\mvdfrm\UnityEngine.PhysicsModule.dll_A69E8A3C06072FD2.mvfr
 Library\Bee\artifacts\mvdfrm\UnityEngine.PropertiesModule.dll_C05B102FB1EBCC4C.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.RenderAs2DModule.dll_0192D2B591461683.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll_B4050E69B3E9820D.mvfrm
+Library\Bee\artifacts\mvdfrm\UnityEngine.ScreenCaptureModule.dll_763AEBCD55E73A35.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.ScriptingModule.dll_A099F13CDAB64062.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.ShaderVariantAnalyticsModule.dll_649A3CCAD96D65DF.mvfrm
 Library\Bee\artifacts\mvdfrm\UnityEngine.SpriteMaskModule.dll_7C4C4381606FFD8A.mvfrm

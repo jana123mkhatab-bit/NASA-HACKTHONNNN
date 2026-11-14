@@ -18,13 +18,15 @@ namespace LastSignal.Ship
         public float roll;
         public bool stabilize;
         public bool boost;
+        /// <summary>Fire the engines against the current velocity until the ship stops (uses fuel).</summary>
+        public bool brake;
 
         public bool IsIdle
         {
             get
             {
                 return Mathf.Abs(thrust) < 0.01f && Mathf.Abs(lift) < 0.01f && Mathf.Abs(yaw) < 0.01f
-                    && Mathf.Abs(pitch) < 0.01f && Mathf.Abs(roll) < 0.01f && !stabilize;
+                    && Mathf.Abs(pitch) < 0.01f && Mathf.Abs(roll) < 0.01f && !stabilize && !brake;
             }
         }
 
@@ -58,6 +60,7 @@ namespace LastSignal.Ship
                 f.lift += Axis(kb.spaceKey.isPressed, kb.leftCtrlKey.isPressed || kb.cKey.isPressed);
                 f.stabilize |= kb.xKey.isPressed;
                 f.boost |= kb.leftShiftKey.isPressed;
+                f.brake |= kb.bKey.isPressed;
             }
             Gamepad pad = Gamepad.current;
             if (pad != null)
@@ -70,6 +73,7 @@ namespace LastSignal.Ship
                 f.lift += Axis(pad.buttonNorth.isPressed, pad.buttonEast.isPressed);
                 f.stabilize |= pad.buttonWest.isPressed;
                 f.boost |= pad.leftStickButton.isPressed;
+                f.brake |= pad.rightStickButton.isPressed;
             }
 #else
             f.thrust = Axis(Input.GetKey(KeyCode.W), Input.GetKey(KeyCode.S));
@@ -79,6 +83,7 @@ namespace LastSignal.Ship
             f.lift = Axis(Input.GetKey(KeyCode.Space), Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.C));
             f.stabilize = Input.GetKey(KeyCode.X);
             f.boost = Input.GetKey(KeyCode.LeftShift);
+            f.brake = Input.GetKey(KeyCode.B);
 #endif
             if (InvertPitch) f.pitch = -f.pitch;
             f.thrust = Mathf.Clamp(f.thrust, -1f, 1f);
@@ -135,6 +140,26 @@ namespace LastSignal.Ship
             return kb != null && (kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame);
 #else
             return Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
+#endif
+        }
+
+        /// <summary>R pressed this frame (call the rescue tug when stranded).</summary>
+        public static bool RescuePressed()
+        {
+#if ENABLE_INPUT_SYSTEM
+            return Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame;
+#else
+            return Input.GetKeyDown(KeyCode.R);
+#endif
+        }
+
+        /// <summary>T pressed this frame (retry the mission when stranded).</summary>
+        public static bool RetryPressed()
+        {
+#if ENABLE_INPUT_SYSTEM
+            return Keyboard.current != null && Keyboard.current.tKey.wasPressedThisFrame;
+#else
+            return Input.GetKeyDown(KeyCode.T);
 #endif
         }
 

@@ -249,6 +249,7 @@
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.IdentifiersModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputForUIModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
@@ -268,6 +269,7 @@
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.PropertiesModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.RenderAs2DModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+-r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScriptingModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.ShaderVariantAnalyticsModule.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
@@ -413,11 +415,16 @@
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlDocument.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/NetStandard/compat/2.1.0/shims/netstandard/System.Xml.XmlSerializer.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/NetStandard/ref/2.1.0/netstandard.dll"
--r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
 -r:"C:/Program Files/Unity/Hub/Editor/6000.6.9f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
 -r:"Library/PackageCache/com.unity.collections@c70d71c1212e/Unity.Collections.LowLevel.ILSupport/Unity.Collections.LowLevel.ILSupport.dll"
 -r:"Library/PackageCache/com.unity.ext.nunit@0198eae3b53e/net472/unity-custom/nunit.framework.dll"
 -r:"Library/PackageCache/com.unity.nuget.mono-cecil@ecb9724e46ff/Mono.Cecil.dll"
+-r:"Library/PackageCache/com.unity.nuget.newtonsoft-json@4dfd81071c64/Runtime/Newtonsoft.Json.dll"
+-r:"Library/PackageCache/com.unity.pipeline@178b93997022/Runtime/Plugins/CodeAnalysis/UnityPipeline.Microsoft.CodeAnalysis.CSharp.dll"
+-r:"Library/PackageCache/com.unity.pipeline@178b93997022/Runtime/Plugins/CodeAnalysis/UnityPipeline.Microsoft.CodeAnalysis.dll"
+-r:"Library/PackageCache/com.unity.pipeline@178b93997022/Runtime/Plugins/CodeAnalysis/UnityPipeline.System.Collections.Immutable.dll"
+-r:"Library/PackageCache/com.unity.pipeline@178b93997022/Runtime/Plugins/CodeAnalysis/UnityPipeline.System.Reflection.Metadata.dll"
+-r:"Library/PackageCache/com.unity.pipeline@178b93997022/Runtime/Plugins/CodeAnalysis/UnityPipeline.System.Runtime.CompilerServices.Unsafe.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.RenderPipelines.Core.Runtime.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
@@ -437,7 +444,7 @@
 /debug:portable
 /nologo
 /RuntimeMetadataVersion:v4.0.30319
--ruleset:"D:/NASAProj/NASA-HACKTHONNNN/Library/ImmutablePackage.ruleset"
+-ruleset:"C:/Users/Jana/Downloads/LastHorizon_Unity/proj/Library/ImmutablePackage.ruleset"
 /nowarn:0169
 /nowarn:0649
 /nowarn:0282
